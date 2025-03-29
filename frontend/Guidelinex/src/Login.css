@@ -5,7 +5,7 @@ body {
 
 .login-container {
   display: flex;
-  height: 100vh;
+  height: 120vh;
   background-color: #1e90ff; /* Blue background for the entire container */
   color: white;
 }
@@ -49,11 +49,13 @@ body {
 .left-section p {
   font-size: 16px;
   line-height: 1.5;
-  max-width: 400px;
+  max-width: 800px;
 }
 
 .user-section {
   margin-top: 30px;
+
+
 }
 
 .user-section p {
@@ -90,10 +92,10 @@ body {
 
 /* Right Half - White Box */
 .right-section {
-  width: 400px;
+  width: 600px;
   background-color: white;
   color: black;
-  padding: 40px;
+  padding: 60px;
   border-radius: 20px 0 0 20px; /* Rounded corners on the left side */
   display: flex;
   flex-direction: column;
@@ -101,15 +103,18 @@ body {
   box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.guidelinex-text {
+  color: #1e90ff;
+}
 .right-section h3 {
   font-size: 18px;
-  color: #888;
+  color: #0f0c0c;
   margin: 0;
-  text-align: left;
+  text-align: center;
 }
 
 .right-section h4 {
-  font-size: 24px;
+  font-size: 60px;
   margin: 10px 0;
   text-align: left;
 }
@@ -120,7 +125,7 @@ body {
   justify-content: center;
   width: 100%;
   padding: 10px;
-  background-color: #f1f3f5;
+  background-color: #428fdd;
   border: 1px solid #ddd;
   border-radius: 5px;
   cursor: pointer;

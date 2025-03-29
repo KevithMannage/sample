@@ -17,8 +17,8 @@ const LoginPage = () => {
       {/* Left Half - Blue Background */}
       <div className="left-section">
         <div className="logo">
-          <span className="logo-icon">G</span>
-          <span className="logo-text">UIDELINEX</span>
+          <span className="logo-icon"> <img src="/images/3.png" alt="Professional" /></span>
+        
         </div>
         <h1>Sign in to</h1>
         <h2>GuidelineX is simply</h2>
@@ -42,8 +42,8 @@ const LoginPage = () => {
 
       {/* Right Half - White Box */}
       <div className="right-section">
-        <h3>Welcome to GuidelineX</h3>
-        <h4>Sign in</h4>
+      <h3><span className="welcome-text">Welcome to</span> <span className="guidelinex-text">GuidelineX</span></h3>
+      <h4>Sign in</h4>
         <button className="google-signin">
           <img src={googleIcon} alt="Google Icon" />
           Sign in with Google
@@ -73,4 +73,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
 
