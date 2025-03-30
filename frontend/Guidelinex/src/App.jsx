@@ -17,14 +17,19 @@ const LoginPage = () => {
       {/* Left Half - Blue Background */}
       <div className="left-section">
         <div className="logo">
-          <span className="logo-icon"> <img src="/images/3.png" alt="Professional" /></span>
-        
-        </div>
+        <img src="/images/3.png" alt="Professional" className="logo-icon" />
+        <span className="logo-text">
         <h1>Sign in to</h1>
         <h2>GuidelineX is simply</h2>
         <p>
           GuidelineX is a user-friendly platform that provides individuals across various fields, helping them achieve success in their future endeavors.
-        </p>
+        </p></span>        
+        </div>
+        {/* <h1>Sign in to</h1>
+        <h2>GuidelineX is simply</h2>
+        <p>
+          GuidelineX is a user-friendly platform that provides individuals across various fields, helping them achieve success in their future endeavors.
+        </p> */}
         <div className="user-section">
           <p>No Account? <a href="#">Sign up</a></p>
           <div className="avatars">
