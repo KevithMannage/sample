@@ -2,6 +2,7 @@ import React from 'react';
 import { FaHome, FaEnvelope, FaComments, FaPlusCircle, FaInfoCircle, FaPhone, FaSearch, FaBell } from 'react-icons/fa';
 import './Navbar.css';
 
+
 const Navbar = ({ isLoggedIn, user }) => {
   // Sample user data - in a real app, this would come from props or context
   const sampleUser = {
@@ -14,22 +15,22 @@ const Navbar = ({ isLoggedIn, user }) => {
       <div className="navbar-brand">GuidelineX</div>
       
       <div className="navbar-links">
-        <a href="#" className="nav-link">
+        <a href="/home" className="nav-link">
           <FaHome className="nav-icon" /> Home
         </a>
-        <a href="#" className="nav-link">
+        <a href="/messages" className="nav-link">
           <FaEnvelope className="nav-icon" /> Messages
         </a>
-        <a href="#" className="nav-link">
+        <a href="/discussion" className="nav-link">
           <FaComments className="nav-icon" /> Discussions
         </a>
-        <a href="#" className="nav-link">
+        <a href="/newdiscussion" className="nav-link">
           <FaPlusCircle className="nav-icon" /> New Discussion
         </a>
-        <a href="#" className="nav-link">
+        <a href="/aboutus" className="nav-link">
           <FaInfoCircle className="nav-icon" /> About us
         </a>
-        <a href="#" className="nav-link">
+        <a href="/contactus" className="nav-link">
           <FaPhone className="nav-icon" /> Contact us
         </a>
 
