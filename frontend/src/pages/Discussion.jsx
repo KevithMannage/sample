@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../navbar';
+import Navbar from '../Navbar';
 
 function Discussion() {
   return (
@@ -7,6 +7,8 @@ function Discussion() {
     <h1>Discussion</h1>
     <Navbar/>
     <div>Discussion</div>
+    <h1>Welcome to the Discussion!</h1>
+    <p>This is your main Discussion page.</p>
     </>
     
   )

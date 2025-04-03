@@ -87,7 +87,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Login.css';
 import googleIcon from '/images/google.png';
-import Navbar from './navbar';
+import Navbar from './Navbar';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');

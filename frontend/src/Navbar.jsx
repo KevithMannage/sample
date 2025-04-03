@@ -3,6 +3,7 @@ import { FaHome, FaEnvelope, FaComments, FaPlusCircle, FaInfoCircle, FaPhone, Fa
 import './Navbar.css';
 
 
+
 const Navbar = ({ isLoggedIn, user }) => {
   // Sample user data - in a real app, this would come from props or context
   const sampleUser = {
@@ -15,8 +16,8 @@ const Navbar = ({ isLoggedIn, user }) => {
       <div className="navbar-brand">GuidelineX</div>
       
       <div className="navbar-links">
-        <a href="/home" className="nav-link">
-          <FaHome className="nav-icon" /> Home
+        <a href="/dashboard" className="nav-link">
+          <FaHome className="nav-icon" /> Dashboard
         </a>
         <a href="/messages" className="nav-link">
           <FaEnvelope className="nav-icon" /> Messages

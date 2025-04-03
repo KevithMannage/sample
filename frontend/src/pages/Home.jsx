@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Navbar from '../navbar';
+import Navbar from '../Navbar';
 function Home() {
   return (
     <>
