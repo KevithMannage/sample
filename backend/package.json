@@ -5,7 +5,8 @@
   "scripts": {
     "start": "concurrently \"npm run frontend\" \"npm run backend\"",
     "frontend": "cd ../frontend && npm run dev",
-    "backend": "cd chatbotbackend && .\\venv\\Scripts\\activate && python main.py"
+    "backend": "cd chatbotbackend && python main.py",
+    "postinstall": "cd chatbotbackend && python -m venv venv && venv\\Scripts\\activate && pip install -r requirements.txt"
   },
   "keywords": [],
   "author": "",

@@ -5,4 +5,4 @@ google-generativeai
 pymongo
 langchain
 langchain-community
-mysql
+dnspython
