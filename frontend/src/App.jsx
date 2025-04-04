@@ -14,6 +14,7 @@ import AboutUs from './pages/AboutUs';
 import Chatbot from './pages/Chatbot';
 import ProfessionalLoginPage from './Professionallogin';
 import Usersignuppage from './usersignup';
+import Professionsignuppage from './Proffesionsignup';
 import { FaRegFileCode } from 'react-icons/fa';
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
              <Route path="/chatbot" element={<Chatbot/>} />
              <Route path="/professional_login" element={<ProfessionalLoginPage/>} />
              <Route path="/usersignup" element={<Usersignuppage/>} />
+             <Route path="/professionsignup" element={<Professionsignuppage/>} />
              <Route path="/aboutus" element={<AboutUs/>} />
              <Route path="/contactus" element={<ContactUs/>} /> 
              <Route path="/discussion" element={<Discussion/>} />

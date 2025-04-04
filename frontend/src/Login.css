@@ -37,11 +37,48 @@ body {
   margin-right: 50px;
 
 } 
-.hi{
-  padding-left: 1px;
+
+
+.hi {
+  padding-left: 20px;
+  justify-content: center; /* or 'flex-start' depending on your layout */
+  margin: 20px 0;
 }
 
+.button-icon {
+  width: 60px;  /* Adjust size as needed */
+  height: 60px; /* Adjust size as needed */
+  margin-bottom: 1px; /* Space between icon and text */
+}
+.signin-button1 {
+  background-color: #2E5CFF; /* Blue color */
+  color: white;
+  border: none;
+  border-radius: 4px; /* Slightly rounded corners */
+  padding: 12px 24px; /* Vertical and horizontal padding */
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.signin-button:hover {
+  background-color: #1a4beb; /* Slightly darker blue on hover */
+}
+.professional-login {
+  margin-left: 650px;
+
+  
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+ 
+  cursor: pointer;
+  transition: color 0.3s;
+}
 .left-section h1 {
   font-size: 36px;
   margin: 0;
@@ -69,7 +106,8 @@ body {
 }
 
 .picture{
-  padding-left: 300px;
+ 
+  padding-left: 180px;
   color: #0f0c0c;
 }
 .user-section p {

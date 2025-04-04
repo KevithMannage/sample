@@ -52,7 +52,7 @@ const Usersignuppage = () => {
 </div>
     <div className="picture">
      
-    <p><img src="images/signup2.png" alt="picture "></img></p>
+    <p><img src="images/signup.png" alt="picture "></img></p>
 
     
 

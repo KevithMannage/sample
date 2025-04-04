@@ -90,10 +90,20 @@ import googleIcon from '/images/google.png';
 import Navbar from './navbar';
 
 const LoginPage = () => {
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Initialize navigation
 
+
+
+  const handleClickProfession = () => {
+    navigate('/professionsignup');
+  };
+
+  const handleClickUser = () => {
+    navigate('/usersignup');
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -113,22 +123,33 @@ const LoginPage = () => {
           <img src="/images/3.png" alt="Professional" className="logo-icon" />
           <span className="logo-text">
             <h1>Sign in to</h1>
-            <h2>GuidelineX is simply</h2>
+            <h2>GuidelineX is simply(user)</h2>
             <p>
               GuidelineX is a user-friendly platform that provides individuals across various fields, helping them achieve success in their future endeavors.
             </p>
           </span>        
         </div>
+       
+       
         <div className="user-section">
           <p>No Account? <a href="/usersignup">Sign up</a></p>
+         
+    
+      
           <div className="avatars">
             <div className="avatar">
+            <button className="account-button" onClick={handleClickProfession}>
               <img src="/images/1.png" alt="Professional" />
               <span>Professional</span>
+              </button>
             </div>
             <div className="avatar">
-              <img src="/images/2.png" alt="User" />
-              <span>User</span>
+            <button className="account-button" onClick={handleClickUser}>
+        <img src="/images/2.png" alt="User" className="button-icon" />
+        <span>User</span>
+      </button>
+     
+              
             </div>
           </div>
         </div>
@@ -158,7 +179,10 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <a href="#" className="forgot-password">Forgot Password</a>
+          <a href="/professional_login" className="forgot-password">Profession Login</a>
           <button type="submit" className="signin-btn">Sign in</button>
+ 
+     
         </form>
       </div>
     </div>
