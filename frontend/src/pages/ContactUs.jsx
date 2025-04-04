@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../Navbar"; // Import existing Navbar
+import Navbar from "../navbar"; // Import existing Navbar
 
 const ContactUs = () => {
   return (
@@ -13,21 +13,31 @@ const ContactUs = () => {
           
           {/* Left Section - Contact Info & Illustration */}
           <div className="md:w-1/2 flex flex-col items-center text-center p-6">
-            <img
-              src="https://conantcrier.com/wp-content/uploads/2020/10/image-874x517.png" 
-              alt="Illustration"
-              className="w-64 mb-4"
-            />
+  <img
+    src="images/Contactus.png" 
+    alt="Illustration"
+    className="w-80 mb-4"
+  />
+
             <div className="text-gray-700 text-lg space-y-2">
               <p className="flex items-center">
-                📞 <span className="ml-2">+1 254 8547 956</span>
+              <img src="/images/phone.png" alt="phone icon"/> <span className="ml-2">+1 254 8547 956</span>
               </p>
+             
+
               <p className="flex items-center">
-                📧 <span className="ml-2">Guidelinex@gmail.com</span>
-              </p>
+  <img 
+    src="/images/mail.png" 
+    alt="mail icon" 
+    className="-ml-2 mr-0.5" 
+  />
+  <span>Guidelinex@gmail.com</span>
+</p>
               <p className="flex items-center">
-                📍 <span className="ml-2">Bandaranayake Mawatha, Moratuwa 10400</span>
+              <img src="/images/location.png" alt="location icon"/> <span className="ml-2">Bandaranayake Mawatha, Moratuwa 10400</span>
               </p>
+
+
             </div>
           </div>
 

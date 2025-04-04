@@ -1,12 +1,12 @@
 // src/components/AboutUs.js
 import React from 'react';
-import Navbar from '../Navbar'; // Import Navbar component
-import logo from '../assets/logo.jpg'; // Import the missing logo image
-import developer1 from '../assets/developer1.jpg';
-import developer2 from '../assets/developer1.jpg'; // Use correct images
-import developer3 from '../assets/developer1.jpg';
-import developer4 from '../assets/developer1.jpg';
-import developer5 from '../assets/developer1.jpg';
+import Navbar from '../navbar'; // Import Navbar component
+import logo from '/images/4.png'; // Import the missing logo image
+import developer1 from '/images/kevith.png';
+import developer2 from '/images/induwara.png'; // Use correct images
+import developer3 from '/images/malith.png';
+import developer4 from '/images/idunil.png';
+import developer5 from '/images/umesh.png';
 
 const AboutUs = () => {
   return (
@@ -42,7 +42,7 @@ const AboutUs = () => {
           {[developer1, developer2, developer3, developer4, developer5].map((dev, index) => (
             <div key={index} style={styles.developer}>
               <img src={dev} alt={`Developer ${index + 1}`} style={styles.developerImage} />
-              <p style={styles.developerName}>{["Karthik Morthage", "Indukuri Vinayaga", "Nithin Nethaji", "Karthik Indukuri", "Sumanth Jayadev"][index]}</p>
+              <p style={styles.developerName}>{["Kevith Mannage", "Induwara Withanage", "Malith Sathmina", "Kaveesha indunil", "Umesh Jayacody"][index]}</p>
               <p style={styles.developerRole}>Senior Software Engineer</p>
             </div>
           ))}
@@ -60,7 +60,7 @@ const styles = {
     fontFamily: 'Arial, sans-serif',
   },
   card: {
-    maxWidth: '800px',
+    maxWidth: '1200px',
     margin: '40px auto',
     padding: '30px',
     backgroundColor: '#e6eaff',
@@ -68,9 +68,10 @@ const styles = {
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
   },
   heading: {
-    fontSize: '36px',
+    fontFamily:'Poppins',
+    fontSize: '72px',
     fontWeight: 'bold',
-    color: '#1a3c8d',
+    color: 'rgba(66, 133, 244, 1)',
     textAlign: 'center',
     marginBottom: '20px',
   },
@@ -83,7 +84,7 @@ const styles = {
     flex: '1',
   },
   logo: {
-    width: '150px',
+    width: '850px',
     height: 'auto',
   },
   textContainer: {
@@ -96,9 +97,10 @@ const styles = {
     marginBottom: '15px',
   },
   subHeading: {
-    fontSize: '28px',
+    fontFamily:'Poppins',
+    fontSize: '72px',
     fontWeight: 'bold',
-    color: '#1a3c8d',
+    color: 'rgba(66, 133, 244, 1)',
     margin: '30px 0 20px',
     textAlign: 'center',
   },
