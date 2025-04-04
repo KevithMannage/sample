@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "frontend": "cd ../frontend && npm run dev",
+    "backend": "cd chatbotbackend && .\\venv\\Scripts\\activate && python main.py"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "mongoose": "^8.13.1"
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "nodemon": "^3.1.9"
   }
 }
