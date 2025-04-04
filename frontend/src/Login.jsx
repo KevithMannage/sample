@@ -87,7 +87,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Login.css';
 import googleIcon from '/images/google.png';
-import Navbar from './Navbar';
+import Navbar from './navbar';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -120,7 +120,7 @@ const LoginPage = () => {
           </span>        
         </div>
         <div className="user-section">
-          <p>No Account? <a href="#">Sign up</a></p>
+          <p>No Account? <a href="/usersignup">Sign up</a></p>
           <div className="avatars">
             <div className="avatar">
               <img src="/images/1.png" alt="Professional" />
