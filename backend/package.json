@@ -2,11 +2,12 @@
   "name": "guidelinex",
   "version": "1.0.0",
   "main": "index.js",
+
   "scripts": {
     "start": "concurrently \"npm run frontend\" \"npm run backend\"",
     "frontend": "cd ../frontend && npm run dev",
     "backend": "cd chatbotbackend && python main.py",
-    "postinstall": "cd chatbotbackend && python -m venv venv && venv\\Scripts\\activate && pip install -r requirements.txt"
+    "postinstall": "cd chatbotbackend && python -m venv venv && venv\\Scripts\\activate && pip install -r requirements.txt && pip uninstall -y pymongo && pip uninstall -y mongoengine && pip install mongoengine"
   },
   "keywords": [],
   "author": "",
