@@ -1,7 +1,7 @@
 import React from 'react';
 import '../ProfessionalProfile.css';
 import profilePic from '../assets/developer1.jpg'; // Replace with the correct path to the image
-import Navbar from '../Navbar';
+import Navbar from '../navbar';
 
 const ProfessionalProfile = () => {
   return (
