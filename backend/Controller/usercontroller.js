@@ -95,8 +95,9 @@ export const loginUser = async (req, res) => {
 };
 
 // Helper function to generate tokens
-const generateToken = (user) => {
+export const generateToken = (user) => {
   const accessToken = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: '15m' });
   const refreshToken = jwt.sign({ id: user.id, username: user.username }, JWT_REFRESH_SECRET, { expiresIn: '7d' });
   return { accessToken, refreshToken };
 };
+
