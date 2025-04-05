@@ -3,7 +3,7 @@
     position: fixed;  /* Keeps navbar fixed at the top */
     top: 0;
     left: 0;
-    width: 98%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -9,7 +9,8 @@ import AboutUs from './pages/AboutUs';
  import Discussion from './pages/Discussion';
  import Messages from './pages/Message';
  import NewDiscussion from './pages/NewDiscussion';
- import Profile from './pages/profesinalProfile';
+ import ProfesinalProfile from './pages/profesinalProfile';
+ import StudentlProfile from './pages/studentsProfile';
  import Home from './pages/Home';
 import Chatbot from './pages/Chatbot';
 import ProfessionalLoginPage from './Professionallogin';
@@ -35,7 +36,8 @@ const App = () => {
              <Route path="/discussion" element={<Discussion/>} />
              <Route path="/messages" element={<Messages/>} />
              <Route path="/newdiscussion" element={<NewDiscussion/>} />
-             <Route path="/profile" element={<Profile/>} />
+             <Route path="/profesinalProfile" element={<ProfesinalProfile/>} />
+              <Route path="/studentProfile" element={<StudentlProfile/>} />
              <Route path="/home" element={<Home/>} />
  
           </Routes>
