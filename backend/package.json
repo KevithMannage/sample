@@ -2,12 +2,11 @@
   "name": "guidelinex",
   "version": "1.0.0",
   "main": "index.js",
-
   "scripts": {
     "start": "concurrently \"npm run frontend\" \"npm run backend\"",
     "frontend": "cd ../frontend && npm run dev",
     "backend": "cd chatbotbackend && python main.py",
-    "postinstall": "cd chatbotbackend && python -m venv venv && venv\\Scripts\\activate && pip install -r requirements.txt && pip uninstall -y pymongo && pip uninstall -y mongoengine && pip install mongoengine"
+    "postinstall": "cd chatbotbackend && python -m venv venv && venv\\Scripts\\activate && pip install -r requirements.txt && pip uninstall -y pymongo && pip uninstall -y mongoengine && pip install mongoengine && pip install fastapi uvicorn python-dotenv google-generativeai pymongo langchain langchain-community dnspython"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +17,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "google": "^2.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.1"
   },
