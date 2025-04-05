@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import axios from 'axios'; // Import axios for making HTTP requests
 import './Login.css';
 import googleIcon from '/images/google.png';
 import Navbar from './navbar';
@@ -7,27 +8,43 @@ import Navbar from './navbar';
 const Usersignuppage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setemail] = useState('');
-  const [mobile, setmobile] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
   const navigate = useNavigate(); // Initialize navigation
-  
-  
 
-
-
-  const handlelogin = () => {
+  const handleLogin = () => {
     navigate('/login');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Simulate authentication check (replace with real authentication logic)
-    if (username === "k" && password === "k") {
-      console.log('Login successful');
-      navigate('/dashboard'); // Redirect to Dashboard
-    } else {
-      alert('Invalid credentials!'); // Show an error message
+
+    // Check if any field is empty
+    if (!username || !password || !email || !mobile) {
+      alert('Please fill in all fields!');
+      return;
+    }
+
+    try {
+      // Send a POST request to register the user
+      const response = await axios.post('http://localhost:3000/user/registeruser', {
+        username,
+        password,
+        email,
+        mobile,
+      });
+
+      // Handle successful response
+      console.log(response.data);
+      if (response.data.success) {
+        alert('Registration successful');
+        navigate('/'); // Redirect to Dashboard after successful registration
+      } else {
+        alert('Registration failed. Please try again!');
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+      alert('An error occurred. Please try again!');
     }
   };
 
@@ -38,57 +55,51 @@ const Usersignuppage = () => {
           <img src="/images/3.png" alt="Professional" className="logo-icon" />
           <span className="logo-text">
             <h1>Sign up to</h1>
-            <h2>GuidelineX </h2>
+            <h2>GuidelineX</h2>
             <p>
-            join our platform as an expert and help others by sharing your expertise! By creating an account       </p>
-          </span>        
+              Join our platform as an expert and help others by sharing your expertise! By creating an account
+            </p>
+          </span>
         </div>
         <div className="user-section">
-
-        <div className="hi">
-  <button className="signin-button1" onClick={handlelogin}>
-  <img src="/images/3.png" alt="picture" className="button-icon" />
-    Have an account? <br />Sign in</button>
-</div>
-    <div className="picture">
-     
-    <p><img src="images/signup2.png" alt="picture "></img></p>
-
-    
-
-     </div>
-          
+          <div className="hi">
+            <button className="signin-button1" onClick={handleLogin}>
+              <img src="/images/3.png" alt="picture" className="button-icon" />
+              Have an account? <br />Sign in
+            </button>
+          </div>
+          <div className="picture">
+            <p><img src="images/signup2.png" alt="picture " /></p>
+          </div>
         </div>
       </div>
 
       <div className="right-section">
         <h3><span className="welcome-text">Welcome to</span> <span className="guidelinex-text">GuidelineX</span></h3>
         <h4>Sign up</h4>
-       
-       
+
         <form onSubmit={handleSubmit}>
-          <label>Username or email address</label>
+          <label>Username</label>
           <input
             type="text"
-            placeholder="Enter your username or email address"
+            placeholder="Enter your username"
             value={email}
-            onChange={(e) => setemail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
-           <label>Username</label>
+          <label>Email</label>
           <input
             type="text"
-            placeholder="Enter your username "
+            placeholder="Enter your email"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-            <label>Contact number</label>
+          <label>Contact number</label>
           <input
             type="text"
-            placeholder="Enter your contact number "
+            placeholder="Enter your contact number"
             value={mobile}
-            onChange={(e) => setmobile(e.target.value)}
+            onChange={(e) => setMobile(e.target.value)}
           />
-
           <label>Password</label>
           <input
             type="password"
@@ -105,4 +116,3 @@ const Usersignuppage = () => {
 };
 
 export default Usersignuppage;
-
