@@ -1,24 +1,24 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const crypto = require('crypto');
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import crypto from 'crypto';
 
 // Import the User model
-const User = require('../Models/User');
-dotenv.config();
+import User from '../Models/User.js';
 
+dotenv.config();
 
 const JWT_SECRET = process.env.ACESS_TOKEN_SECRET;
 const JWT_REFRESH_SECRET = process.env.REFRESH_TOKEN_SECRET;
 
-
-const registerUser = async (req, res) => {
+// Controller for user registration
+export const registerUser = async (req, res) => {
   const { username, password, role, mobile, email } = req.body;
 
   // Ensure both username and password are provided
-  if (!username || !password||!email ||!mobile) {
-    return res.status(400).json({ message: 'Username,password,email,mobile are required' });
+  if (!username || !password || !email || !mobile) {
+    return res.status(400).json({ message: 'Username, password, email, and mobile are required' });
   }
 
   try {
@@ -42,26 +42,21 @@ const registerUser = async (req, res) => {
       role: userRole,
       mobile,
       email,
-      
     });
     console.log(user);
 
     // Save the user to the database
-   
     await user.save();
 
     res.status(201).json({ message: 'User registered successfully', status: 'ok' });
-
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Error registering user' });
   }
 };
 
-
-
 // Controller for user login
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -90,8 +85,8 @@ const loginUser = async (req, res) => {
       message: 'Login successful',
       accessToken,
       refreshToken,
-      status:'ok',
-      id:user.id,
+      status: 'ok',
+      id: user.id,
     });
   } catch (err) {
     console.error(err);
@@ -99,4 +94,9 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser};
+// Helper function to generate tokens
+const generateToken = (user) => {
+  const accessToken = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: '15m' });
+  const refreshToken = jwt.sign({ id: user.id, username: user.username }, JWT_REFRESH_SECRET, { expiresIn: '7d' });
+  return { accessToken, refreshToken };
+};

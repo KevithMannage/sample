@@ -1,13 +1,12 @@
-// middleware/authMiddleware.js
-const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 const JWT_SECRET = process.env.ACESS_TOKEN_SECRET;
 
 // Middleware to authenticate requests
-const authenticateToken = (req, res, next) => {
+export const authenticateToken = (req, res, next) => {
   const token = req.headers['authorization']?.split(' ')[1];
   if (!token) {
     return res.status(401).json({ message: 'Access token required' });
@@ -21,5 +20,3 @@ const authenticateToken = (req, res, next) => {
     next();
   });
 };
-
-module.exports = { authenticateToken };

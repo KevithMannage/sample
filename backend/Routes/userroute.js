@@ -1,13 +1,10 @@
-// routes/authRoutes.js
-const express = require('express');
-const { registerUser,loginUser} = require('../Controller/usercontroller');
-const {authenticateToken}=require("../Middleware/usermiddleware");
+import express from 'express';
+import { registerUser, loginUser } from '../Controller/usercontroller.js';
+import { authenticateToken } from '../Middleware/usermiddleware.js';
 
 const router = express.Router();
+
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 
-
-
-module.exports = router;
-
+export default router;

@@ -1,25 +1,16 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const { createServer } = require('http');
-
-
-// Import custom modules
-const connectDB = require('./config/dbConn');
+import express from 'express';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import { createServer } from 'http';
+import connectDB from './config/dbConn.js';
+import UserRoutes from './Routes/userroute.js';
 
 dotenv.config();
 connectDB();
 
 const app = express();
 const httpServer = createServer(app);
-
-const UserRoutes = require('./Routes/userroute');
-app.use("/user",UserRoutes);
-
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
-});
 
 // Middleware
 app.use(express.json());
@@ -28,6 +19,13 @@ app.use((req, res, next) => {
   res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
   res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
   next();
+});
+
+// Routes
+app.use('/user', UserRoutes);
+
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
 });
 
 const PORT = process.env.PORT || 3000;
