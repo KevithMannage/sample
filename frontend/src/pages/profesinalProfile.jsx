@@ -1,10 +1,12 @@
 import React from 'react';
 import '../ProfessionalProfile.css';
 import profilePic from '../assets/developer1.jpg'; // Replace with the correct path to the image
+import Navbar from '../Navbar';
 
 const ProfessionalProfile = () => {
   return (
     <div className="profile-wrapper">
+      <div><Navbar/></div>
       <div className="profile-header">
         <div className="profile-left">
           <img src={profilePic} alt="Jake Harper" className="profile-photo" />
