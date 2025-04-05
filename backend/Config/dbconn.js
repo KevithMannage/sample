@@ -6,7 +6,7 @@ const connectDB = async () => {
 
     try {
         await mongoose.connect(uri);
-        console.log('MongoDB connected successfully!');
+        console.log('🖥️  GuidelineX Backend is connected to the database ✅');
     } catch (err) {
         console.error('MongoDB connection failed:', err);
     }

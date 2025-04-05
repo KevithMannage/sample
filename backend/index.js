@@ -33,6 +33,5 @@ app.use((req, res, next) => {
 const PORT = process.env.PORT || 3000;
 
 mongoose.connection.once('open', () => {
-  console.log('Connected to MongoDB');
-  httpServer.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
+  httpServer.listen(PORT, '0.0.0.0', () => console.log(`🖥️  GuidelineX Backend running at port http://localhost:${PORT} ✅`));
 });
