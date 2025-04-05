@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import './Chatbot.css';
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
+  const chatContainerRef = useRef(null); // Reference for the chat container
 
   const toggleChat = () => {
+    if (!isOpen) {
+      // Add a default message when the chat is opened
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { sender: 'bot', text: 'Hello! How can I assist you today?' },
+      ]);
+    }
     setIsOpen(!isOpen);
   };
 
@@ -46,12 +56,19 @@ const ChatBot = () => {
     }
   };
 
+  // Scroll to the bottom of the chat container whenever messages change
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
     <div className="fixed bottom-6 right-6">
       {isOpen ? (
         <div className="bg-gradient-to-br from-blue-500 to-purple-600 shadow-2xl rounded-2xl w-96 h-[32rem] flex flex-col">
           <div className="flex justify-between items-center p-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-white">Chat with us</h2>
+            <h2 className="text-2xl font-semibold text-center text-white">GuidelineX Chatbot⚡ </h2>
             <button onClick={toggleChat} className="text-white hover:text-gray-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +86,10 @@ const ChatBot = () => {
               </svg>
             </button>
           </div>
-          <div className="flex-1 p-4 overflow-y-auto bg-white rounded-b-2xl">
+          <div
+            ref={chatContainerRef} // Attach the ref to the chat container
+            className="flex-1 p-4 overflow-y-auto bg-white rounded-none"
+          >
             {messages.map((msg, index) => (
               <div
                 key={index}
@@ -80,11 +100,11 @@ const ChatBot = () => {
                 <div
                   className={`inline-block p-3 rounded-xl ${
                     msg.sender === 'user'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700'
+                      ? 'min-w-24 text-center bg-blue-200 text-black rounded-bl-3xl rounded-tl-3xl rounded-tr-3xl rounded-br-none'
+                      : 'bg-green-200 text-gray-700 rounded-bl-3xl rounded-tl-none rounded-tr-3xl rounded-br-3xl'
                   }`}
                 >
-                  {msg.text}
+                  {<ReactMarkdown>{msg.text}</ReactMarkdown>}
                 </div>
               </div>
             ))}
@@ -97,11 +117,11 @@ const ChatBot = () => {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <button
                 onClick={sendMessage}
-                className="bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition duration-200"
+                className="bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
               >
                 Send
               </button>
