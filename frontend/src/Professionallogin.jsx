@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import axios from 'axios'; // Import axios for making HTTP requests
 import './Login.css';
 import googleIcon from '/images/google.png';
 import Navbar from './navbar';
@@ -8,6 +9,7 @@ const ProfessionalLoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Initialize navigation
+
   const handleClickProfession = () => {
     navigate('/professionsignup');
   };
@@ -15,15 +17,33 @@ const ProfessionalLoginPage = () => {
   const handleClickUser = () => {
     navigate('/usersignup');
   };
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Simulate authentication check (replace with real authentication logic)
-    if (username === "k" && password === "k") {
-      console.log('Login successful');
-      navigate('/dashboard'); // Redirect to Dashboard
-    } else {
-      alert('Invalid credentials!'); // Show an error message
+
+    // Basic form validation
+    if (!username || !password) {
+      alert('Please fill in both fields!');
+      return;
+    }
+
+    try {
+      // Send a POST request to login the user
+      const response = await axios.post('http://localhost:3000/user/loginprofession', {
+        username,
+        password,
+      });
+
+      // Handle the response
+      if (response.data.status) {
+        console.log('Login successful');
+        navigate('/dashboard'); // Redirect to Dashboard
+      } else {
+        alert('Invalid credentials!'); // Show an error message if login failed
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('An error occurred. Please try again!'); // Handle error case
     }
   };
 
@@ -36,26 +56,25 @@ const ProfessionalLoginPage = () => {
             <h1>Sign in to</h1>
             <h2>GuidelineX is simply(profession)</h2>
             <p>
-            GuidelineX is a user-friendly platform that provides valuable knowledge and expert insights across various fields, helping individuals achieve success in their future endeavors            </p>
-          </span>        
+              GuidelineX is a user-friendly platform that provides valuable knowledge and expert insights across various fields, helping individuals achieve success in their future endeavors.
+            </p>
+          </span>
         </div>
         <div className="user-section">
           <p>No Account? <a href="/usersignup">Sign up</a></p>
-         
-    
-      
+
           <div className="avatars">
             <div className="avatar">
-            <button className="account-button" onClick={handleClickProfession}>
-              <img src="/images/1.png" alt="Professional" />
-              <span>Professional</span>
+              <button className="account-button" onClick={handleClickProfession}>
+                <img src="/images/1.png" alt="Professional" />
+                <span>Professional</span>
               </button>
             </div>
             <div className="avatar">
-            <button className="account-button" onClick={handleClickUser}>
-        <img src="/images/2.png" alt="User" className="button-icon" />
-        <span>User</span>
-      </button>
+              <button className="account-button" onClick={handleClickUser}>
+                <img src="/images/2.png" alt="User" className="button-icon" />
+                <span>User</span>
+              </button>
             </div>
           </div>
         </div>
@@ -94,4 +113,3 @@ const ProfessionalLoginPage = () => {
 };
 
 export default ProfessionalLoginPage;
-

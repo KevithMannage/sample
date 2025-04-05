@@ -127,3 +127,32 @@
   .login-button:hover {
     background-color: #0069d9;
   }
+  .search-results {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: rgb(243, 235, 235);
+    border: 1px solid #cc0a0a;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+  
+  .search-results ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .search-results li {
+    padding: 10px;
+    border-bottom: 1px solid #161515;
+  }
+  
+  .search-results li:hover {
+    background-color: #ee0c0c;
+    cursor: pointer;
+  }
+  

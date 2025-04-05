@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaHome, FaEnvelope, FaComments, FaPlusCircle, FaInfoCircle, FaPhone, FaSearch, FaBell } from 'react-icons/fa';
+import axios from 'axios'; // Import axios
 import './Navbar.css';
 
-
-
 const Navbar = ({ isLoggedIn, user }) => {
-  // Sample user data - in a real app, this would come from props or context
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]); // State to store the search results
+
+  const handleSearch = async (event) => {
+    if (event.key === "Enter" && searchTerm) { // Trigger on "Enter" key press only if there's a search term
+      try {
+        const response = await axios.get('http://localhost:3000/search/searchevent', {
+          params: { name: searchTerm }, // Pass searchTerm as a query parameter
+        });
+
+        console.log(response.data); // Check the response in console
+        setSearchResults(response.data || []); // Update state with the results
+
+      } catch (error) {
+        console.error("Error searching:", error);
+      }
+    }
+  };
+
+  const handleChange = (event) => {
+    const term = event.target.value;
+    setSearchTerm(term); // Update the search term as the user types
+
+    // If the search term is empty, clear the search results
+    if (term === "") {
+      setSearchResults([]); // Clear results when search term is empty
+    }
+  };
+
   const sampleUser = {
     name: 'profile',
     avatar: 'https://randomuser.me/api/portraits/men/32.jpg'
@@ -37,7 +64,14 @@ const Navbar = ({ isLoggedIn, user }) => {
 
         <div className="navbar-search">
           <FaSearch className="search-icon" />
-          <input type="text" placeholder="Search..." className="search-input" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="search-input"
+            value={searchTerm}
+            onChange={handleChange}
+            onKeyDown={handleSearch} // Call handleSearch when the "Enter" key is pressed
+          />
         </div>
       </div>
       
@@ -57,7 +91,7 @@ const Navbar = ({ isLoggedIn, user }) => {
             <span className="username">{user?.name || sampleUser.name}</span>
           </div>
         ) : (
-            <div className="user-profile">
+          <div className="user-profile">
             <img 
               src={user?.avatar || sampleUser.avatar} 
               alt="Profile" 
@@ -67,6 +101,17 @@ const Navbar = ({ isLoggedIn, user }) => {
           </div>
         )}
       </div>
+
+      {/* Display Search Results */}
+      {searchResults.length > 0 && (
+        <div className="search-results">
+          <ul>
+            {searchResults.map((result, index) => (
+              <li key={index}>{result.name}</li>  
+            ))}
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };

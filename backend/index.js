@@ -5,7 +5,8 @@ import cors from 'cors';
 import { createServer } from 'http';
 import connectDB from './config/dbConn.js';
 import UserRoutes from './Routes/userroute.js';
-
+import Searchroute from './Routes/searchroute.js';
+import Contactroute from './Routes/contactusroute.js';
 dotenv.config();
 connectDB();
 
@@ -23,7 +24,8 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/user', UserRoutes);
-
+app.use('/search',Searchroute);
+app.use('/contact',Contactroute);
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
