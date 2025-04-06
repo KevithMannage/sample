@@ -1,78 +1,92 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Import axios
 import '../ProfessionalProfile.css';
 import profilePic from '../assets/developer1.jpg'; // Replace with the correct path to the image
 import Navbar from '../navbar';
 
+
 const ProfessionalProfile = () => {
+  // Define state to store profile data
+  const [profileData, setProfileData] = useState(null);
+
+  // Fetch profile data when the component mounts
+  useEffect(() => {
+    // Make GET request to your backend
+    axios.get('../backend/Routes/profileRoute/profile') // Adjust this path if needed
+      .then((response) => {
+        setProfileData(response.data); // Set the profile data
+      })
+      .catch((error) => {
+        console.error('Error fetching profile data:', error);
+      });
+  }, []); // Empty dependency array means it runs only once when the component mounts
+
+  if (!profileData) {
+    return <div>Loading...</div>; // Show a loading message while data is being fetched
+  }
+
   return (
     <div className="profile-wrapper">
-      <div><Navbar/></div>
+      <div><Navbar /></div>
       <div className="profile-header">
         <div className="profile-left">
-          <img src={profilePic} alt="Jake Harper" className="profile-photo" />
+          {/* Use dynamic image and data */}
+          <img
+            src={profileData.profilePicture || profilePic} // Use fallback image if not available
+            alt={profileData.name || 'Profile Picture'}
+            className="profile-photo"
+          />
           <div className="profile-info">
-            <h1>Jake Harper</h1>
-            <p className="role-badge">Resource person</p>
-            <p className="email">jake@gmail.com</p>
+            <h1>{profileData.name}</h1> {/* Dynamic name */}
+            <p className="role-badge">{profileData.role}</p> {/* Dynamic role */}
+            <p className="email">{profileData.email}</p> {/* Dynamic email */}
           </div>
         </div>
 
-      <div className="profile-meta">
-        <p><strong>Involvements</strong> </p>
-        <p>CEO of Bug and Fix</p>
-        <p><strong>Specialisation</strong></p>
-        <p> PHD in Data Science</p>
+        <div className="profile-meta">
+          <p><strong>Involvements</strong></p>
+          <p>{profileData.involvements}</p> {/* Dynamic involvement */}
+          <p><strong>Specialisation</strong></p>
+          <p>{profileData.specialisation}</p> {/* Dynamic specialisation */}
+        </div>
       </div>
-    </div>
-
 
       <div className="profile-tabs">
         <button className="active">About me</button>
-        <button>Quection</button>
+        <button>Question</button>
         <button>Answer given</button>
       </div>
 
       <div className="profile-card">
         <h3>Academic Qualification</h3>
-        <p>BSc Engineering Computer Science and Engineering.</p>
-        <p>MSc in Moratuwa University, Sri Lanka.</p>
-        <p>152 researcher papers are published.</p>
+        <p>{profileData.academicQualification}</p> {/* Dynamic academic qualification */}
       </div>
 
       <div className="profile-card">
         <h3>About</h3>
-        <p>
-          The Department of Computer Science and Engineering at the University of Moratuwa, Sri Lanka,
-          continues to make strides in academic excellence and research innovation. Offering both
-          BSc in Engineering (Computer Science and Engineering) and MSc programs, the department
-          empowers students with advanced technical knowledge and practical skills. Notably, it has
-          achieved an impressive milestone with the publication of 152 research papers, showcasing
-          groundbreaking work in areas such as AI, data science, robotics, and cybersecurity.
-        </p>
+        <p>{profileData.about}</p> {/* Dynamic about */}
       </div>
 
       <div className="profile-skills">
         <div>
           <h4>Skills</h4>
           <div className="tag-group">
-            <span className="tag">Lecture</span>
-            <span className="tag">Leader</span>
-            <span className="tag">Java</span>
-            <span className="tag">React Js</span>
+            {profileData.skills.map((skill, index) => (
+              <span key={index} className="tag">{skill}</span> // Dynamically render skills
+            ))}
           </div>
         </div>
 
         <div>
           <h4>Specialized Area</h4>
           <div className="tag-group">
-            <span className="tag">Full Stack Development</span>
-            <span className="tag">Machine Learning</span>
-            <span className="tag">Data Science</span>
-            <span className="tag">Generative AI</span>
+            {profileData.specializedArea.map((area, index) => (
+              <span key={index} className="tag">{area}</span> // Dynamically render specialized areas
+            ))}
           </div>
         </div>
       </div>
-   
+
       <div className="edit-button-container">
         <button className="edit-button">Edit</button>
       </div>

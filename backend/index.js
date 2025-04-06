@@ -7,6 +7,7 @@ import connectDB from './config/dbConn.js';
 import UserRoutes from './Routes/userroute.js';
 import Searchroute from './Routes/searchroute.js';
 import Contactroute from './Routes/contactusroute.js';
+import profile from './Routes/profileRoute.js';
 dotenv.config();
 connectDB();
 
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 app.use('/user', UserRoutes);
 app.use('/search',Searchroute);
 app.use('/contact',Contactroute);
+app.use('/profile',profile);
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
