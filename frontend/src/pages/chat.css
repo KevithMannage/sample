@@ -1,0 +1,116 @@
+.messaging-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .header {
+    font-size: 28px;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .messages-list {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  
+  .message-container {
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    min-width: 100px;
+  }
+  
+  .message-container.sender {
+    background-color: #d1ffd6;
+    margin-left: auto;
+  }
+  
+  .message-container.receiver {
+    background-color: #f1f1f1;
+  }
+  
+  .message-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .sender-header {
+    justify-content: flex-end;
+  }
+  
+  .profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin-right: 10px;
+  }
+  
+  .message-sender {
+    font-weight: bold;
+    color: #007bff;
+    font-size: 14px;
+  }
+  
+  .message-text {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .message-timestamp {
+    font-size: 12px;
+    color: #888;
+    text-align: right;
+    display: block;
+  }
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+  }
+  
+  .message-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    margin-right: 10px;
+  }
+  
+  .send-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .send-button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  .loader {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+  }

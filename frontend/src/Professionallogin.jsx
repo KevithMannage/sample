@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios'; // Import axios for making HTTP requests
 import './Login.css';
 import googleIcon from '/images/google.png';
-import Navbar from './navbar';
+import Navbar from './Navbar';
 
 const ProfessionalLoginPage = () => {
   const [username, setUsername] = useState('');
