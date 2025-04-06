@@ -9,7 +9,7 @@ import Searchroute from './Routes/searchroute.js';
 import Contactroute from './Routes/contactusroute.js';
 import { Server } from 'socket.io';
 import Messageroute from './Routes/messageroute.js';
-
+import Postroute from './Routes/postroute.js';
 dotenv.config();
 connectDB();
 
@@ -51,6 +51,7 @@ app.use('/user', UserRoutes);
 app.use('/search',Searchroute);
 app.use('/contact',Contactroute);
 app.use('/message',Messageroute);
+app.use('/post',Postroute);
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
