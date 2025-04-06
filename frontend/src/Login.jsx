@@ -38,6 +38,7 @@ const LoginPage = () => {
 
       // Handle the response
       if (response.data.status) {
+        localStorage.setItem("userid",response.data.id);
         console.log('Login successful');
         localStorage.setItem("username",username);
         navigate('/dashboard'); // Redirect to Dashboard
