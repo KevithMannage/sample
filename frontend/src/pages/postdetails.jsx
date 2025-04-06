@@ -4,8 +4,7 @@ import axios from "axios";
 
 const PostDetails = () => {
   const [post, setPost] = useState(null);
-  const postId = "67f22dc588e867e58079107d"; // The post ID in your example
-
+  const postId=localStorage.getItem("postid");
   useEffect(() => {
     // Fetch post data from the API
     axios

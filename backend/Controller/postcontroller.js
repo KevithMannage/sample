@@ -67,3 +67,25 @@ export const getAllPosts = async (req, res) => {
       res.status(500).json({ error: "Internal server error.", details: error.message });
     }
   };
+
+  export const searchpost = async (req, res) => {
+    console.log("Query received:", req.query); // Add this
+  
+    try {
+      const { title } = req.query;
+      if (!title) {
+        return res.status(400).json({ error: "topic name is required." });
+      }
+  
+      const events1 = await Post.find({ title: { $regex:title, $options: "i" } });
+      if (events.length === 0) {
+        return res.status(404).json({ message: "No events found." });
+      }
+  
+      res.status(200).json(events1);
+    } catch (error) {
+      console.error("Error searching events:", error);
+      res.status(500).json({ error: "Internal server error." });
+    }
+  };
+  

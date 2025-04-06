@@ -20,6 +20,7 @@ import CreatePostForm from './pages/CreatePostForm';
 import DiscussionDetail from './pages/discussiondetails';
 import PostDetails from './pages/postdetails';
 import { FaRegFileCode } from 'react-icons/fa';
+import Search from './pages/search';
 const App = () => {
   return (
     <Router>
@@ -46,6 +47,8 @@ const App = () => {
              <Route path="/discussion/:id" element={<DiscussionDetail />} />
              <Route path="/post/:id" element={<PostDetails />} />
              <Route path="/home" element={<Home/>} />
+             <Route path="/search" element={<Search/>} />
+
  
           </Routes>
         </main>
