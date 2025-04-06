@@ -17,6 +17,8 @@ import Usersignuppage from './usersignup';
 import Professionsignuppage from './Proffesionsignup';
 import Chat from './pages/chat';
 import CreatePostForm from './pages/CreatePostForm';
+import DiscussionDetail from './pages/discussiondetails';
+import PostDetails from './pages/postdetails';
 import { FaRegFileCode } from 'react-icons/fa';
 const App = () => {
   return (
@@ -41,6 +43,8 @@ const App = () => {
              <Route path="/chat" element={<Chat/>} />
              <Route path="/createpostforum" element={<CreatePostForm/>} />
              <Route path="/studentProfile" element={<StudentlProfile/>} />
+             <Route path="/discussion/:id" element={<DiscussionDetail />} />
+             <Route path="/post/:id" element={<PostDetails />} />
              <Route path="/home" element={<Home/>} />
  
           </Routes>
