@@ -11,6 +11,6 @@ const UserSchema = new mongoose.Schema({
   resetPasswordExpires: { type: String, default: "undefined" }
 });
 
-const User = mongoose.model('User', UserSchema);
+const Users = mongoose.models.User || mongoose.model('Users', UserSchema);
 
-export default User; // Use ES module export
+export default Users; // Use ES module export
