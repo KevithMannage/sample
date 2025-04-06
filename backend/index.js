@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 app.use('/user', UserRoutes);
 app.use('/search',Searchroute);
 app.use('/contact',Contactroute);
-app.use('/profile',Contactroute);
+app.use('/profile',profile);
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
