@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './navbar';
 // Import your page components
 import LoginPage from './Login';
 import Dashboard from './Dashboard';
@@ -16,6 +15,8 @@ import Chatbot from './pages/Chatbot';
 import ProfessionalLoginPage from './Professionallogin';
 import Usersignuppage from './usersignup';
 import Professionsignuppage from './Proffesionsignup';
+import Chat from './pages/chat';
+import CreatePostForm from './pages/CreatePostForm';
 import { FaRegFileCode } from 'react-icons/fa';
 const App = () => {
   return (
@@ -37,7 +38,9 @@ const App = () => {
              <Route path="/messages" element={<Messages/>} />
              <Route path="/newdiscussion" element={<NewDiscussion/>} />
              <Route path="/profesinalProfile" element={<ProfesinalProfile/>} />
-              <Route path="/studentProfile" element={<StudentlProfile/>} />
+             <Route path="/chat" element={<Chat/>} />
+             <Route path="/createpostforum" element={<CreatePostForm/>} />
+             <Route path="/studentProfile" element={<StudentlProfile/>} />
              <Route path="/home" element={<Home/>} />
  
           </Routes>

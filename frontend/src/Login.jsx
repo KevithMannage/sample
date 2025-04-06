@@ -39,6 +39,7 @@ const LoginPage = () => {
       // Handle the response
       if (response.data.status) {
         console.log('Login successful');
+        localStorage.setItem("username",username);
         navigate('/dashboard'); // Redirect to Dashboard
       } else {
         alert('Invalid credentials!'); // Show an error message

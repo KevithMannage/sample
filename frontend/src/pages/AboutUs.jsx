@@ -1,6 +1,6 @@
 // src/components/AboutUs.js
 import React from 'react';
-import Navbar from '../navbar'; // Import Navbar component
+import Navbar from '../Navbar'; // Import Navbar component
 import logo from '/images/4.png'; // Import the missing logo image
 import developer1 from '/images/kevith.png';
 import developer2 from '/images/induwara.png'; // Use correct images
