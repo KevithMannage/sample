@@ -1,0 +1,109 @@
+/* ChatSelection.css */
+.chat-selection-container {
+    display: flex;
+    height: 100%;
+    background-color: #f5f7fa;
+  }
+  
+  .contacts-list {
+    width: 350px;
+    background-color: #e8ecef;
+    padding: 40px;
+    border-right: 1px solid #d3d3d3;
+  }
+  
+  .contact {
+    display: flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .contact:hover {
+    background-color: #0056b3;
+  }
+  
+  .contact-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .contact-name {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .chat-placeholder {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    position: relative;
+    padding: 20px;
+  }
+  
+  .chat-illustration {
+    width: 500px; /* Increased size */
+    height: 500px; /* Adjusted height to maintain aspect ratio */
+    margin-bottom: 30px;
+    object-fit: contain; /* Ensures the image scales properly without distortion */
+  }
+  
+  .chat-prompt {
+    font-size: 40px;
+    font-weight:bold;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+  
+  .chat-bot-icon {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 24px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .chat-selection-container {
+      flex-direction: column;
+    }
+  
+    .contacts-list {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #d3d3d3;
+    }
+  
+    .chat-placeholder {
+      padding: 20px;
+    }
+  
+    .chat-illustration {
+      width: 300px; /* Reduced size for smaller screens */
+      height: 180px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .chat-illustration {
+      width: 200px; /* Further reduced size for very small screens */
+      height: 120px;
+    }
+  
+    .chat-prompt {
+      font-size: 16px;
+    }
+  
+    .chat-bot-icon {
+      font-size: 20px;
+    }
+  }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, Users, Home, MessageSquare, Search, Bell, ChevronRight, Info, HelpCircle } from 'lucide-react';
-import Navbar from '../navbar'; // Fixed import (PascalCase)
+import Navbar from '../Navbar'; // Fixed import (PascalCase)
 
 const NewDiscussion = () => {
   const [title, setTitle] = useState('');

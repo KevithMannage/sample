@@ -7,6 +7,9 @@ import connectDB from './config/dbConn.js';
 import UserRoutes from './Routes/userroute.js';
 import Searchroute from './Routes/searchroute.js';
 import Contactroute from './Routes/contactusroute.js';
+import { Server } from 'socket.io';
+import Messageroute from './Routes/messageroute.js';
+
 dotenv.config();
 connectDB();
 
@@ -21,11 +24,33 @@ app.use((req, res, next) => {
   res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
   next();
 });
+const io = new Server(httpServer, {
+  cors: {
+    origin: '*', // Replace with your frontend URL for better security
+    methods: ['GET', 'POST'],
+  },
+});
+io.on('connection', (socket) => {
+  console.log('A user connected:', socket.id);
 
+  // Listen for messages
+  socket.on('sendMessage', (message) => {
+    console.log('Message received:', message);
+
+    // Broadcast the message to all connected clients
+    io.emit('receiveMessage', message);
+  });
+
+  // Handle disconnection
+  socket.on('disconnect', () => {
+    console.log('User disconnected:', socket.id);
+  });
+});
 // Routes
 app.use('/user', UserRoutes);
 app.use('/search',Searchroute);
 app.use('/contact',Contactroute);
+app.use('/message',Messageroute);
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });

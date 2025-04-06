@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 // User Schema
 const DiscussionsSchema = new mongoose.Schema({
- name: { type: String, required: true },
+ topic: { type: String, required: true },
  messages: { type: String, required: true },
   
 });
