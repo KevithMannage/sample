@@ -9,7 +9,7 @@ import ChatBot from "./pages/Chatbot";
 
 export default function Dashboard() {
   return (
-    <div style={{ overflowX: "hidden", overflowY: "auto", width: "100vw", height: "100vh" }}>
+    <div className="dashboard">
       <Navbar />
       <div className="dashboard-container">
         <div className="dashboard-left">

@@ -18,7 +18,7 @@ const TrendingItem = () => {
   };
 
   return (
-    <div className="mt-24 flex flex-col items-center justify-center w-full p-4 box-border min-w-[400px] rounded-[30px]">
+    <div className="mt-24 flex flex-col items-center justify-center w-full p-4 box-border min-w-[300px] rounded-[30px]">
       <h1 className="text-xl font-bold text-red-500 mb-2 text-center bg-red-100 p-4 rounded-[30px] min-w-[300px]"> ⚡ Top Discussion ⚡</h1>
       <div className="flex flex-wrap gap-4 justify-center w-full max-w-[1200px] bg-transparent p-5 rounded-[20px]">
         {items.map((item) => (
@@ -29,8 +29,8 @@ const TrendingItem = () => {
             <div className="h-[60px] overflow-hidden">
               <h4 className="text-lg font-bold text-[#FF0000] mb-2 text-center">{item.title}</h4>
             </div>
-            <div className="flex flex-col h-[200px] text-sm leading-6 text-[#656565]" textAlign="center">
-              <div className="p-3 rounded bg-[rgba(255,255,255,0.2)]" textAlign="center">
+            <div className="flex flex-col h-[200px] text-sm leading-6 text-[#656565]">
+              <div className="p-3 rounded bg-[rgba(255,255,255,0.2)]">
                 <span>Admin : Christopher Walker</span>
               </div>
               <div className="p-3 rounded bg-[rgba(255,255,255,0.2)]">

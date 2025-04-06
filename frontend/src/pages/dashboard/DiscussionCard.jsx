@@ -40,8 +40,8 @@ const DiscussionContainer = () => {
             <div className="h-[60px] overflow-hidden">
               <h4 className="text-lg font-bold text-[#1E88E5] mb-2 text-center">{item.title}</h4>
             </div>
-            <div className="flex flex-col h-[200px] text-sm leading-6 text-[#656565]" textAlign="center">
-              <div className="p-3 border-2 border-white rounded bg-[rgba(255,255,255,0.2)]" textAlign="center">
+            <div className="flex flex-col h-[200px] text-sm leading-6 text-[#656565]">
+              <div className="p-3 border-2 border-white rounded bg-[rgba(255,255,255,0.2)]">
                 <span>Admin : Christopher Walker</span>
               </div>
               <div className="flex items-center p-3 border-2 border-white rounded bg-[rgba(255,255,255,0.2)]">

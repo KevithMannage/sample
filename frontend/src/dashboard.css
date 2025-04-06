@@ -1,27 +1,40 @@
-.dashboard-container {
-    display: flex;
-    flex-wrap: wrap; 
-    width: 100%;
-  }
-  
-  .dashboard-left {
-    flex: 0 0 75%; 
-    padding: 1rem;
-    box-sizing: border-box;
-    min-width: 300px; 
-  }
-  
-  .dashboard-right {
-    flex: 0 0 25%;
-    background-color: #ffffff;
-    box-sizing: border-box;
-    min-width: 300px; 
-  }
-  
+/* Ensure the body and html elements allow scrolling */
+html, body {
+  margin: 0;
+  padding: 0;
+  width:"100vw";
+  height: 100%;
+  overflow: auto; /* Allow scrolling for the entire page */
+}
 
-  @media (max-width: 1200px) {
-    .dashboard-left,
-    .dashboard-right {
-      flex: 0 0 100%; 
-    }
+/* Ensure the dashboard container takes up the full viewport */
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 100%; /* Allow the container to grow with content */
+  box-sizing: border-box;
+}
+
+.dashboard-left {
+  flex: 0 0 75%;
+  padding: 1rem;
+  box-sizing: border-box;
+  min-width: 300px;
+}
+
+.dashboard-right {
+  flex: 0 0 25%;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  min-width: 300px;
+  padding: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-left,
+  .dashboard-right {
+    flex: 0 0 100%;
+    height: auto; /* Allow content to adjust height on smaller screens */
   }
+}
