@@ -1,53 +1,60 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 import '../ProfessionalProfile.css';
-import profilePic from '../assets/developer1.jpg'; // Replace with the correct path to the image
+import profilePic from '../assets/developer1.jpg';
 import Navbar from '../navbar';
 
-
 const ProfessionalProfile = () => {
-  // Define state to store profile data
   const [profileData, setProfileData] = useState(null);
 
-  // Fetch profile data when the component mounts
-  useEffect(() => {
-    // Make GET request to your backend
-    axios.get('../backend/Routes/profileRoute/profile') // Adjust this path if needed
-      .then((response) => {
-        setProfileData(response.data); // Set the profile data
-      })
-      .catch((error) => {
-        console.error('Error fetching profile data:', error);
-      });
-  }, []); // Empty dependency array means it runs only once when the component mounts
+  // Uncomment this to fetch from backend later
+  // useEffect(() => {
+  //   axios.get('/api/users/profile') // Make sure this path matches your Express route
+  //     .then((response) => setProfileData(response.data))
+  //     .catch((error) => console.error('Error fetching profile data:', error));
+  // }, []);
 
-  if (!profileData) {
-    return <div>Loading...</div>; // Show a loading message while data is being fetched
-  }
+  // Temporary dummy data
+  useEffect(() => {
+    const dummyData = {
+      user_name: 'Jane Doe',
+      email: 'jane.doe@example.com',
+      contact_number: '+1234567890',
+      role: 'Full Stack Developer',
+      about_me: 'Passionate developer with experience in building scalable web applications using MERN stack.',
+      interest_area: ['Web Development', 'AI', 'UI/UX Design'],
+      university: 'Tech Valley University',
+      degree: 'Bachelor of Science in Computer Science',
+      job: 'Software Engineer at DevCorp',
+      Skills: ['JavaScript', 'React', 'Node.js', 'MongoDB', 'Express']
+    };
+    setProfileData(dummyData);
+  }, []);
+
+  if (!profileData) return <div>Loading...</div>;
 
   return (
     <div className="profile-wrapper">
-      <div><Navbar /></div>
+      <Navbar />
       <div className="profile-header">
         <div className="profile-left">
-          {/* Use dynamic image and data */}
           <img
-            src={profileData.profilePicture || profilePic} // Use fallback image if not available
-            alt={profileData.name || 'Profile Picture'}
+            src={profileData.profilePicture || profilePic}
+            alt={profileData.user_name}
             className="profile-photo"
           />
           <div className="profile-info">
-            <h1>{profileData.name}</h1> {/* Dynamic name */}
-            <p className="role-badge">{profileData.role}</p> {/* Dynamic role */}
-            <p className="email">{profileData.email}</p> {/* Dynamic email */}
+            <h1>{profileData.user_name}</h1>
+            <p className="role-badge">{profileData.role}</p>
+            <p className="email">{profileData.email}</p>
           </div>
         </div>
 
         <div className="profile-meta">
-          <p><strong>Involvements</strong></p>
-          <p>{profileData.involvements}</p> {/* Dynamic involvement */}
-          <p><strong>Specialisation</strong></p>
-          <p>{profileData.specialisation}</p> {/* Dynamic specialisation */}
+          <p><strong>Job</strong></p>
+          <p>{profileData.job}</p>
+          <p><strong>University</strong></p>
+          <p>{profileData.university}</p>
         </div>
       </div>
 
@@ -59,20 +66,20 @@ const ProfessionalProfile = () => {
 
       <div className="profile-card">
         <h3>Academic Qualification</h3>
-        <p>{profileData.academicQualification}</p> {/* Dynamic academic qualification */}
+        <p>{profileData.degree}</p>
       </div>
 
       <div className="profile-card">
         <h3>About</h3>
-        <p>{profileData.about}</p> {/* Dynamic about */}
+        <p>{profileData.about_me}</p>
       </div>
 
       <div className="profile-skills">
         <div>
           <h4>Skills</h4>
           <div className="tag-group">
-            {profileData.skills.map((skill, index) => (
-              <span key={index} className="tag">{skill}</span> // Dynamically render skills
+            {profileData.Skills.map((skill, index) => (
+              <span key={index} className="tag">{skill}</span>
             ))}
           </div>
         </div>
@@ -80,8 +87,8 @@ const ProfessionalProfile = () => {
         <div>
           <h4>Specialized Area</h4>
           <div className="tag-group">
-            {profileData.specializedArea.map((area, index) => (
-              <span key={index} className="tag">{area}</span> // Dynamically render specialized areas
+            {profileData.interest_area.map((area, index) => (
+              <span key={index} className="tag">{area}</span>
             ))}
           </div>
         </div>
