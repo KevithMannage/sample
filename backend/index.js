@@ -11,20 +11,12 @@ import { Server } from 'socket.io';
 import Messageroute from './Routes/messageroute.js';
 import Postroute from './Routes/postroute.js';
 import Discussionroute from './Routes/discussionroute.js';
+
+import profile from './Routes/profileRoute.js';
 dotenv.config();
 connectDB();
 
-const app = express();
-const httpServer = createServer(app);
 
-// Middleware
-app.use(express.json());
-app.use(cors());
-app.use((req, res, next) => {
-  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
-  next();
-});
 const io = new Server(httpServer, {
   cors: {
     origin: '*', // Replace with your frontend URL for better security
@@ -47,6 +39,19 @@ io.on('connection', (socket) => {
     console.log('User disconnected:', socket.id);
   });
 });
+
+const app = express();
+const httpServer = createServer(app);
+
+// Middleware
+app.use(express.json());
+app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  next();
+});
+
 // Routes
 app.use('/user', UserRoutes);
 app.use('/search',Searchroute);
@@ -54,6 +59,8 @@ app.use('/contact',Contactroute);
 app.use('/message',Messageroute);
 app.use('/post',Postroute);
 app.use('/discussion',Discussionroute);
+app.use('/profile',profile);
+
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });

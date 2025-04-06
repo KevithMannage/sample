@@ -14,8 +14,12 @@
     "express": "^4.21.2",
     "google": "^2.1.0",
     "jsonwebtoken": "^9.0.2",
+<<<<<<< HEAD
+    "mongoose": "^8.13.2"
+=======
     "mongoose": "^8.13.1",
     "socket.io": "^4.8.1"
+>>>>>>> 2163e4d1d5f5a4f804492f1ab7d2f27528760837
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
