@@ -1,0 +1,27 @@
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap; 
+    width: 100%;
+  }
+  
+  .dashboard-left {
+    flex: 0 0 75%; 
+    padding: 1rem;
+    box-sizing: border-box;
+    min-width: 300px; 
+  }
+  
+  .dashboard-right {
+    flex: 0 0 25%;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    min-width: 300px; 
+  }
+  
+
+  @media (max-width: 1200px) {
+    .dashboard-left,
+    .dashboard-right {
+      flex: 0 0 100%; 
+    }
+  }
