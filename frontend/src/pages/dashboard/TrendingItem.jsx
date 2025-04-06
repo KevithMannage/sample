@@ -30,10 +30,10 @@ const TrendingItem = () => {
               <h4 className="text-lg font-bold text-[#FF0000] mb-2 text-center">{item.title}</h4>
             </div>
             <div className="flex flex-col h-[200px] text-sm leading-6 text-[#656565]">
-              <div className="p-3 rounded bg-[rgba(255,255,255,0.2)]">
+              <div className="p-3 rounded bg-[rgba(255, 255, 255, 0)]">
                 <span>Admin : Christopher Walker</span>
               </div>
-              <div className="p-3 rounded bg-[rgba(255,255,255,0.2)]">
+              <div className="p-3 rounded bg-[rgba(255, 255, 255, 0)]">
                 <span>Started at | Nov 2nd, 2023</span>
               </div>
               <div className="flex justify-center mt-2">
@@ -44,7 +44,7 @@ const TrendingItem = () => {
                   Join the Discussion
                 </button>
               </div>
-              <div className="flex items-center p-3 rounded bg-[rgba(255,255,255,0.2)]">
+              <div className="flex items-center p-3 rounded bg-[rgba(255, 255, 255, 0)]">
                 <FaRegMessage className="ml-5" />
                 <span className="text-xs ml-3">123 chats</span>
                 <FaUserGroup className="ml-8" />

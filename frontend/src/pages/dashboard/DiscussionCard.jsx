@@ -41,16 +41,16 @@ const DiscussionContainer = () => {
               <h4 className="text-lg font-bold text-[#1E88E5] mb-2 text-center">{item.title}</h4>
             </div>
             <div className="flex flex-col h-[200px] text-sm leading-6 text-[#656565]">
-              <div className="p-3 border-2 border-white rounded bg-[rgba(255,255,255,0.2)]">
+              <div className="p-3 rounded bg-[rgba(255,255,255,0.2)]">
                 <span>Admin : Christopher Walker</span>
               </div>
-              <div className="flex items-center p-3 border-2 border-white rounded bg-[rgba(255,255,255,0.2)]">
+              <div className="flex items-center p-3  rounded bg-[rgba(255,255,255,0.2)]">
                 <FaRegMessage className="ml-8" />
                 <span className="text-xs ml-3">123 chats</span>
                 <FaUserGroup className="ml-8" />
                 <span className="text-xs ml-2">126,234</span>
               </div>
-              <div className="p-3 border-2 border-white rounded bg-[rgba(255,255,255,0.2)]">
+              <div className="p-3  rounded bg-[rgba(255, 255, 255, 0)]">
                 <span>Started at | Nov 2nd, 2023</span>
               </div>
               <div className="flex justify-center mt-2">
