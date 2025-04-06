@@ -183,3 +183,56 @@
     background-color: #005b99;
   }
   
+  /* Button Container */
+.edit-button-container {
+  display: flex;
+  gap: 16px; /* Space between buttons */
+  margin: 12px 0; /* Optional: Add vertical spacing */
+}
+
+/* Base Button Styles */
+.edit-button-container button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Save Button */
+.save-button {
+  background-color: #28a745; /* Bootstrap-like green */
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #218838; /* Darker green on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.save-button:active {
+  background-color: #1e7e34; /* Even darker when clicked */
+}
+
+/* Cancel Button */
+.cancel-button {
+  background-color: #dc3545; /* Bootstrap-like red */
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #c82333; /* Darker red on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cancel-button:active {
+  background-color: #bd2130; /* Even darker when clicked */
+}
+
+/* Optional: Focus styles for accessibility */
+.edit-button-container button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}

@@ -181,3 +181,38 @@ export const generateToken = (user) => {
   return { accessToken, refreshToken };
 };
 
+export const updateUser = async (req, res) => {
+  try {
+    const { userId, ...updateFields } = req.body; // Destructure userId and remaining fields
+    
+    // Optional: Add input validation
+    if (!userId) {
+      return res.status(400).json({ message: "User ID is required" });
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      updateFields,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ 
+      message: "User updated successfully",
+      user: updatedUser 
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      message: "Update failed",
+      error: error.message 
+    });
+  }
+};
+
+// Route remains the same

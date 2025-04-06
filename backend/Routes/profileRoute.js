@@ -1,5 +1,5 @@
 import express from 'express';
-import { getProfile, updateUser } from '../Controller/profileController.js';
+import { getProfile } from '../Controller/profileController.js';
 
 const router = express.Router();
 
@@ -7,6 +7,6 @@ const router = express.Router();
 router.get('/grtprofile', getProfile);
 
 // Update the logged-in user's profile (protected route)
-router.put('/addprofile', updateUser);
+//router.put('/addprofile', updateUser);
 
 export default router;
