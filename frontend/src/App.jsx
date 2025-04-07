@@ -48,7 +48,7 @@ const App = () => {
              <Route path="/post/:id" element={<PostDetails />} />
              <Route path="/home" element={<Home/>} />
              <Route path="/search" element={<Search/>} />
-
+             
  
           </Routes>
         </main>

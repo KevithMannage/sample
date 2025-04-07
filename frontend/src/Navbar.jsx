@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { FaHome, FaEnvelope, FaComments, FaPlusCircle, FaInfoCircle, FaPhone, FaSearch, FaBell } from 'react-icons/fa';
+import {
+  FaHome, FaEnvelope, FaComments, FaPlusCircle, FaInfoCircle,
+  FaPhone, FaSearch, FaBell, FaPen
+} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import './Navbar.css';
@@ -18,10 +21,14 @@ const Navbar = ({ isLoggedIn, user }) => {
     navigate('/search'); // Navigate to /search when clicked
   };
 
+  const handleProfileClick = () => {
+    navigate('/studentProfile'); // Navigate to /studentProfile
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-brand">GuidelineX</div>
-      
+
       <div className="navbar-links">
         <a href="/dashboard" className="nav-link">
           <FaHome className="nav-icon" /> Dashboard
@@ -35,6 +42,9 @@ const Navbar = ({ isLoggedIn, user }) => {
         <a href="/newdiscussion" className="nav-link">
           <FaPlusCircle className="nav-icon" /> New Discussion
         </a>
+        <a href="/createpostforum" className="nav-link">
+          <FaPen className="nav-icon" /> Create Post
+        </a>
         <a href="/aboutus" className="nav-link">
           <FaInfoCircle className="nav-icon" /> About us
         </a>
@@ -47,32 +57,25 @@ const Navbar = ({ isLoggedIn, user }) => {
           search
         </div>
       </div>
-      
+
       <div className="navbar-right">
         <div className="notification-icon">
           <FaBell />
           <span className="notification-badge"></span>
         </div>
-        
-        {isLoggedIn ? (
-          <div className="user-profile">
-            <img 
-              src={user?.avatar || sampleUser.avatar} 
-              alt="Profile" 
-              className="profile-picture"
-            />
-            <span className="username">{user?.name || sampleUser.name}</span>
-          </div>
-        ) : (
-          <div className="user-profile">
-            <img 
-              src={user?.avatar || sampleUser.avatar} 
-              alt="Profile" 
-              className="profile-picture"
-            />
-            <span className="username">{user?.name || sampleUser.name}</span>
-          </div>
-        )}
+
+        <div
+          className="user-profile"
+          onClick={handleProfileClick}
+          style={{ cursor: 'pointer' }}
+        >
+          <img
+            src={user?.avatar || sampleUser.avatar}
+            alt="Profile"
+            className="profile-picture"
+          />
+          <span className="username">{user?.name || sampleUser.name}</span>
+        </div>
       </div>
 
       {/* Display Search Results */}
@@ -80,7 +83,7 @@ const Navbar = ({ isLoggedIn, user }) => {
         <div className="search-results">
           <ul>
             {searchResults.map((result, index) => (
-              <li key={index}>{result.name}</li>  
+              <li key={index}>{result.name}</li>
             ))}
           </ul>
         </div>
