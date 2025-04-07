@@ -7,6 +7,7 @@ import developer2 from '/images/induwara.png'; // Use correct images
 import developer3 from '/images/malith.png';
 import developer4 from '/images/idunil.png';
 import developer5 from '/images/umesh.png';
+import ChatBot from "./Chatbot";
 
 const AboutUs = () => {
   return (
@@ -48,6 +49,7 @@ const AboutUs = () => {
           ))}
         </div>
       </div>
+      <ChatBot /> {/* Reusing ChatBot component */}
     </div>
   );
 };

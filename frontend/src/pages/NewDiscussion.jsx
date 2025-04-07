@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MessageCircle, Users, Home, MessageSquare, Search, Bell, ChevronRight, Info, HelpCircle } from 'lucide-react';
 import Navbar from '../Navbar'; // Fixed import (PascalCase)
+import ChatBot from "./Chatbot";
 
 const NewDiscussion = () => {
   const [title, setTitle] = useState('');
@@ -107,11 +108,9 @@ const NewDiscussion = () => {
 </div>
 
       </main>
-      <div className="fixed bottom-4 right-4">
-  <button className="rounded-full shadow-lg overflow-hidden w-16 h-16 hover:opacity-80 transition-all">
-    <img src="/images/chatbot.png" alt="Action" className="w-full h-full object-cover" />
-  </button>
-</div>
+      
+        
+      <ChatBot />
     </div>
     
   );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Navbar from '../navbar';
+import Navbar from '../Navbar';
 import axios from 'axios';
+import ChatBot from "./Chatbot";
 
 export default function CreatePostForm() {
  const username= localStorage.getItem("username");
@@ -183,6 +184,7 @@ export default function CreatePostForm() {
           </button>
         </form>
       </div>
+      <ChatBot />
     </div>
   );
 }

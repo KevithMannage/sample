@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../navbar"; // Import existing Navbar
+import Navbar from "../Navbar"; // Import existing Navbar
 import axios from "axios"; // Import Axios
-
+import ChatBot from "./Chatbot"; // Import ChatBot component
 const ContactUs = () => {
   // State for form fields
   const [name, setName] = useState("");
@@ -123,6 +123,7 @@ const ContactUs = () => {
 
         </div>
       </div>
+      <ChatBot />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import './ChatSelection.css';
 import Navbar from '../Navbar';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ChatBot from "./Chatbot";
 
 const ChatSelection = () => {
   const navigate = useNavigate();
@@ -110,11 +111,7 @@ const ChatSelection = () => {
           className="chat-illustration"
         />
         <p className="chat-prompt">Select chat to message</p>
-        <div className="chat-bot-icon">
-          <button onClick={handleonclick}>
-            <img src="/images/chatbot.png" alt="Chatbot" />
-          </button>
-        </div>
+        <ChatBot/>
       </div>
     </div>
   );
