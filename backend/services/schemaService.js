@@ -1,6 +1,6 @@
 import { db } from './mongoService.js';
 
-const ALLOWED_COLLECTIONS = new Set(['Discussion', 'Messages','posts']);
+const ALLOWED_COLLECTIONS = new Set(['Discussion']);
 
 export async function getMongoSchema() {
   const schema = {};
@@ -14,3 +14,4 @@ export async function getMongoSchema() {
 export function isCollectionAllowed(name) {
   return ALLOWED_COLLECTIONS.has(name);
 }
+
