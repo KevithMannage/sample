@@ -66,21 +66,13 @@ const LoginPage = () => {
         </div>
        
         <div className="user-section">
-          <p>No Account? <a href="/usersignup">Sign up</a></p>
-          <div className="avatars">
-            <div className="avatar">
+          <p className ="give_de"> If you dont have an account please Signup</p>
               <button className="account-button" onClick={handleClickProfession}>
-                <img src="/images/1.png" alt="Professional" />
-                <span>Professional</span>
+                <span>👨🏻‍💼 Signup as Professional</span>
               </button>
-            </div>
-            <div className="avatar">
               <button className="account-button" onClick={handleClickUser}>
-                <img src="/images/2.png" alt="User" className="button-icon" />
-                <span>User</span>
+                <span>👨🏻‍💻 Signup as User</span>
               </button>
-            </div>
-          </div>
         </div>
       </div>
 
