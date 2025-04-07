@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios'; // Import axios
 import './Login.css';
-import googleIcon from '/images/google.png';
-import Navbar from './navbar';
 
 const Usersignuppage = () => {
   const [username, setUsername] = useState('');

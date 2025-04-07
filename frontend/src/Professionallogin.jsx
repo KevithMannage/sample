@@ -51,37 +51,27 @@ const ProfessionalLoginPage = () => {
   return (
     <div className="login-container">
       <div className="left-section">
-        <div className="logo">
+        <div className="logo" style={{ minWidth: '600px' }}>
           <img src="/images/3.png" alt="Professional" className="logo-icon" />
           <span className="logo-text">
             <h1>Sign in to</h1>
             <h2>GuidelineX is simply(profession)</h2>
-            <p>
+            <p> 
               GuidelineX is a user-friendly platform that provides valuable knowledge and expert insights across various fields, helping individuals achieve success in their future endeavors.
             </p>
           </span>
         </div>
         <div className="user-section">
-          <p>No Account? <a href="/usersignup">Sign up</a></p>
-
-          <div className="avatars">
-            <div className="avatar">
+          <p className ="give_de"> If you dont have an account please Signup</p>
               <button className="account-button" onClick={handleClickProfession}>
-                <img src="/images/1.png" alt="Professional" />
-                <span>Professional</span>
+                <span>👨🏻‍💼 Signup as Professional</span>
               </button>
-            </div>
-            <div className="avatar">
               <button className="account-button" onClick={handleClickUser}>
-                <img src="/images/2.png" alt="User" className="button-icon" />
-                <span>User</span>
+                <span>👨🏻‍💻 Signup as User</span>
               </button>
-            </div>
-          </div>
         </div>
       </div>
-
-      <div className="right-section">
+      <div className="right-section" style={{ minWidth: '400px' }}>
         <h3><span className="welcome-text">Welcome to</span> <span className="guidelinex-text">GuidelineX</span></h3>
         <h4>Sign in</h4>
         <button className="google-signin">
