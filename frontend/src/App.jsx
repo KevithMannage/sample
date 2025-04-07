@@ -19,6 +19,7 @@ import Chat from './pages/chat';
 import CreatePostForm from './pages/CreatePostForm';
 import DiscussionDetail from './pages/discussiondetails';
 import PostDetails from './pages/postdetails';
+import NotificationsPage from './pages/notifications'; // Import the NotificationsPage component
 
 import { FaRegFileCode } from 'react-icons/fa';
 import Search from './pages/search';
@@ -49,6 +50,8 @@ const App = () => {
              <Route path="/post/:id" element={<PostDetails />} />
              <Route path="/home" element={<Home/>} />
              <Route path="/search" element={<Search/>} />
+             <Route path="/notifications" element={<NotificationsPage />} /> {/* Add this route */}
+          
              
 
  
