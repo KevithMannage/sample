@@ -14,7 +14,7 @@ import Discussionroute from './Routes/discussionroute.js';
 import profile from './Routes/profileRoute.js';
 import notificationRoute from './Routes/notificationRoute.js';
 import Vacancyroute from './Routes/vacancyroute.js';
-import notificationRoute from './Routes/notificationRoute.js';
+//import notificationRoute from './Routes/notificationRoute.js';
 import Photoroute from './Routes/photoRoutes.js';
 dotenv.config();
 connectDB();
