@@ -155,4 +155,20 @@
     background-color: #ee0c0c;
     cursor: pointer;
   }
-  
+
+/* Add glowing effect for notification badge */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px red;
+  }
+  50% {
+    box-shadow: 0 0 15px blue;
+  }
+  100% {
+    box-shadow: 0 0 5px red;
+  }
+}
+
+.notification-icon.glow {
+  animation: glow 1.5s infinite; /* Apply the glow animation */
+}

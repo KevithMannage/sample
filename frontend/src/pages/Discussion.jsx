@@ -32,7 +32,7 @@ const App = () => {
           <li>How to Find a Job that Matches Your Qualifications</li>
         </ul>
 
-        <button className="close-discussion-btn bottom">Close the Discussion</button>
+        <button className="close-discussion-btn bottom">SUBCRIBE Selected Discussion</button>    
       </div>
 
       {/* Main Content */}
