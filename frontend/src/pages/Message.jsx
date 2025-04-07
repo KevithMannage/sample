@@ -87,6 +87,19 @@ const ChatSelection = () => {
         ) : (
           <div className="no-contacts">No contacts available</div>
         )}
+        <button style={{
+            padding: '10px 20px',
+            backgroundColor: '#4CAF50',
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            fontSize: '16px',
+            cursor: 'pointer',
+            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)'
+          }}>
+            New Chat
+          </button>
+
       </div>
 
       {/* Chat Placeholder */}

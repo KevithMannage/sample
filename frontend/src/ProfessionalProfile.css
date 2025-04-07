@@ -145,6 +145,11 @@
     color: #555;
     font-size: 0.95rem;
   }
+  .profile-info .contact {
+    color: #555;
+    font-size: 0.95rem;
+    background-color: #eaeaea;
+  }
   
   .role-badge {
     display: inline-block;
