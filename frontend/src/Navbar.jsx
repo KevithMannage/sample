@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FaHome, FaEnvelope, FaComments, FaPlusCircle, FaInfoCircle,
   FaPhone, FaSearch, FaBell, FaPen
 } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import checkNotification from './hooks/checkNotification'; // Import the updated checkNotification hook
 import './Navbar.css';
 
 const Navbar = ({ isLoggedIn, user }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [hasNotifications, setHasNotifications] = useState(false); // State to track notifications
   const navigate = useNavigate();
+
+
+  //const navigate = useNavigate();
   
   // Get profile image from localStorage or use a default
   const profileImage = localStorage.getItem("profileimage") 
@@ -25,12 +29,21 @@ const Navbar = ({ isLoggedIn, user }) => {
       : 'https://randomuser.me/api/portraits/men/32.jpg'
   };
 
+  useEffect(() => {
+    // Call the checkNotification hook
+    checkNotification();
+
+    // Check for discussionIds in session storage
+    const discussionIds = JSON.parse(sessionStorage.getItem('discussionIds')) || [];
+    setHasNotifications(discussionIds.length > 0); // Set state based on presence of discussionIds
+  }, []); // Empty dependency array ensures this runs only on component mount
+
   const handleSearchClick = () => {
-    navigate('/search'); // Navigate to /search when clicked
+    navigate('/search');
   };
 
   const handleProfileClick = () => {
-    navigate('/studentProfile'); // Navigate to /studentProfile
+    navigate('/studentProfile');
   };
 
   return (
@@ -68,9 +81,9 @@ const Navbar = ({ isLoggedIn, user }) => {
 
       <div className="navbar-right">
         <div
-          className="notification-icon"
-          onClick={() => navigate('/notifications')} // Add onClick handler
-          style={{ cursor: 'pointer' }} // Add pointer cursor for better UX
+          className={`notification-icon ${hasNotifications ? 'glow' : ''}`} // Add 'glow' class if notifications exist
+          onClick={() => navigate('/notifications')}
+          style={{ cursor: 'pointer' }}
         >
           <FaBell />
           <span className="notification-badge"></span>
@@ -90,7 +103,6 @@ const Navbar = ({ isLoggedIn, user }) => {
         </div>
       </div>
 
-      {/* Display Search Results */}
       {searchResults.length > 0 && (
         <div className="search-results">
           <ul>

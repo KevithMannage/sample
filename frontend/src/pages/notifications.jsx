@@ -1,3 +1,4 @@
+
 // import React from 'react';
 // import Navbar from '../Navbar';
 
@@ -203,6 +204,7 @@ function NotificationsPage() {
                       View
                     </button>
                   </div>
+
                 </div>
               ))
             )}

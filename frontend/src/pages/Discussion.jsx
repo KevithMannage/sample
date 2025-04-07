@@ -8,6 +8,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
     const fetchJobVacancies = async () => {
       try {
