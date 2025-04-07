@@ -117,7 +117,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
-import googleIcon from '/images/google.png';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Usersignuppage = () => {
   const [username, setUsername] = useState('');
@@ -135,22 +135,22 @@ const Usersignuppage = () => {
 
   const validateForm = () => {
     if (!username || !password || !email || !mobile) {
-      setError('Please fill in all fields!');
+      toast.error('Please fill in all fields!');
       return false;
     }
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match!');
+      toast.error('Passwords do not match!');
       return false;
     }
 
     if (!/^\S+@\S+\.\S+$/.test(email)) {
-      setError('Please enter a valid email address');
+      toast.error('Please enter a valid email address');
       return false;
     }
 
     if (!/^\d{10}$/.test(mobile)) {
-      setError('Please enter a valid 10-digit mobile number');
+      toast.error('Please enter a valid 10-digit mobile number');
       return false;
     }
 
@@ -175,13 +175,14 @@ const Usersignuppage = () => {
 
       if (response.data.status) {
         alert('Registration successful!');
+        toast.success('Registration successful!');
         navigate('/login'); // Redirect to login page after registration
       } else {
-        setError(response.data.message || 'Registration failed. Please try again!');
+        toast.error(response.data.message || 'Registration failed. Please try again!');
       }
     } catch (error) {
       console.error('Registration error:', error);
-      setError(error.response?.data?.message || 'An error occurred. Please try again!');
+      toast.error(error.response?.data?.message || 'An error occurred. Please try again!');
     } finally {
       setLoading(false);
     }
@@ -189,6 +190,7 @@ const Usersignuppage = () => {
 
   return (
     <div className="login-container">
+      <ToastContainer position="bottom-left" pauseOnHover/>
       <div className="left-section">
         <div className="logo">
           <img src="/images/3.png" alt="Professional" className="logo-icon" />

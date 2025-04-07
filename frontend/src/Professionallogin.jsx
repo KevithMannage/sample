@@ -4,6 +4,7 @@ import axios from 'axios'; // Import axios for making HTTP requests
 import './Login.css';
 import googleIcon from '/images/google.png';
 import Navbar from './Navbar';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProfessionalLoginPage = () => {
   const [username, setUsername] = useState('');
@@ -23,7 +24,7 @@ const ProfessionalLoginPage = () => {
 
     // Basic form validation
     if (!username || !password) {
-      alert('Please fill in both fields!');
+      toast.error('Please fill in all fields!');
       return;
     }
 
@@ -40,16 +41,17 @@ const ProfessionalLoginPage = () => {
         console.log('Login successful');
         navigate('/dashboard'); // Redirect to Dashboard
       } else {
-        alert('Invalid credentials!'); // Show an error message if login failed
+        toast.error('Invalid username or password!');
       }
     } catch (error) {
       console.error('Error during login:', error);
-      alert('An error occurred. Please try again!'); // Handle error case
+      toast.error('Invalid username or password!');
     }
   };
 
   return (
     <div className="login-container">
+      <ToastContainer position="bottom-left" pauseOnHover/>
       <div className="left-section">
         <div className="logo" style={{ minWidth: '600px' }}>
           <img src="/images/3.png" alt="Professional" className="logo-icon" />
