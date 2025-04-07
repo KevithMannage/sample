@@ -11,26 +11,26 @@ import ChatBot from "./Chatbot";
 
 const AboutUs = () => {
   return (
-    <div style={styles.container}>
+    <div className="min-h-screen bg-blue-50 font-sans">
       <Navbar /> {/* Reusing Navbar */}
 
       {/* Main Content */}
-      <div style={styles.card}>
-        <h1 style={styles.heading}>About Us</h1>
-        <div style={styles.content}>
+      <div className="mt-20 max-w-6xl mx-auto  p-8 bg-blue-100 rounded-lg shadow-lg " >
+        <h1 className="text-6xl font-bold text-blue-600 text-center mb-8 font-poppins">About Us</h1>
+        <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Logo Section */}
-          <div style={styles.logoContainer}>
-            <img src={logo} alt="Company Logo" style={styles.logo} />
+          <div className="flex-1">
+            <img src={logo} alt="Company Logo" className="w-full max-w-lg mx-auto" />
           </div>
 
           {/* Text Section */}
-          <div style={styles.textContainer}>
-            <p style={styles.text}>
+          <div className="flex-2">
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
               Welcome to <strong>GuidelineX Chat</strong>, your personal companion on the journey to success! 
               We believe that the right career course can be chosen through a simple and friendly chat app, 
               helping students, job seekers, and professionals discover the best paths for their future.
             </p>
-            <p style={styles.text}>
+            <p className="text-lg text-gray-700 leading-relaxed">
               At GuidelineX Chat, we provide personalized career course options and opportunities for everyone. 
               Whether you’re exploring career paths, seeking advice, or preparing for your dream job, we’re here to guide you every step of the way.
             </p>
@@ -38,13 +38,13 @@ const AboutUs = () => {
         </div>
 
         {/* Developers Section */}
-        <h2 style={styles.subHeading}>Developers</h2>
-        <div style={styles.developersContainer}>
+        <h2 className="text-4xl font-bold text-blue-600 text-center mt-12 mb-8 font-poppins">Developers</h2>
+        <div className="flex flex-wrap justify-between gap-8">
           {[developer1, developer2, developer3, developer4, developer5].map((dev, index) => (
-            <div key={index} style={styles.developer}>
-              <img src={dev} alt={`Developer ${index + 1}`} style={styles.developerImage} />
-              <p style={styles.developerName}>{["Kevith Mannage", "Induwara Withanage", "Malith Sathmina", "Kaveesha indunil", "Umesh Jayacody"][index]}</p>
-              <p style={styles.developerRole}>Senior Software Engineer</p>
+            <div key={index} className="text-center">
+              <img src={dev} alt={`Developer ${index + 1}`} className="w-24 h-24 rounded-full object-cover mx-auto mb-4" />
+              <p className="text-lg font-bold text-gray-800">{["Kevith Mannage", "Induwara Withanage", "Malith Sathmina", "Kaveesha indunil", "Umesh Jayacody"][index]}</p>
+              <p className="text-sm text-gray-600">Senior Software Engineer</p>
             </div>
           ))}
         </div>
@@ -52,86 +52,6 @@ const AboutUs = () => {
       <ChatBot /> {/* Reusing ChatBot component */}
     </div>
   );
-};
-
-// Inline styles
-const styles = {
-  container: {
-    minHeight: '100vh',
-    backgroundColor: '#f0f4ff',
-    fontFamily: 'Arial, sans-serif',
-  },
-  card: {
-    maxWidth: '1200px',
-    margin: '40px auto',
-    padding: '30px',
-    backgroundColor: '#e6eaff',
-    borderRadius: '15px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-  },
-  heading: {
-    fontFamily:'Poppins',
-    fontSize: '72px',
-    fontWeight: 'bold',
-    color: 'rgba(66, 133, 244, 1)',
-    textAlign: 'center',
-    marginBottom: '20px',
-  },
-  content: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '20px',
-  },
-  logoContainer: {
-    flex: '1',
-  },
-  logo: {
-    width: '850px',
-    height: 'auto',
-  },
-  textContainer: {
-    flex: '2',
-  },
-  text: {
-    fontSize: '16px',
-    color: '#333',
-    lineHeight: '1.6',
-    marginBottom: '15px',
-  },
-  subHeading: {
-    fontFamily:'Poppins',
-    fontSize: '72px',
-    fontWeight: 'bold',
-    color: 'rgba(66, 133, 244, 1)',
-    margin: '30px 0 20px',
-    textAlign: 'center',
-  },
-  developersContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    gap: '20px',
-  },
-  developer: {
-    textAlign: 'center',
-  },
-  developerImage: {
-    width: '100px',
-    height: '100px',
-    borderRadius: '50%',
-    objectFit: 'cover',
-    marginBottom: '10px',
-  },
-  developerName: {
-    fontSize: '16px',
-    fontWeight: 'bold',
-    color: '#333',
-    margin: '5px 0',
-  },
-  developerRole: {
-    fontSize: '14px',
-    color: '#666',
-  },
 };
 
 export default AboutUs;
