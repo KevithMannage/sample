@@ -103,6 +103,7 @@
 
 // export default ProfessionalProfile;
 
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -140,7 +141,6 @@ const ProfessionalProfile = () => {
           `http://localhost:3000/profile/grtprofile?userId=${userId}`
         );
         setProfileData(response.data);
-        // Initialize edit form data with current profile data
         setEditFormData({
           userName: response.data.userName || '',
           email: response.data.email || '',
@@ -169,6 +169,13 @@ const ProfessionalProfile = () => {
     setIsEditing(true);
   };
 
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/login');
+  };
+
   const handlesave = async () => {
     try {
       setLoading(true);
@@ -188,11 +195,11 @@ const ProfessionalProfile = () => {
       setLoading(false);
     }
   };
+
   const handleCancelClick = () => {
     setIsEditing(false);
-    // Reset form data to original profile data
     setEditFormData({
-      userName: profileData.username || '',
+      userName: profileData.userName || '',
       email: profileData.email || '',
       mobile: profileData.mobile || '',
       role: profileData.role || '',
@@ -493,7 +500,7 @@ const ProfessionalProfile = () => {
                 <h1>{profileData.userName}</h1>
                 <p className="role-badge">{profileData.role}</p>
                 <p className="email">{profileData.email}</p>
-                <p className="contact">{profileData.contactNumber}</p>
+                <p className="contact">{profileData.mobile}</p>
               </div>
             </div>
 
@@ -560,6 +567,23 @@ const ProfessionalProfile = () => {
               Edit Profile
             </button>
           </div>
+          <div style={{ textAlign: 'right', margin: '10px 0' }}>
+            <button
+              onClick={handleLogout}
+              style={{
+                backgroundColor: '#A31D1D',
+                color: '#fff',
+                padding: '8px 16px',
+                border: 'none',
+                borderRadius: '8px',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              Logout
+            </button>
+  
+          </div>
         </>
       )}
     </div>
@@ -568,9 +592,9 @@ const ProfessionalProfile = () => {
 
 ProfessionalProfile.propTypes = {
   profileData: PropTypes.shape({
-    username: PropTypes.string,
+    userName: PropTypes.string,
     email: PropTypes.string,
-    contactNumber: PropTypes.string,
+    mobile: PropTypes.string,
     role: PropTypes.string,
     aboutme: PropTypes.string,
     skills: PropTypes.arrayOf(PropTypes.string),

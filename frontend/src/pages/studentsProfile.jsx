@@ -69,7 +69,7 @@ const ProfessionalProfile = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("userid");
+    localStorage.clear();
     navigate('/login');
   };
 
