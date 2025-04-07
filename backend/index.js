@@ -85,7 +85,7 @@ import Messageroute from './Routes/messageroute.js';
 import Postroute from './Routes/postroute.js';
 import Discussionroute from './Routes/discussionroute.js';
 import profile from './Routes/profileRoute.js';
-
+import Vacancyroute from './Routes/vacancyroute.js';
 dotenv.config();
 connectDB();
 
@@ -135,6 +135,7 @@ app.use('/message', Messageroute);
 app.use('/post', Postroute);
 app.use('/discussion', Discussionroute);
 app.use('/profile', profile);
+app.use('/job',Vacancyroute);
 
 app.get('/', (req, res) => {
   res.send('Hello, world!');

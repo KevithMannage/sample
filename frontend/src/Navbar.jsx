@@ -37,7 +37,7 @@ const Navbar = ({ isLoggedIn, user }) => {
           <FaEnvelope className="nav-icon" /> Messages
         </a>
         <a href="/discussion" className="nav-link">
-          <FaComments className="nav-icon" /> Discussions
+          <FaComments className="nav-icon" /> Job Area
         </a>
         <a href="/newdiscussion" className="nav-link">
           <FaPlusCircle className="nav-icon" /> New Discussion
