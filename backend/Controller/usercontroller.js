@@ -3,8 +3,7 @@ import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import crypto from 'crypto';
-
-// Import the User model
+import nodemailer from 'nodemailer';// Import the User model
 import User from '../Models/User.js';
 
 dotenv.config();
@@ -303,5 +302,41 @@ export const sendResetLink = async (email, resetToken) => {
   } catch (err) {
     console.error('Error sending password reset email:', err);
     throw new Error('Could not send email');
+  }
+};
+
+
+ export const resetPassword = async (req, res) => {
+  const { otp, newpassword } = req.body;
+
+  if (!otp || !newpassword) {
+    return res.status(400).json({ message: 'otp and new password are required' });
+  }
+
+  try {
+    // Find the user by token and check expiry
+    const user = await User.findOne({
+     
+      resetPasswordToken: otp,
+      resetPasswordExpires: { $gt: Date.now() }, // Token should not be expired
+    });
+
+    if (!user) {
+      console.log(Date.now());
+      return res.status(400).json({ message: 'Invalid or expired token' });
+    }
+
+    // Update the password and clear the reset fields
+    console.log(user);
+    const hashedPassword = await bcrypt.hash(newpassword, 10);
+    user.password = hashedPassword; // Ensure password is hashed if using bcrypt
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+
+    return res.status(200).json({ message: 'Password successfully updated' , status: 'ok'});
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Server error' });
   }
 };

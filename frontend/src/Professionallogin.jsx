@@ -94,7 +94,7 @@ const ProfessionalLoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <a href="#" className="forgot-password">Forgot Password</a>
+          <a href="/forgetpassword" className="forgot-password">Forgot Password</a>
           <a href="/login" className="forgot-password">User Login</a>
           <button type="submit" className="signin-btn">Sign in</button>
         </form>
