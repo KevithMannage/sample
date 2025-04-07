@@ -70,8 +70,10 @@ const ChatSelection = () => {
   }
 
   return (
+    <>
+    <Navbar/>
     <div className="chat-selection-container">
-      <Navbar/>
+      
       {/* Contacts List */}
       <div className="contacts-list">
         {usernames.length > 0 ? (
@@ -114,6 +116,7 @@ const ChatSelection = () => {
         <ChatBot/>
       </div>
     </div>
+    </>
   );
 };
 
