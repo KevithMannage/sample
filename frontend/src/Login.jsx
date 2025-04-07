@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios'; // Import axios for making HTTP requests
 import './Login.css';
 import googleIcon from '/images/google.png';
+import { ToastContainer, toast } from 'react-toastify';
 
 const LoginPage = () => {
 
@@ -25,7 +26,7 @@ const LoginPage = () => {
 
     // Validate input fields
     if (!username || !password) {
-      alert('Please fill in both fields!');
+      toast.error('Please fill in all fields!');
       return;
     }
 
@@ -43,16 +44,17 @@ const LoginPage = () => {
         localStorage.setItem("username",username);
         navigate('/dashboard'); // Redirect to Dashboard
       } else {
-        alert('Invalid credentials!'); // Show an error message
+        toast.error('Invalid username or password!');
       }
     } catch (error) {
       console.error('Error during login:', error);
-      alert('An error occurred. Please try again!');
+      toast.error('Invalid username or password!');
     }
   };
 
   return (
     <div className="login-container">
+      <ToastContainer position="bottom-left" pauseOnHover/>
       <div className="left-section">
         <div className="logo">
           <img src="/images/3.png" alt="Professional" className="logo-icon" />

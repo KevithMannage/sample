@@ -115,6 +115,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Usersignuppage = () => {
   const [formData, setFormData] = useState({
@@ -151,22 +152,22 @@ const Usersignuppage = () => {
 
     if (!formData.username.trim()) newErrors.username = 'Username is required';
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      toast.warning('Email is required');
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
+      toast.error('Please enter a valid email');
     }
     if (!formData.mobile.trim()) {
-      newErrors.mobile = 'Mobile number is required';
+      toast.warning('Mobile number is required');
     } else if (!mobileRegex.test(formData.mobile)) {
-      newErrors.mobile = 'Please enter a valid 10-digit number';
+      toast.error('Please enter a valid 10-digit number');
     }
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      toast.warning('Password is required');
     } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+      toast.error('Password must be at least 6 characters');
     }
     if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
+      toast.error('Passwords do not match');
     }
 
     setErrors(newErrors);
@@ -191,13 +192,14 @@ const Usersignuppage = () => {
 
       if (response.data.status) {
         alert('Registration successful!');
+        toast.success('Registration successful!');
         navigate('/login');
       } else {
-        setApiError(response.data.message || 'Registration failed. Please try again.');
+        toast.error(response.data.message || 'Registration failed. Please try again.');
       }
     } catch (error) {
       console.error('Registration error:', error);
-      setApiError(error.response?.data?.message || 'An error occurred during registration. Please try again.');
+      toast.error(error.response?.data?.message || 'An error occurred during registration. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -209,6 +211,7 @@ const Usersignuppage = () => {
 
   return (
     <div className="login-container">
+      <ToastContainer position="bottom-left" pauseOnHover/>
       <div className="left-section">
         <div className="logo">
           <img src="/images/3.png" alt="Professional" className="logo-icon" />
