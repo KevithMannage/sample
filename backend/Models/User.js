@@ -15,7 +15,8 @@ const UserSchema = new mongoose.Schema({
   skills:{ type: [String], default: []  },
   interestArea:{ type: [String], default: []  },
   resetPasswordToken: { type: String, default: "undefined" },
-  resetPasswordExpires: { type: String, default: "undefined" }
+  resetPasswordExpires: { type: String, default: "undefined" },
+  profileImage: { type: String, default: '' }
 });
 
 const Users = mongoose.models.User || mongoose.model('Users', UserSchema);

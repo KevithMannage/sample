@@ -98,6 +98,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaRegMessage, FaUserGroup } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../../Navbar";
 
 const DiscussionContainer = () => {
   const [items, setItems] = useState([]);
@@ -145,6 +146,7 @@ const DiscussionContainer = () => {
 
   if (error) {
     return (
+
       <div className="mt-24 text-center text-red-500">
         Error loading discussions: {error}
       </div>
@@ -160,6 +162,7 @@ const DiscussionContainer = () => {
   }
 
   return (
+    
     <div className="mt-24 flex flex-col items-center justify-center w-full p-4 box-border min-w-[400px] bg-[#f0f8ff] rounded-[30px]">
       <h1 className="text-2xl font-bold text-[#1E88E5] mb-2 text-center">🩵 Continue your Discussions</h1>
       <h2 className="text-sm text-[#656565] mb-5 text-center">Explore Learn Enhanced</h2>

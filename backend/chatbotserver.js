@@ -25,7 +25,8 @@ app.post('/chat', async (req, res) => {
   }
 });
 
-const PORT = process.env.CHATBOTPORT || 8000;
+const PORT = process.env.CHATBOTPORT|| 8000;
 app.listen(PORT, () => {
   console.log(`🤖 GuidelineX chatbot Server running at http://localhost:${PORT} ✅`);
 });
+

@@ -13,9 +13,20 @@ const Navbar = ({ isLoggedIn, user }) => {
   const [hasNotifications, setHasNotifications] = useState(false); // State to track notifications
   const navigate = useNavigate();
 
+
+  //const navigate = useNavigate();
+  
+  // Get profile image from localStorage or use a default
+  const profileImage = localStorage.getItem("profileimage") 
+  
+  // Sample user with proper image URL
   const sampleUser = {
-    name: 'profile',
-    avatar: 'https://randomuser.me/api/portraits/men/32.jpg'
+    name: 'Profile',
+    avatar: profileImage 
+      ? (profileImage.startsWith('http') 
+          ? profileImage 
+          : `http://localhost:3000/${profileImage}`)
+      : 'https://randomuser.me/api/portraits/men/32.jpg'
   };
 
   useEffect(() => {
@@ -47,7 +58,7 @@ const Navbar = ({ isLoggedIn, user }) => {
           <FaEnvelope className="nav-icon" /> Messages
         </a>
         <a href="/discussion" className="nav-link">
-          <FaComments className="nav-icon" /> Discussions
+          <FaComments className="nav-icon" /> Job Area
         </a>
         <a href="/newdiscussion" className="nav-link">
           <FaPlusCircle className="nav-icon" /> New Discussion

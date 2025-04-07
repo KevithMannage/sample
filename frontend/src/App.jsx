@@ -20,7 +20,8 @@ import CreatePostForm from './pages/CreatePostForm';
 import DiscussionDetail from './pages/discussiondetails';
 import PostDetails from './pages/postdetails';
 import NotificationsPage from './pages/notifications'; // Import the NotificationsPage component
-
+import ForgotPassword from './pages/forgetpassword';
+import ResetPassword from './pages/resetpassword';
 import { FaRegFileCode } from 'react-icons/fa';
 import Search from './pages/search';
 const App = () => {
@@ -51,6 +52,8 @@ const App = () => {
              <Route path="/home" element={<Home/>} />
              <Route path="/search" element={<Search/>} />
              <Route path="/notifications" element={<NotificationsPage />} /> {/* Add this route */}
+             <Route path="/forgetpassword" element={<ForgotPassword/>} />
+             <Route path="/resetpassword" element={<ResetPassword/>} />
           
              
 

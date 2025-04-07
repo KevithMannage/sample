@@ -13,7 +13,9 @@ import Postroute from './Routes/postroute.js';
 import Discussionroute from './Routes/discussionroute.js';
 import profile from './Routes/profileRoute.js';
 import notificationRoute from './Routes/notificationRoute.js';
-
+import Vacancyroute from './Routes/vacancyroute.js';
+import notificationRoute from './Routes/notificationRoute.js';
+import Photoroute from './Routes/photoRoutes.js';
 dotenv.config();
 connectDB();
 
@@ -62,7 +64,12 @@ app.use('/contact', Contactroute);
 app.use('/message', Messageroute);
 app.use('/post', Postroute);
 app.use('/discussion', Discussionroute);
+app.use('/photo', Photoroute);
 app.use('/profile', profile);
+app.use('/notifications', notificationRoute);
+
+app.use('/job',Vacancyroute);
+app.use('/uploads', express.static('uploads'));
 app.use('/notifications', notificationRoute);
 
 app.get('/', (req, res) => {
