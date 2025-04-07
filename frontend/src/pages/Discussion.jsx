@@ -1,10 +1,14 @@
 // App.js
 import React from 'react';
 import './Discussion.css';
+import Navbar from '../Navbar'
 
 const App = () => {
   return (
+    <div className="discussion-page">
+      <Navbar />
     <div className="container">
+      
       {/* Sidebar */}
       <div className="sidebar">
         <div className="sidebar-header">
@@ -77,7 +81,9 @@ const App = () => {
         <span className="transform rotate-90 block text-lg font-semibold">Chat</span>
       </div>
     </div>
+    </div>
   );
 };
 
 export default App;
+

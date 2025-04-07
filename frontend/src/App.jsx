@@ -13,12 +13,13 @@ import AboutUs from './pages/AboutUs';
  import Home from './pages/Home';
 import Chatbot from './pages/Chatbot';
 import ProfessionalLoginPage from './Professionallogin';
-import Usersignuppage from './usersignup';
+import Usersignuppage from './Usersignup';
 import Professionsignuppage from './Proffesionsignup';
 import Chat from './pages/chat';
 import CreatePostForm from './pages/CreatePostForm';
 import DiscussionDetail from './pages/discussiondetails';
 import PostDetails from './pages/postdetails';
+
 import { FaRegFileCode } from 'react-icons/fa';
 import Search from './pages/search';
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
     <Router>
       <div className="app">
       
-        <main className="main">
+        <main className="main-content">
           <Routes>
           <Route path="/" element={<LoginPage/>} />
              <Route path="/login" element={<LoginPage/>} />
@@ -49,6 +50,7 @@ const App = () => {
              <Route path="/home" element={<Home/>} />
              <Route path="/search" element={<Search/>} />
              
+
  
           </Routes>
         </main>
