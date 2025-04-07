@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const ForgotPassword = () => {
   const [formData, setFormData] = useState({
@@ -110,7 +112,15 @@ const ForgotPassword = () => {
             Send Reset Link
           </button>
         </form>
+
       </div>
+      <Link 
+          to="/" 
+          className="back-link flex items-bottom text-blue-700 hover:text-blue-900"
+        >
+          <FaArrowLeft className="mr-2" />
+          Back to Login
+        </Link>
     </div>
   );
 };

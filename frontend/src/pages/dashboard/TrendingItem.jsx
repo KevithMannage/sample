@@ -91,6 +91,7 @@ const TrendingItem = () => {
 
   return (
     <div className="mt-24 flex flex-col items-center justify-center w-full p-4 box-border min-w-[300px] rounded-[30px]">
+   
       <h1 className="text-xl font-bold text-red-500 mb-2 text-center bg-red-100 p-4 rounded-[30px] min-w-[300px]">
         ⚡ Top Discussion ⚡
       </h1>
