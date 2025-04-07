@@ -150,6 +150,7 @@ const ProfessionalLoginPage = () => {
         localStorage.setItem("userid",response.data.id);
         localStorage.setItem("role",response.data.role);
         localStorage.setItem("username",username);
+        localStorage.setItem("profileimage",response.data.profileImage);
         console.log('Login successful');
         navigate('/dashboard'); // Redirect to Dashboard
       } else {

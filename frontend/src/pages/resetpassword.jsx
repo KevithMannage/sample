@@ -89,7 +89,10 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cover bg-center flex items-center justify-center px-4 bg-gray-100">
+    <div
+    className="min-h-screen bg-cover bg-center flex items-center justify-center px-4"
+    style={{ backgroundImage: 'url(/images/reset.jpg)' }}
+  >
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Reset Your Password</h2>
 

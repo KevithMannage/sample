@@ -115,6 +115,7 @@ const ProfessionalProfile = () => {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const backendUrl = "http://localhost:3000"; // Replace with your actual backend URL
   const [isEditing, setIsEditing] = useState(false);
   const [editFormData, setEditFormData] = useState({
     userName: '',
@@ -131,8 +132,10 @@ const ProfessionalProfile = () => {
   });
   const [newSkill, setNewSkill] = useState('');
   const [newInterest, setNewInterest] = useState('');
-  
+  const [photoPreview, setPhotoPreview] = useState(null); // For previewing uploaded photo
+
   const userId = localStorage.getItem("userid");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -169,8 +172,6 @@ const ProfessionalProfile = () => {
     setIsEditing(true);
   };
 
-  const navigate = useNavigate();
-
   const handleLogout = () => {
     localStorage.clear();
     navigate('/login');
@@ -185,10 +186,11 @@ const ProfessionalProfile = () => {
       );
       setProfileData(response.data.user);
       setIsEditing(false);
+      setError(null);
     } catch (err) {
       setError(
-        err.response?.data?.message || 
-        err.message || 
+        err.response?.data?.message ||
+        err.message ||
         'Failed to update profile'
       );
     } finally {
@@ -198,6 +200,7 @@ const ProfessionalProfile = () => {
 
   const handleCancelClick = () => {
     setIsEditing(false);
+    setPhotoPreview(null); // Clear preview on cancel
     setEditFormData({
       userName: profileData.userName || '',
       email: profileData.email || '',
@@ -258,34 +261,43 @@ const ProfessionalProfile = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setEditFormData({
-          ...editFormData,
-          profilePicture: reader.result
-        });
-      };
-      reader.readAsDataURL(file);
+      setPhotoPreview(URL.createObjectURL(file)); // Preview the photo locally
+      uploadProfilePhoto(file); // Upload to server separately
+    }
+  };
+
+  const uploadProfilePhoto = async (file) => {
+    const formData = new FormData();
+    formData.append('photo', file);
+    formData.append('userId', userId);
+
+    try {
+      const response = await axios.post('http://localhost:3000/photo/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      // Update profileData and editFormData with the new photo URL
+      const newPhotoUrl = response.data.photo.path; // Assuming backend returns path in photo.path
+      localStorage.setItem("profileimage",newPhotoUrl);
+      const profileImage=localStorage.getItem("profileimage");
+      setEditFormData({
+        ...editFormData,
+        profilePicture: newPhotoUrl
+      });
+      setProfileData({
+        ...profileData,
+        profilePicture: newPhotoUrl
+      });
+      setError(null);
+    } catch (err) {
+      setError(err.response?.data.message || 'Failed to upload photo');
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      setLoading(true);
-      const response = await axios.put(
-        `http://localhost:3000/profile/updateprofile?userId=${userId}`,
-        editFormData
-      );
-      setProfileData(response.data);
-      setIsEditing(false);
-      setError(null);
-    } catch (err) {
-      console.error('Error updating profile:', err);
-      setError(err.message || 'Failed to update profile');
-    } finally {
-      setLoading(false);
-    }
+    await handlesave(); // Call handlesave to update profile data (excluding photo)
   };
 
   if (loading) return <div className="loading-spinner">Loading profile...</div>;
@@ -294,6 +306,7 @@ const ProfessionalProfile = () => {
 
   return (
     <div className="profile-wrapper">
+       
       <Navbar />
       {isEditing ? (
         <form onSubmit={handleSubmit} className="profile-edit-form">
@@ -301,11 +314,11 @@ const ProfessionalProfile = () => {
             <div className="profile-left">
               <div className="profile-photo-edit">
                 <img
-                  src={editFormData.profilePicture || profilePic}
+                  src={`http:localhost:3000/${profileimage}`||photoPreview || editFormData.profilePicture || profilePic}
                   alt={editFormData.userName}
                   className="profile-photo"
                   onError={(e) => {
-                    e.target.onerror = null; 
+                    e.target.onerror = null;
                     e.target.src = profilePic;
                   }}
                 />
@@ -353,7 +366,7 @@ const ProfessionalProfile = () => {
                 />
                 <input
                   type="tel"
-                  name="contactNumber"
+                  name="mobile" // Changed to match state
                   value={editFormData.mobile}
                   onChange={handleInputChange}
                   className="edit-input"
@@ -433,9 +446,9 @@ const ProfessionalProfile = () => {
                 {editFormData.skills.map((skill, index) => (
                   <span key={index} className="tag">
                     {skill}
-                    <button 
-                      type="button" 
-                      onClick={() => handleSkillRemove(skill)} 
+                    <button
+                      type="button"
+                      onClick={() => handleSkillRemove(skill)}
                       className="tag-remove"
                     >
                       ×
@@ -463,9 +476,9 @@ const ProfessionalProfile = () => {
                 {editFormData.interestArea.map((area, index) => (
                   <span key={index} className="tag">
                     {area}
-                    <button 
-                      type="button" 
-                      onClick={() => handleInterestRemove(area)} 
+                    <button
+                      type="button"
+                      onClick={() => handleInterestRemove(area)}
                       className="tag-remove"
                     >
                       ×
@@ -477,7 +490,7 @@ const ProfessionalProfile = () => {
           </div>
 
           <div className="edit-button-container">
-            <button type="submit" onClick={handlesave} className="save-button">Save Changes</button>
+            <button type="submit" className="save-button">Save Changes</button>
             <button type="button" onClick={handleCancelClick} className="cancel-button">
               Cancel
             </button>
@@ -487,12 +500,14 @@ const ProfessionalProfile = () => {
         <>
           <div className="profile-header">
             <div className="profile-left">
+           
               <img
-                src={profileData.profilePicture || profilePic}
+                src={`${backendUrl}/${localStorage.getItem("profileimage")}` || profilePic}
+
                 alt={profileData.userName}
                 className="profile-photo"
                 onError={(e) => {
-                  e.target.onerror = null; 
+                  e.target.onerror = null;
                   e.target.src = profilePic;
                 }}
               />
@@ -582,7 +597,6 @@ const ProfessionalProfile = () => {
             >
               Logout
             </button>
-  
           </div>
         </>
       )}

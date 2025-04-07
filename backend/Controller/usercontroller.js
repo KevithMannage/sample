@@ -472,6 +472,8 @@ export const loginUser = async (req, res) => {
       status: 'ok',
       role:user.role,
       id: user.id,
+      username:user.username,
+      profileImage:user.profileImage,
     });
   } catch (err) {
     console.error(err);
@@ -511,6 +513,7 @@ export const loginprofession = async (req, res) => {
       role:user.role,
       status: 'ok',
       id: user.id,
+      profileImage:user.profileImage
     });
   } catch (err) {
     console.error(err);
@@ -520,7 +523,7 @@ export const loginprofession = async (req, res) => {
 
 // Helper function to generate tokens
 export const generateToken = (user) => {
-  const accessToken = jwt.sign({ id: user.id, username: user.username ,role:user.role }, JWT_SECRET, { expiresIn: '15m' });
+  const accessToken = jwt.sign({ id: user.id, username: user.username ,role:user.role, }, JWT_SECRET, { expiresIn: '15m' });
   const refreshToken = jwt.sign({ id: user.id, username: user.username ,role:user.role}, JWT_REFRESH_SECRET, { expiresIn: '7d' });
   return { accessToken, refreshToken };
 };
