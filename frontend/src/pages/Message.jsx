@@ -80,7 +80,7 @@ const ChatSelection = () => {
           usernames.map((contact, index) => (
             <div key={index} className="contact" onClick={() => handleUsernameClick(contact)}>
               <img
-                src={contact.avatar || "https://via.placeholder.com/40"}
+                src={contact.avatar || "https://th.bing.com/th/id/OIP.IGNf7GuQaCqz_RPq5wCkPgHaLH?rs=1&pid=ImgDetMain"}
                 alt="User Avatar"
                 className="contact-avatar"
               />
