@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import './Message.css';
 import Navbar from '../Navbar';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ChatBot from "./Chatbot";
-import Message from './../../../backend/Models/Message';
+
 
 const ChatSelection = () => {
   const navigate = useNavigate();
