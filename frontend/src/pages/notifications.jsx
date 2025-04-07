@@ -117,10 +117,12 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function NotificationsPage() {
   const [notifications, setNotifications] = useState([]); // State to store fetched notifications
   const [loading, setLoading] = useState(true); // State to handle loading
+  const navigate = useNavigate(); // Hook for navigation
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -152,6 +154,10 @@ function NotificationsPage() {
 
     fetchNotifications();
   }, []);
+
+  const handleViewDiscussion = (id) => {
+    navigate(`/discussion/${id}`); // Redirect to the discussion details page
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-blue-50">
@@ -200,11 +206,13 @@ function NotificationsPage() {
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <button className="px-4 py-2 text-blue-600 bg-blue-50 border border-blue-200 rounded-md hover:bg-blue-100 transition-colors duration-200 shadow-sm">
+                    <button
+                      onClick={() => handleViewDiscussion(notification._id)} // Pass the discussion ID
+                      className="px-4 py-2 text-blue-600 bg-blue-50 border border-blue-200 rounded-md hover:bg-blue-100 transition-colors duration-200 shadow-sm"
+                    >
                       View
                     </button>
                   </div>
-
                 </div>
               ))
             )}

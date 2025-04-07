@@ -144,9 +144,11 @@ import { FaRegMessage } from "react-icons/fa6";
 const DiscussionDetail = () => {
   const [discussion, setDiscussion] = useState(null);
   const [newMessage, setNewMessage] = useState("");
-  const discussionId = localStorage.getItem("discussionid"); 
-  const username=localStorage.getItem("username");
-  const Userid=localStorage.getItem("userid");
+  const [isSubscribed, setIsSubscribed] = useState(false); // Track subscription status
+  const discussionId = localStorage.getItem("discussionid");
+  const username = localStorage.getItem("username");
+  const userId = localStorage.getItem("userid");
+
   useEffect(() => {
     // Fetch the specific discussion
     axios
@@ -157,7 +159,11 @@ const DiscussionDetail = () => {
       .catch((error) => {
         console.error("Error fetching discussion:", error);
       });
-  }, []);
+
+    // Check if the user is already subscribed to this discussion
+    const discussionIds = JSON.parse(sessionStorage.getItem("discussionIds")) || [];
+    setIsSubscribed(discussionIds.includes(discussionId));
+  }, [discussionId]);
 
   const handleAddMessage = async (e) => {
     e.preventDefault();
@@ -168,15 +174,36 @@ const DiscussionDetail = () => {
         `http://localhost:3000/discussion/${discussionId}/reply`,
         {
           message: newMessage,
-          user_id: Userid, // Replace with actual authenticated user ID
-          username:username,
-          created_at:Date.now()
+          user_id: userId,
+          username: username,
+          created_at: Date.now(),
         }
       );
       setDiscussion(response.data); // Update discussion with new reply
       setNewMessage(""); // Clear input
     } catch (error) {
       console.error("Error adding reply:", error);
+    }
+  };
+
+  const handleSubscribe = async () => {
+    try {
+      const response = await axios.post(`http://localhost:3000/notifications/subscribe`, {
+        user_id: userId,
+        discussion_id: discussionId,
+      });
+
+      if (response.status === 200) {
+        console.log("Subscribed successfully!");
+        setIsSubscribed(true);
+
+        // Update session storage with the new subscription
+        const discussionIds = JSON.parse(sessionStorage.getItem("discussionIds")) || [];
+        discussionIds.push(discussionId);
+        sessionStorage.setItem("discussionIds", JSON.stringify(discussionIds));
+      }
+    } catch (error) {
+      console.error("Error subscribing to discussion:", error);
     }
   };
 
@@ -223,6 +250,25 @@ const DiscussionDetail = () => {
             <FaRegMessage />
           </button>
         </form>
+
+        {/* Subscribe Button */}
+        <div className="mt-6">
+          {isSubscribed ? (
+            <button
+              className="px-4 py-2 text-white bg-green-500 rounded-full cursor-not-allowed"
+              disabled
+            >
+              Subscribed
+            </button>
+          ) : (
+            <button
+              onClick={handleSubscribe}
+              className="px-4 py-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+            >
+              Subscribe to Discussion
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

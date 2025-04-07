@@ -30,3 +30,44 @@ export const getSubscribedDiscussions = async (req, res) => {
     res.status(500).json({ message: 'Internal server error.', error: error.message });
   }
 };
+
+///
+export const subscribeToDiscussion = async (req, res) => {
+  try {
+    const { user_id, discussion_id } = req.body;
+
+    // Convert user_id and discussion_id to ObjectId
+    const userIdAsObjectId = new mongoose.Types.ObjectId(user_id);
+    const discussionIdAsObjectId = new mongoose.Types.ObjectId(discussion_id);
+
+    // Find the user's subscribed discussions
+    let subscription = await SubscribedDiscussions.findOne({ user_id: userIdAsObjectId });
+
+    if (subscription) {
+      // Check if the discussion is already subscribed
+      const alreadySubscribed = subscription.discussion_ids.some(
+        (item) => item.discussion_id.toString() === discussion_id
+      );
+
+      if (alreadySubscribed) {
+        return res.status(400).json({ message: 'Already subscribed to this discussion.' });
+      }
+
+      // Add the discussion to the user's subscriptions
+      subscription.discussion_ids.push({ discussion_id: discussionIdAsObjectId });
+      await subscription.save();
+    } else {
+      // Create a new subscription document for the user
+      subscription = new SubscribedDiscussions({
+        user_id: userIdAsObjectId,
+        discussion_ids: [{ discussion_id: discussionIdAsObjectId }],
+      });
+      await subscription.save();
+    }
+
+    res.status(200).json({ message: 'Subscribed successfully!' });
+  } catch (error) {
+    console.error('Error subscribing to discussion:', error);
+    res.status(500).json({ message: 'Internal server error.', error: error.message });
+  }
+};
