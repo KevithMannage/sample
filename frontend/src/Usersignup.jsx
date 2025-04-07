@@ -63,12 +63,8 @@ const Usersignuppage = () => {
         <div className="user-section">
           <div className="hi">
             <button className="signin-button1" onClick={handleLogin}>
-              <img src="/images/3.png" alt="picture" className="button-icon" />
               Have an account? <br />Sign in
             </button>
-          </div>
-          <div className="picture">
-            <p><img src="images/signup2.png" alt="picture " /></p>
           </div>
         </div>
       </div>

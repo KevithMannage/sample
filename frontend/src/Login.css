@@ -3,11 +3,10 @@ body {
   font-family: Arial, sans-serif;
   overflow: hidden; /* Prevent scrolling */
 }
-
 .login-container {
   display: flex;
   height: 100vh; /* Set height to viewport height */
-  background-color: #1e90ff; /* Blue background for the entire container */
+  background-color: #1e8fff; /* Blue background for the entire container */
   color: white;
 }
 .give_de{
@@ -29,9 +28,9 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
   min-width: 1000px; /* Minimum width to prevent shrinking */
   max-width: 1000px; /* Maximum width to prevent stretching */
+  background-color: #1e90ff;
 }
 
 .logo-icon {
@@ -60,7 +59,7 @@ body {
   margin-bottom: 1px; /* Space between icon and text */
 }
 .signin-button1 {
-  background-color: #2E5CFF; /* Blue color */
+  background-color: #1e90ff; /* Blue color */
   color: white;
   border: none;
   border-radius: 4px; /* Slightly rounded corners */
@@ -72,6 +71,10 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 250px;
+  max-width: 250px; /* Maximum width to prevent stretching */
+  border-radius: 40px; /* Rounded corners */
+  margin-left: 50px; /* Space between button and text */
 }
 
 .signin-button:hover {
@@ -108,7 +111,7 @@ body {
 }
 
 .user-section {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   margin: 280px 6 70px 10px; /* Top | Right/Left | Bottom | Left */
   height: 900px;
   color: #0f0c0c;
