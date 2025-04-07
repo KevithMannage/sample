@@ -716,7 +716,7 @@ const ProfessionalProfile = () => {
             <div className="profile-left">
               <div className="profile-photo-edit">
                 <img
-                  src={`http:localhost:3000/${profileimage}`||photoPreview || editFormData.profilePicture || profilePic}
+                  src={`http:localhost:3000/${localStorage.getItem("profileimage")}`||photoPreview || editFormData.profilePicture || profilePic}
                   alt={editFormData.userName}
                   className="profile-photo"
                   onError={(e) => {
