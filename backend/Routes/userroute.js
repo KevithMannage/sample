@@ -1,5 +1,5 @@
 import express from 'express';
-import { registerUser, loginUser, generateToken,registerprofession,loginprofession,updateUser} from '../Controller/usercontroller.js';
+import { registerUser, loginUser, generateToken,registerprofession,loginprofession,updateUser,forgetPassword,sendResetLink} from '../Controller/usercontroller.js';
 import { authenticateToken } from '../Middleware/usermiddleware.js';
 
 const router = express.Router();
@@ -9,5 +9,8 @@ router.post('/loginuser', loginUser);
 router.post('/loginprofession', loginprofession);
 router.post('/updateuser', updateUser);
 router.post('/registerprofession', registerprofession);
+router.post('/forgetpassword', forgetPassword);
+router.post('/sendresetlink', sendResetLink);
+
 
 export default router;
