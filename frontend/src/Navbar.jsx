@@ -59,7 +59,11 @@ const Navbar = ({ isLoggedIn, user }) => {
       </div>
 
       <div className="navbar-right">
-        <div className="notification-icon">
+        <div
+          className="notification-icon"
+          onClick={() => navigate('/notifications')} // Add onClick handler
+          style={{ cursor: 'pointer' }} // Add pointer cursor for better UX
+        >
           <FaBell />
           <span className="notification-badge"></span>
         </div>
