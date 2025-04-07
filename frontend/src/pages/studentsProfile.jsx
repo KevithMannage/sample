@@ -479,6 +479,7 @@ const ProfessionalProfile = () => {
             >
               Logout
             </button>
+  
           </div>
         </>
       )}

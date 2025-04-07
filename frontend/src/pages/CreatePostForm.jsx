@@ -4,14 +4,14 @@ import axios from 'axios';
 import ChatBot from "./Chatbot";
 
 export default function CreatePostForm() {
- const username= localStorage.getItem("username");
+  const username = localStorage.getItem("username");
   const [formData, setFormData] = useState({
     title: "",
     related_area: [""],
     content: "",
     author_name: "",
     reference_links: [""],
-    replies: ["", ""], // Sample replies, adjust as needed
+    replies: ["", ""],
     username: ""
   });
 
@@ -39,21 +39,19 @@ export default function CreatePostForm() {
     e.preventDefault();
     const postData = {
       title: formData.title,
-      related_area: formData.related_area, // Assuming one related area for simplicity
+      related_area: formData.related_area,
       content: formData.content,
       author_name: formData.author_name,
-      reference_links: formData.reference_links, // Assuming one reference link
+      reference_links: formData.reference_links,
       replies: formData.replies,
       username: username
     };
-  
 
     try {
-      // Make the POST request to the server
       const response = await axios.post("http://localhost:3000/post/createpost", postData);
       console.log("Post created successfully:", response.data);
-     
-      if (response.data.status==="ok"){
+
+      if (response.data.status === "ok") {
         console.log(response.data.status);
         setFormData({
           title: "",
@@ -61,21 +59,19 @@ export default function CreatePostForm() {
           content: "",
           author_name: "",
           reference_links: [""],
-          replies: ["", ""], // Sample replies, adjust as needed
+          replies: ["", ""],
           username: ""
         });
-      
-        
-    }
+      }
     } catch (error) {
       console.error("Error creating post:", error);
     }
   };
 
   return (
-    <div>
+    <div className="text-black">
       <Navbar />
-      <div className="mt-20 max-w-6xl mx-auto  p-8 bg-blue-100 rounded-lg shadow-lg">
+      <div className="mt-20 max-w-6xl mx-auto p-8 bg-gray-100 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Create New Post</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
@@ -83,7 +79,7 @@ export default function CreatePostForm() {
             placeholder="Title"
             value={formData.title}
             onChange={handleChange}
-            className="w-full border p-2 rounded"
+            className="w-full border p-2 rounded bg-white text-black"
           />
 
           <div>
@@ -93,7 +89,7 @@ export default function CreatePostForm() {
                 <select
                   value={item}
                   onChange={(e) => handleArrayChange("related_area", index, e.target.value)}
-                  className="w-full mt-1 border p-2 rounded"
+                  className="w-full mt-1 border p-2 rounded bg-white text-black"
                 >
                   <option value="">-- Select an Area --</option>
                   <option value="Frontend">Web Development</option>
@@ -116,7 +112,7 @@ export default function CreatePostForm() {
                 <button
                   type="button"
                   onClick={() => removeArrayItem("related_area", index)}
-                  className="bg-red-500 text-white px-3 py-3 rounded"
+                  className="bg-gray-300 text-black px-3 py-2 rounded"
                 >
                   Delete
                 </button>
@@ -125,7 +121,7 @@ export default function CreatePostForm() {
             <button
               type="button"
               onClick={() => addArrayItem("related_area")}
-              className="mt-2 bg-blue-500 text-white px-5 py-2 rounded"
+              className="mt-2 bg-sky-500 hover:bg-sky-700 text-white px-5 py-2 rounded"
             >
               Add Area
             </button>
@@ -137,7 +133,7 @@ export default function CreatePostForm() {
             value={formData.content}
             onChange={handleChange}
             style={{ height: "200px" }}
-            className="w-full border p-2 rounded"
+            className="w-full border p-2 rounded bg-white text-black"
           />
 
           <input
@@ -145,7 +141,7 @@ export default function CreatePostForm() {
             placeholder="Author Name"
             value={formData.author_name}
             onChange={handleChange}
-            className="w-full border p-2 rounded"
+            className="w-full border p-2 rounded bg-white text-black"
           />
 
           <div>
@@ -156,12 +152,12 @@ export default function CreatePostForm() {
                   value={link}
                   onChange={(e) => handleArrayChange("reference_links", index, e.target.value)}
                   placeholder={`Link #${index + 1}`}
-                  className="w-full mt-1 border p-2 rounded"
+                  className="w-full mt-1 border p-2 rounded bg-white text-black"
                 />
                 <button
                   type="button"
                   onClick={() => removeArrayItem("reference_links", index)}
-                  className="bg-red-500 text-white px-3 py-3 rounded"
+                  className="bg-gray-300 text-black px-3 py-2 rounded"
                 >
                   Delete
                 </button>
@@ -170,7 +166,7 @@ export default function CreatePostForm() {
             <button
               type="button"
               onClick={() => addArrayItem("reference_links")}
-              className="mt-2 bg-blue-500 text-white px-5 py-2 rounded"
+              className="mt-2 bg-sky-500 hover:bg-sky-700 text-white px-5 py-2 rounded"
             >
               Add Link
             </button>
@@ -178,7 +174,7 @@ export default function CreatePostForm() {
 
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-2 rounded mt-4"
+            className="w-full bg-sky-600 hover:bg-sky-700 text-white py-2 rounded mt-4"
           >
             Submit Post
           </button>
@@ -188,188 +184,4 @@ export default function CreatePostForm() {
     </div>
   );
 }
-// import React, { useState } from "react";
-// import Navbar from '../Navbar';
-// import axios from 'axios';
-// import ChatBot from "./Chatbot";
-// import './CreatePostForm.css'; // Import the CSS
 
-// export default function CreatePostForm() {
-//   const username = localStorage.getItem("username");
-//   const [formData, setFormData] = useState({
-//     title: "",
-//     related_area: [""],
-//     content: "",
-//     author_name: "",
-//     reference_links: [""],
-//     replies: ["", ""],
-//     username: ""
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({ ...formData, [name]: value });
-//   };
-
-//   const handleArrayChange = (name, index, value) => {
-//     const updatedArray = [...formData[name]];
-//     updatedArray[index] = value;
-//     setFormData({ ...formData, [name]: updatedArray });
-//   };
-
-//   const addArrayItem = (name) => {
-//     setFormData({ ...formData, [name]: [...formData[name], ""] });
-//   };
-
-//   const removeArrayItem = (name, index) => {
-//     const updatedArray = formData[name].filter((_, i) => i !== index);
-//     setFormData({ ...formData, [name]: updatedArray });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const postData = {
-//       title: formData.title,
-//       related_area: formData.related_area,
-//       content: formData.content,
-//       author_name: formData.author_name,
-//       reference_links: formData.reference_links,
-//       replies: formData.replies,
-//       username: username
-//     };
-
-//     try {
-//       const response = await axios.post("http://localhost:3000/post/createpost", postData);
-//       console.log("Post created successfully:", response.data);
-
-//       if (response.data.status === "ok") {
-//         setFormData({
-//           title: "",
-//           related_area: [""],
-//           content: "",
-//           author_name: "",
-//           reference_links: [""],
-//           replies: ["", ""],
-//           username: ""
-//         });
-//       }
-//     } catch (error) {
-//       console.error("Error creating post:", error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <Navbar />
-//       <div className="form-container">
-//         <h1 className="form-title">Create New Post</h1>
-//         <form onSubmit={handleSubmit} className="form">
-//           <input
-//             name="title"
-//             placeholder="Title"
-//             value={formData.title}
-//             onChange={handleChange}
-//             className="input"
-//           />
-
-//           <div className="section">
-//             <label className="label">Related Areas</label>
-//             {formData.related_area.map((item, index) => (
-//               <div key={index} className="array-item">
-//                 <select
-//                   value={item}
-//                   onChange={(e) => handleArrayChange("related_area", index, e.target.value)}
-//                   className="select"
-//                 >
-//                   <option value="">-- Select an Area --</option>
-//                   <option value="Frontend">Web Development</option>
-//                   <option value="Backend">Data Base</option>
-//                   <option value="DevOps">DevOps</option>
-//                   <option value="UI/UX">UI/UX</option>
-//                   <option value="Machine Learning">Machine Learning</option>
-//                   <option value="Mobile App">Mobile App</option>
-//                   <option value="Data Science">Data Science</option>
-//                   <option value="Security">Security</option>
-//                   <option value="Testing">Testing</option>
-//                   <option value="Networking">Networking</option>
-//                   <option value="Cloud Computing">Cloud Computing</option>
-//                   <option value="AI">AI</option>
-//                   <option value="Blockchain">Blockchain</option>
-//                   <option value="Game Development">Game Development</option>
-//                   <option value="AR/VR">AR/VR</option>
-//                   <option value="Robotics">Robotics</option>
-//                 </select>
-//                 <button
-//                   type="button"
-//                   onClick={() => removeArrayItem("related_area", index)}
-//                   className="button delete-button"
-//                 >
-//                   Delete
-//                 </button>
-//               </div>
-//             ))}
-//             <button
-//               type="button"
-//               onClick={() => addArrayItem("related_area")}
-//               className="button add-button"
-//             >
-//               + Add Area
-//             </button>
-//           </div>
-
-//           <textarea
-//             name="content"
-//             placeholder="Content"
-//             value={formData.content}
-//             onChange={handleChange}
-//             className="textarea"
-//           />
-
-//           <input
-//             name="author_name"
-//             placeholder="Author Name"
-//             value={formData.author_name}
-//             onChange={handleChange}
-//             className="input"
-//           />
-
-//           <div className="section">
-//             <label className="label">Reference Links</label>
-//             {formData.reference_links.map((link, index) => (
-//               <div key={index} className="array-item">
-//                 <input
-//                   value={link}
-//                   onChange={(e) => handleArrayChange("reference_links", index, e.target.value)}
-//                   placeholder={`Link #${index + 1}`}
-//                   className="input"
-//                 />
-//                 <button
-//                   type="button"
-//                   onClick={() => removeArrayItem("reference_links", index)}
-//                   className="button delete-button"
-//                 >
-//                   Delete
-//                 </button>
-//               </div>
-//             ))}
-//             <button
-//               type="button"
-//               onClick={() => addArrayItem("reference_links")}
-//               className="button add-button"
-//             >
-//               + Add Link
-//             </button>
-//           </div>
-
-//           <button
-//             type="submit"
-//             className="submit-button"
-//           >
-//             Submit Post
-//           </button>
-//         </form>
-//       </div>
-//       <ChatBot />
-//     </div>
-//   );
-// }
