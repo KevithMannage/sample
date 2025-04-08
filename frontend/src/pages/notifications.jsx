@@ -161,7 +161,7 @@ function NotificationsPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-blue-50">
+    <div className="flex flex-col min-h-screen bg-blue-50 mt-16">
       {/* Navbar */}
       <Navbar />
 
