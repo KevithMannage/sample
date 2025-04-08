@@ -128,7 +128,7 @@ const NewDiscussion = () => {
   const [question, setQuestion] = useState('');
   const [relatedAreas, setRelatedAreas] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-   const backendUrl="http://localhost:3000"
+   const backendUrl="https://devthonbackend-production.up.railway.app"
 
   const handleStartDiscussion = async () => {
     const role = localStorage.getItem('role');

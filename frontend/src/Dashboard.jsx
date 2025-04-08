@@ -17,7 +17,9 @@ export default function Dashboard() {
           <TabNavigation />
         </div>
         <div className="dashboard-right">
+        <div className="trending-scroll">
           <TrendingItem />
+        </div>
         </div>
         <ChatBot />
       </div>

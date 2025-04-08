@@ -35,6 +35,33 @@ html, body {
   .dashboard-left,
   .dashboard-right {
     flex: 0 0 100%;
-    height: auto; /* Allow content to adjust height on smaller screens */
+    height: auto;
   }
+}
+
+.trending-scroll {
+  height: 100vh;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ffffff; 
+  border-radius: 5px; 
+}
+
+
+.trending-scroll::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.trending-scroll::-webkit-scrollbar-track {
+  background: #ffffff; 
+  border-radius: 5px;
+}
+
+.trending-scroll::-webkit-scrollbar-thumb {
+  background: #FEE2E2; 
+  border-radius: 5px;
+}
+
+.trending-scroll::-webkit-scrollbar-thumb:hover {
+  background: #ffcdcd; 
 }

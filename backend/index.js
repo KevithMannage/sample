@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import { createServer } from 'http';
-import connectDB from './config/dbConn.js';
+import connectDB from './Config/dbConn.js';
 import UserRoutes from './Routes/userroute.js';
 import Searchroute from './Routes/searchroute.js';
 import Contactroute from './Routes/contactusroute.js';

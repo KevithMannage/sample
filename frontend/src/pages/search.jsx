@@ -291,7 +291,7 @@ const SearchPage = () => {
   const [error, setError] = useState(null);
   const [searchAttempted, setSearchAttempted] = useState(false);
   const navigate = useNavigate();
-  const backendUrl="http://localhost:3000"
+  const backendUrl="https://devthonbackend-production.up.railway.app"
 
   const fetchSearchResults = async (query) => {
     if (!query.trim()) {

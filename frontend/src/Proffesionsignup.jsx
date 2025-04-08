@@ -129,7 +129,7 @@ const Usersignuppage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [apiError, setApiError] = useState('');
   const navigate = useNavigate();
-  const backendUrl="http://localhost:3000"
+  const backendUrl="https://devthonbackend-production.up.railway.app"
 
   const handleChange = (e) => {
     const { name, value } = e.target;

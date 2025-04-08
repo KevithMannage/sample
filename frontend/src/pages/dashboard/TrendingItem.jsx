@@ -74,7 +74,7 @@ const TrendingItem = () => {
   useEffect(() => {
     // Use Axios to fetch trending discussions
     axios
-      .get("http://localhost:3000/discussion/trendingdiscussion")
+      .get("https://devthonbackend-production.up.railway.app/discussion/trendingdiscussion")
       .then((response) => {
         // Assuming the API returns an array of discussions
         setItems(response.data.slice(0, 7));

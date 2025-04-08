@@ -115,7 +115,7 @@ import './Login.css';
 import googleIcon from '/images/google.png';
 import Navbar from './Navbar';
 import { ToastContainer, toast } from 'react-toastify';
-const backendUrl="http://localhost:3000"
+const backendUrl="https://devthonbackend-production.up.railway.app"
 
 const ProfessionalLoginPage = () => {
   const [username, setUsername] = useState('');

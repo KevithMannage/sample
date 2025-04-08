@@ -113,7 +113,7 @@ const DiscussionContainer = () => {
   useEffect(() => {
     const fetchDiscussions = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/discussion/getdiscussion");
+        const response = await axios.get("https://devthonbackend-production.up.railway.app/discussion/getdiscussion");
         setItems(response.data.map(item => ({
           ...item,
           replies: item.replies || [], // make sure replies is always an array

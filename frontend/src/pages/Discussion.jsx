@@ -76,7 +76,7 @@ import React, { useState, useEffect } from 'react';
 import JobVacancy from './component/JobVacancy';
 import Navbar from '../Navbar';
 import ImageSlider from './component/ImageSlider';
-const backendUrl="http://localhost:3000"
+const backendUrl="https://devthonbackend-production.up.railway.app"
 const HomePage = () => {
   const [jobVacancies, setJobVacancies] = useState([]);
   const [loading, setLoading] = useState(true);
