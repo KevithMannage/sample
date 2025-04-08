@@ -309,3 +309,61 @@ form input::placeholder {
 }
 
 
+
+/* Add responsiveness for mobile devices */
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto; 
+  }
+
+  .login-container {
+    flex-direction: column; 
+  }
+
+  .left-section {
+    display: none; 
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center; 
+    margin: 20px 0;
+  }
+
+  .right-section {
+    margin: 20px auto;
+    width: 90%; 
+    max-width: none;
+    padding: 20px; 
+    border-radius: 20px; 
+  }
+
+  .right-section h4 {
+    font-size: 36px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .left-section {
+    display: none; 
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center; 
+    margin: 10px 0; 
+  }
+
+  .right-section {
+    margin: 10px auto; 
+    width: 95%; 
+    max-width: none;
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .right-section h4 {
+    font-size: 28px;
+  }
+}
