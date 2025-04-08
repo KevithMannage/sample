@@ -11,11 +11,11 @@ import ChatBot from "./Chatbot";
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-blue-50 font-sans">
+    <div className="min-h-screen bg-white font-sans">
       <Navbar /> {/* Reusing Navbar */}
 
       {/* Main Content */}
-      <div className="mt-20 max-w-6xl mx-auto  p-8 bg-[#ebf8ff] rounded-lg shadow-lg " >
+      <div className="mt-20 max-w-6xl mx-auto  p-8 bg-[#ebf8ff] rounded-[40px] shadow-lg " >
         <h1 className="text-6xl font-bold text-[#1e90ff] text-center mb-8 font-poppins">About Us</h1>
         <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Logo Section */}

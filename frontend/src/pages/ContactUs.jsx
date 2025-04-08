@@ -43,7 +43,7 @@ const ContactUs = () => {
 
       {/* Contact Us Section */}
       <div className="flex justify-center items-center flex-grow p-6">
-        <div className="bg-[#ebf8ff] p-10 rounded-lg shadow-lg flex flex-col md:flex-row w-full max-w-5xl">
+        <div className="bg-[#ebf8ff] p-10 rounded-[40px] shadow-lg flex flex-col md:flex-row w-full max-w-5xl">
           
           {/* Left Section - Contact Info & Illustration */}
           <div className="md:w-1/2 flex flex-col items-center text-center p-6">
