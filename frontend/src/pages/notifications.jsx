@@ -187,7 +187,7 @@ function NotificationsPage() {
                   className="flex items-center justify-between py-5 px-6 hover:bg-blue-50 transition-colors duration-200"
                 >
                   <div className="flex items-center">
-                    <div className="bg-blue-600 p-3 rounded-lg mr-4 shadow-sm">
+                    <div className="bg-[#1e90ff] p-3 rounded-lg mr-4 shadow-sm">
                       <svg
                         className="w-6 h-6 text-white"
                         fill="currentColor"

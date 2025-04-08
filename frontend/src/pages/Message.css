@@ -17,8 +17,8 @@
   .contact {
     display: flex;
     align-items: center;
-    background-color: #90CAF9;
-    color: rgb(0, 0, 0);
+    background-color: #1e90ff;
+    color: rgb(255, 255, 255);
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 40px;

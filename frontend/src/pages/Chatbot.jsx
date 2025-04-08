@@ -66,7 +66,7 @@ const ChatBot = () => {
   return (
     <div className="fixed bottom-6 right-6">
       {isOpen ? (
-        <div className="bg-gradient-to-br from-blue-500 to-purple-600 shadow-2xl rounded-2xl w-96 h-[32rem] flex flex-col">
+        <div className="bg-[#1e90ff] to-purple-600 shadow-2xl rounded-2xl w-96 h-[32rem] flex flex-col">
           <div className="flex justify-between items-center p-4 border-b border-gray-200">
             <h2 className="text-2xl font-semibold text-center text-white">GuidelineX Chatbot⚡ </h2>
             <button onClick={toggleChat} className="text-white hover:text-gray-300">
@@ -131,7 +131,7 @@ const ChatBot = () => {
       ) : (
         <button
           onClick={toggleChat}
-          className="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full p-5 shadow-2xl hover:opacity-90 transition duration-200"
+          className="bg-[#1e90ff] text-white rounded-full p-5 shadow-2xl hover:opacity-90 transition duration-200"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
