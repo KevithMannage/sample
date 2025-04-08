@@ -1,3 +1,7 @@
+html, body {
+  background-color: white;
+}
+
 .profile-wrapper {
     max-width: 900px;
     margin: 50px auto;
