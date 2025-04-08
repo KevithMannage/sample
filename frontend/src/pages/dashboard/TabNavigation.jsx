@@ -230,7 +230,7 @@ const TabNavigation = () => {
   // Fetching posts from the backend
   useEffect(() => {
     axios
-      .get("http://localhost:3000/post/getpost")
+      .get("https://devthonbackend-production.up.railway.app/post/getpost")
       .then((response) => {
         setItems(response.data.posts); // Assuming the response contains 'posts'
       })
