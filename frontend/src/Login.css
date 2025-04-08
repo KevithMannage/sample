@@ -309,3 +309,99 @@ form input::placeholder {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto; 
+    background-color: #1e8fff;
+  }
+
+  .login-container {
+    flex-direction: column;
+    margin: 0;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  /* Hide all unnecessary sections on mobile */
+  .left-section .logo {
+    display: none !important;
+  }
+
+  .left-section {
+    display: block;
+    flex: none;
+    width: 100%;
+  }
+
+  .right-section {
+    display: block; /* Ensure it's visible */
+    width: 90%;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 0 auto;
+    min-width: unset;
+    max-width: 400px;
+    box-shadow: none;
+  }
+
+  .right-section h4 {
+    font-size: 32px;
+  }
+
+  .user-section {
+    display: block; /* Ensure it's visible */
+    margin: 20px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 40px;
+    order: 2; /* Place below the right section */
+  }
+
+  .account-button {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  .signin-button1 {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+
+  .give_de {
+    margin-left: 0px;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1e90ff;
+  }
+}
+
+/* Optional: even tighter layout for very small devices */
+@media (max-width: 480px) {
+  .right-section h4 {
+    font-size: 28px;
+  }
+
+  .user-section {
+    margin: 20px auto;
+    padding: 15px;
+  }
+}

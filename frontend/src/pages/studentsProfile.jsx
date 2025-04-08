@@ -517,7 +517,8 @@ const ProfessionalProfile = () => {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const backendUrl = "https://devthonbackend-production.up.railway.app"; // Replace with your actual backend URL
+  const [activeTab, setActiveTab] = useState('About me'); // State to track active tab
+  const backendUrl = "https://devthonbackend-production.up.railway.app";
   const [isEditing, setIsEditing] = useState(false);
   const [editFormData, setEditFormData] = useState({
     userName: '',
@@ -534,7 +535,7 @@ const ProfessionalProfile = () => {
   });
   const [newSkill, setNewSkill] = useState('');
   const [newInterest, setNewInterest] = useState('');
-  const [photoPreview, setPhotoPreview] = useState(null); // For previewing uploaded photo
+  const [photoPreview, setPhotoPreview] = useState(null);
 
   const userId = localStorage.getItem("userid");
   const navigate = useNavigate();
@@ -570,9 +571,7 @@ const ProfessionalProfile = () => {
     fetchProfileData();
   }, [userId]);
 
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
+  const handleEditClick = () => setIsEditing(true);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -590,11 +589,7 @@ const ProfessionalProfile = () => {
       setIsEditing(false);
       setError(null);
     } catch (err) {
-      setError(
-        err.response?.data?.message ||
-        err.message ||
-        'Failed to update profile'
-      );
+      setError(err.response?.data?.message || err.message || 'Failed to update profile');
     } finally {
       setLoading(false);
     }
@@ -602,7 +597,7 @@ const ProfessionalProfile = () => {
 
   const handleCancelClick = () => {
     setIsEditing(false);
-    setPhotoPreview(null); // Clear preview on cancel
+    setPhotoPreview(null);
     setEditFormData({
       userName: profileData.userName || '',
       email: profileData.email || '',
@@ -620,18 +615,12 @@ const ProfessionalProfile = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditFormData({
-      ...editFormData,
-      [name]: value
-    });
+    setEditFormData({ ...editFormData, [name]: value });
   };
 
   const handleSkillAdd = () => {
     if (newSkill.trim() && !editFormData.skills.includes(newSkill.trim())) {
-      setEditFormData({
-        ...editFormData,
-        skills: [...editFormData.skills, newSkill.trim()]
-      });
+      setEditFormData({ ...editFormData, skills: [...editFormData.skills, newSkill.trim()] });
       setNewSkill('');
     }
   };
@@ -663,8 +652,8 @@ const ProfessionalProfile = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setPhotoPreview(URL.createObjectURL(file)); // Preview the photo locally
-      uploadProfilePhoto(file); // Upload to server separately
+      setPhotoPreview(URL.createObjectURL(file));
+      uploadProfilePhoto(file);
     }
   };
 
@@ -675,22 +664,12 @@ const ProfessionalProfile = () => {
 
     try {
       const response = await axios.post(`${backendUrl}/photo/upload`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+        headers: { 'Content-Type': 'multipart/form-data' }
       });
-      // Update profileData and editFormData with the new photo URL
-      const newPhotoUrl = response.data.photo.path; // Assuming backend returns path in photo.path
-      localStorage.setItem("profileimage",newPhotoUrl);
-      const profileImage=localStorage.getItem("profileimage");
-      setEditFormData({
-        ...editFormData,
-        profilePicture: newPhotoUrl
-      });
-      setProfileData({
-        ...profileData,
-        profilePicture: newPhotoUrl
-      });
+      const newPhotoUrl = response.data.photo.path;
+      localStorage.setItem("profileimage", newPhotoUrl);
+      setEditFormData({ ...editFormData, profilePicture: newPhotoUrl });
+      setProfileData({ ...profileData, profilePicture: newPhotoUrl });
       setError(null);
     } catch (err) {
       setError(err.response?.data.message || 'Failed to upload photo');
@@ -699,7 +678,11 @@ const ProfessionalProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handlesave(); // Call handlesave to update profile data (excluding photo)
+    await handlesave();
+  };
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
   };
 
   if (loading) return <div className="loading-spinner">Loading profile...</div>;
@@ -708,21 +691,18 @@ const ProfessionalProfile = () => {
 
   return (
     <div className="profile-wrapper">
-       
       <Navbar />
       {isEditing ? (
         <form onSubmit={handleSubmit} className="profile-edit-form">
+          {/* Edit form remains unchanged */}
           <div className="profile-header">
             <div className="profile-left">
               <div className="profile-photo-edit">
                 <img
-                  src={`http:localhost:3000/${localStorage.getItem("profileimage")}`||photoPreview || editFormData.profilePicture || profilePic}
+                  src={photoPreview || editFormData.profilePicture || profilePic}
                   alt={editFormData.userName}
                   className="profile-photo"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = profilePic;
-                  }}
+                  onError={(e) => { e.target.onerror = null; e.target.src = profilePic; }}
                 />
                 <input
                   type="file"
@@ -736,182 +716,78 @@ const ProfessionalProfile = () => {
                 </label>
               </div>
               <div className="profile-info">
-                <input
-                  type="text"
-                  name="userName"
-                  value={editFormData.userName}
-                  onChange={handleInputChange}
-                  className="edit-input"
-                  placeholder="Full Name"
-                  required
-                />
-                <select
-                  name="role"
-                  value={editFormData.role}
-                  onChange={handleInputChange}
-                  className="edit-select"
-                  required
-                >
+                <input type="text" name="userName" value={editFormData.userName} onChange={handleInputChange} className="edit-input" placeholder="Full Name" required />
+                <select name="role" value={editFormData.role} onChange={handleInputChange} className="edit-select" required>
                   <option value="">Select Role</option>
                   <option value="Student">Student</option>
                   <option value="Professional">Professional</option>
                   <option value="Academic">Academic</option>
                 </select>
-                <input
-                  type="email"
-                  name="email"
-                  value={editFormData.email}
-                  onChange={handleInputChange}
-                  className="edit-input"
-                  placeholder="Email"
-                  required
-                />
-                <input
-                  type="tel"
-                  name="mobile" // Changed to match state
-                  value={editFormData.mobile}
-                  onChange={handleInputChange}
-                  className="edit-input"
-                  placeholder="Contact Number"
-                />
+                <input type="email" name="email" value={editFormData.email} onChange={handleInputChange} className="edit-input" placeholder="Email" required />
+                <input type="tel" name="mobile" value={editFormData.mobile} onChange={handleInputChange} className="edit-input" placeholder="Contact Number" />
               </div>
             </div>
-
             <div className="profile-meta">
               <div className="meta-item">
                 <strong>Job</strong>
-                <input
-                  type="text"
-                  name="job"
-                  value={editFormData.job}
-                  onChange={handleInputChange}
-                  className="edit-input"
-                  placeholder="Job Title"
-                />
+                <input type="text" name="job" value={editFormData.job} onChange={handleInputChange} className="edit-input" placeholder="Job Title" />
               </div>
               <div className="meta-item">
                 <strong>University</strong>
-                <input
-                  type="text"
-                  name="university"
-                  value={editFormData.university}
-                  onChange={handleInputChange}
-                  className="edit-input"
-                  placeholder="University"
-                />
+                <input type="text" name="university" value={editFormData.university} onChange={handleInputChange} className="edit-input" placeholder="University" />
               </div>
             </div>
           </div>
-
           <div className="profile-section">
             <div className="profile-card">
               <h3>Academic Qualification</h3>
-              <input
-                type="text"
-                name="degree"
-                value={editFormData.degree}
-                onChange={handleInputChange}
-                className="edit-input"
-                placeholder="Degree"
-              />
+              <input type="text" name="degree" value={editFormData.degree} onChange={handleInputChange} className="edit-input" placeholder="Degree" />
             </div>
-
             <div className="profile-card">
               <h3>About</h3>
-              <textarea
-                name="aboutme"
-                value={editFormData.aboutme}
-                onChange={handleInputChange}
-                className="edit-textarea"
-                placeholder="Tell us about yourself"
-                rows="4"
-              />
+              <textarea name="aboutme" value={editFormData.aboutme} onChange={handleInputChange} className="edit-textarea" placeholder="Tell us about yourself" rows="4" />
             </div>
           </div>
-
           <div className="profile-skills">
             <div className="skills-section">
               <h4>Skills</h4>
               <div className="tag-input-group">
-                <input
-                  type="text"
-                  value={newSkill}
-                  onChange={(e) => setNewSkill(e.target.value)}
-                  className="tag-input"
-                  placeholder="Add skill"
-                />
-                <button type="button" onClick={handleSkillAdd} className="tag-add-button">
-                  Add
-                </button>
+                <input type="text" value={newSkill} onChange={(e) => setNewSkill(e.target.value)} className="tag-input" placeholder="Add skill" />
+                <button type="button" onClick={handleSkillAdd} className="tag-add-button">Add</button>
               </div>
               <div className="tag-group">
                 {editFormData.skills.map((skill, index) => (
-                  <span key={index} className="tag">
-                    {skill}
-                    <button
-                      type="button"
-                      onClick={() => handleSkillRemove(skill)}
-                      className="tag-remove"
-                    >
-                      ×
-                    </button>
-                  </span>
+                  <span key={index} className="tag">{skill} <button type="button" onClick={() => handleSkillRemove(skill)} className="tag-remove">×</button></span>
                 ))}
               </div>
             </div>
-
             <div className="skills-section">
               <h4>Specialized Area</h4>
               <div className="tag-input-group">
-                <input
-                  type="text"
-                  value={newInterest}
-                  onChange={(e) => setNewInterest(e.target.value)}
-                  className="tag-input"
-                  placeholder="Add interest area"
-                />
-                <button type="button" onClick={handleInterestAdd} className="tag-add-button">
-                  Add
-                </button>
+                <input type="text" value={newInterest} onChange={(e) => setNewInterest(e.target.value)} className="tag-input" placeholder="Add interest area" />
+                <button type="button" onClick={handleInterestAdd} className="tag-add-button">Add</button>
               </div>
               <div className="tag-group">
                 {editFormData.interestArea.map((area, index) => (
-                  <span key={index} className="tag">
-                    {area}
-                    <button
-                      type="button"
-                      onClick={() => handleInterestRemove(area)}
-                      className="tag-remove"
-                    >
-                      ×
-                    </button>
-                  </span>
+                  <span key={index} className="tag">{area} <button type="button" onClick={() => handleInterestRemove(area)} className="tag-remove">×</button></span>
                 ))}
               </div>
             </div>
           </div>
-
           <div className="edit-button-container">
             <button type="submit" className="save-button">Save Changes</button>
-            <button type="button" onClick={handleCancelClick} className="cancel-button">
-              Cancel
-            </button>
+            <button type="button" onClick={handleCancelClick} className="cancel-button">Cancel</button>
           </div>
         </form>
       ) : (
         <>
           <div className="profile-header">
             <div className="profile-left">
-           
               <img
                 src={`${backendUrl}/${localStorage.getItem("profileimage")}` || profilePic}
-
                 alt={profileData.userName}
                 className="profile-photo"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = profilePic;
-                }}
+                onError={(e) => { e.target.onerror = null; e.target.src = profilePic; }}
               />
               <div className="profile-info">
                 <h1>{profileData.userName}</h1>
@@ -920,7 +796,6 @@ const ProfessionalProfile = () => {
                 <p className="contact">{profileData.mobile}</p>
               </div>
             </div>
-
             <div className="profile-meta">
               <div className="meta-item">
                 <strong>Job</strong>
@@ -933,56 +808,84 @@ const ProfessionalProfile = () => {
             </div>
           </div>
 
+          {/* Tabs */}
           <div className="profile-tabs">
-            <button className="active">About me</button>
-            <button>Questions</button>
-            <button>Answers</button>
-          </div>
-
-          <div className="profile-section">
-            <div className="profile-card">
-              <h3>Academic Qualification</h3>
-              <p>{profileData.degree || 'Not specified'}</p>
-            </div>
-
-            <div className="profile-card">
-              <h3>About</h3>
-              <p>{profileData.aboutme || 'No description provided'}</p>
-            </div>
-          </div>
-
-          <div className="profile-skills">
-            <div className="skills-section">
-              <h4>Skills</h4>
-              <div className="tag-group">
-                {profileData.skills?.length > 0 ? (
-                  profileData.skills.map((skill, index) => (
-                    <span key={index} className="tag">{skill}</span>
-                  ))
-                ) : (
-                  <p>No skills listed</p>
-                )}
-              </div>
-            </div>
-
-            <div className="skills-section">
-              <h4>Specialized Area</h4>
-              <div className="tag-group">
-                {profileData.interestArea?.length > 0 ? (
-                  profileData.interestArea.map((area, index) => (
-                    <span key={index} className="tag">{area}</span>
-                  ))
-                ) : (
-                  <p>No specialized areas listed</p>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div className="edit-button-container ">
-            <button onClick={handleEditClick} className="edit-button">
-              Edit Profile
+            <button
+              className={activeTab === 'About me' ? 'active' : ''}
+              onClick={() => handleTabChange('About me')}
+            >
+              About me
             </button>
+            <button
+              className={activeTab === 'Questions' ? 'active' : ''}
+              onClick={() => handleTabChange('Questions')}
+            >
+              Questions
+            </button>
+            <button
+              className={activeTab === 'Answers' ? 'active' : ''}
+              onClick={() => handleTabChange('Answers')}
+            >
+              Answers
+            </button>
+          </div>
+
+          {/* Tab Content */}
+          {activeTab === 'About me' && (
+            <div className="profile-content">
+              <div className="profile-section">
+                <div className="profile-card">
+                  <h3>Academic Qualification</h3>
+                  <p>{profileData.degree || 'Not specified'}</p>
+                </div>
+                <div className="profile-card">
+                  <h3>About</h3>
+                  <p>{profileData.aboutme || 'No description provided'}</p>
+                </div>
+              </div>
+              <div className="profile-skills">
+                <div className="skills-section">
+                  <h4>Skills</h4>
+                  <div className="tag-group">
+                    {profileData.skills?.length > 0 ? (
+                      profileData.skills.map((skill, index) => (
+                        <span key={index} className="tag">{skill}</span>
+                      ))
+                    ) : (
+                      <p>No skills listed</p>
+                    )}
+                  </div>
+                </div>
+                <div className="skills-section">
+                  <h4>Specialized Area</h4>
+                  <div className="tag-group">
+                    {profileData.interestArea?.length > 0 ? (
+                      profileData.interestArea.map((area, index) => (
+                        <span key={index} className="tag">{area}</span>
+                      ))
+                    ) : (
+                      <p>No specialized areas listed</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          {activeTab === 'Questions' && (
+            <div className="profile-content not-implemented">
+              <h3>Questions</h3>
+              <p>Not Implemented Yet</p>
+            </div>
+          )}
+          {activeTab === 'Answers' && (
+            <div className="profile-content not-implemented">
+              <h3>Answers</h3>
+              <p>Not Implemented Yet</p>
+            </div>
+          )}
+
+          <div className="edit-button-container">
+            <button onClick={handleEditClick} className="edit-button">Edit Profile</button>
           </div>
           <div style={{ textAlign: 'right', margin: '10px 0' }}>
             <button
