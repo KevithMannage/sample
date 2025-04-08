@@ -1,6 +1,6 @@
 import { db } from './mongoService.js';
 
-const ALLOWED_COLLECTIONS = new Set(['Discussion']);
+const ALLOWED_COLLECTIONS = new Set(['discussions','jobvacancies','posts']);
 
 export async function getMongoSchema() {
   const schema = {};

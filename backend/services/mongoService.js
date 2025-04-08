@@ -8,7 +8,7 @@ const mongoClient = new MongoClient(process.env.CHAT_DATABASE_URI);
 export async function connectMongo() {
   try {
     await mongoClient.connect();
-    db = mongoClient.db(process.env.DB_NAME);
+    db = mongoClient.db(process.env.DB_NAME_CHAT);
     console.log('🤖  GuidelineX chatbot is connected to the database ✅');
   } catch (err) {
     console.error('MongoDB connection error:', err);

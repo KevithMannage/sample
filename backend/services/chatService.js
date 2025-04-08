@@ -14,7 +14,7 @@ async function executeMongoQuery(collection, query) {
     if (!isCollectionAllowed(collection)) {
       return { error: `Invalid collection: ${collection}` };
     }
-    const parsed = eval(query);
+    const parsed = JSON.parse(query); // Use JSON.parse for safety
     if (!Array.isArray(parsed)) {
       return { error: 'Query must be an aggregation pipeline (array)' };
     }
@@ -39,12 +39,12 @@ ${JSON.stringify(schema)}
 Previous conversation:
 ${history}
 
-Generate only a MongoDB aggregation pipeline query to answer:
+Generate only a valid MongoDB aggregation pipeline query to answer:
 ${userMessage}
 
-First line: collection name
-Then: the aggregation pipeline (no markdown, no explanation).
-Use None instead of null (Python style).
+Output format:
+- First line: collection name
+- Then: the aggregation pipeline as a valid JSON array (no markdown, no explanation).
 `;
 
   const queryResponse = await chat.sendMessage(queryPrompt);
@@ -52,17 +52,21 @@ Use None instead of null (Python style).
   const [collection, ...lines] = output.split('\n');
   const pipeline = lines.join('\n');
 
-  // 👇 Log the MongoDB query
+  // Log the MongoDB query
   console.log('\n💬 Chatbot generated MongoDB query:');
   console.log('Collection:', collection.trim());
   console.log('Aggregation Pipeline:\n', pipeline);
 
+  // Validate and execute the query
   const results = await executeMongoQuery(collection.trim(), pipeline);
 
   let finalPrompt;
   if (!results.error && results[collection]?.length > 0) {
     finalPrompt = `
-You are Carrie, a friendly chatbot for the GuidlineX app.
+You are Carrie, an intelligent and friendly chatbot for the GuidlineX app.
+
+The MongoDB database contains the following collections, each designed to support a specific content type:
+schemas: ${JSON.stringify(schema)}
 
 Based on MongoDB results:
 ${JSON.stringify(results)}
@@ -82,6 +86,7 @@ You are Carrie, a friendly chatbot for the GuidlineX app.
 Even though there is no data for this question: "${userMessage}", still be friendly and helpful.
 Say "I don’t have enough knowledge" if needed.
 Suggest alternative questions if possible.
+Error details (if any): ${results.error || 'None'}
     `;
   }
 
