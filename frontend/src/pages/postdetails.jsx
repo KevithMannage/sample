@@ -8,11 +8,12 @@ import Navbar from '../Navbar';
 const PostDetails = () => {
   const [post, setPost] = useState(null);
   const postId = localStorage.getItem("postid");
+  const backendUrl="http://localhost:3000"
 
   useEffect(() => {
     // Fetch post data from the API
     axios
-      .get(`http://localhost:3000/post/${postId}`)
+      .get(`${backendUrl}/post/${postId}`)
       .then((response) => {
         setPost(response.data);
       })

@@ -115,6 +115,7 @@ import './Login.css';
 import googleIcon from '/images/google.png';
 import Navbar from './Navbar';
 import { ToastContainer, toast } from 'react-toastify';
+const backendUrl="http://localhost:3000"
 
 const ProfessionalLoginPage = () => {
   const [username, setUsername] = useState('');
@@ -140,7 +141,7 @@ const ProfessionalLoginPage = () => {
 
     try {
       // Send a POST request to login the user
-      const response = await axios.post('http://localhost:3000/user/loginprofession', {
+      const response = await axios.post(`${backendUrl}/user/loginprofession`, {
         username,
         password,
       });

@@ -291,6 +291,7 @@ const SearchPage = () => {
   const [error, setError] = useState(null);
   const [searchAttempted, setSearchAttempted] = useState(false);
   const navigate = useNavigate();
+  const backendUrl="http://localhost:3000"
 
   const fetchSearchResults = async (query) => {
     if (!query.trim()) {
@@ -307,11 +308,11 @@ const SearchPage = () => {
     
     try {
       const [postsResponse, eventsResponse] = await Promise.all([
-        axios.get(`http://localhost:3000/search/searchpost?title=${query}`).catch(err => ({
+        axios.get(`${backendUrl}/search/searchpost?title=${query}`).catch(err => ({
           status: err.response?.status || 500,
           data: err.response?.data || { error: 'Failed to fetch posts' }
         })),
-        axios.get(`http://localhost:3000/search/searchevent?topic=${query}`).catch(err => ({
+        axios.get(`${backendUrl}/search/searchevent?topic=${query}`).catch(err => ({
           status: err.response?.status || 500,
           data: err.response?.data || { error: 'Failed to fetch events' }
         }))
@@ -405,11 +406,11 @@ const SearchPage = () => {
   const handleExplore = async (result) => {
     try {
       if (result.originalType === 'post') {
-        const response = await axios.get(`http://localhost:3000/post/${result.id}`);
+        const response = await axios.get(`${backendUrl}/post/${result.id}`);
         localStorage.setItem("postid", result.id);
         navigate(`/post/${result.id}`, { state: { post: response.data } });
       } else if (result.originalType === 'event') {
-        const response = await axios.get(`http://localhost:3000/discussion/${result.id}`);
+        const response = await axios.get(`${backendUrl}/discussion/${result.id}`);
         localStorage.setItem("discussionid", result.id);
         navigate(`/discussion/${result.id}`, { state: { discussion: response.data } });
       }

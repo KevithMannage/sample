@@ -8,6 +8,7 @@ const ContactUs = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); // State for loading
+  const backendUrl="http://localhost:3000"
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -16,7 +17,7 @@ const ContactUs = () => {
 
     try {
       // POST request to your backend API
-      const response = await axios.post("http://localhost:3000/contact/contactus", {
+      const response = await axios.post(`${backendUrl}/contact/contactus`, {
         name,
         email,
         message,

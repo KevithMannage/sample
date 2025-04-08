@@ -543,7 +543,7 @@ const ProfessionalProfile = () => {
     const fetchProfileData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/profile/grtprofile?userId=${userId}`
+          `${backendUrl}/profile/grtprofile?userId=${userId}`
         );
         setProfileData(response.data);
         setEditFormData({
@@ -583,7 +583,7 @@ const ProfessionalProfile = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        'http://localhost:3000/user/updateuser',
+        `${backendUrl}/user/updateuser`,
         { userId, ...editFormData }
       );
       setProfileData(response.data.user);
@@ -674,7 +674,7 @@ const ProfessionalProfile = () => {
     formData.append('userId', userId);
 
     try {
-      const response = await axios.post('http://localhost:3000/photo/upload', formData, {
+      const response = await axios.post(`${backendUrl}/photo/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -979,7 +979,7 @@ const ProfessionalProfile = () => {
             </div>
           </div>
 
-          <div className="edit-button-container">
+          <div className="edit-button-container ">
             <button onClick={handleEditClick} className="edit-button">
               Edit Profile
             </button>

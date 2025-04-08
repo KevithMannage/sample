@@ -118,6 +118,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+const backendUrl="http://localhost:3000"
 
 function NotificationsPage() {
   const [notifications, setNotifications] = useState([]); // State to store fetched notifications
@@ -139,7 +140,7 @@ function NotificationsPage() {
         // Fetch data for each discussionId
         const fetchedNotifications = await Promise.all(
           discussionIds.map(async (id) => {
-            const response = await axios.get(`http://localhost:3000/discussion/${id}`);
+            const response = await axios.get(`${backendUrl}/discussion/${id}`);
             return response.data; // Return the discussion data
           })
         );

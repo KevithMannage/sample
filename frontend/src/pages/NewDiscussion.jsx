@@ -128,6 +128,7 @@ const NewDiscussion = () => {
   const [question, setQuestion] = useState('');
   const [relatedAreas, setRelatedAreas] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+   const backendUrl="http://localhost:3000"
 
   const handleStartDiscussion = async () => {
     const role = localStorage.getItem('role');
@@ -144,7 +145,7 @@ const NewDiscussion = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:3000/discussion/creatediscussion', {
+      const response = await fetch(`${backendUrl}/discussion/creatediscussion`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -13,6 +13,7 @@ const ResetPassword = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const backendUrl="http://localhost:3000"
 
   // Check for email in location state (if coming from forgot password page)
   const email = location.state?.email || '';
@@ -65,7 +66,7 @@ const ResetPassword = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post('http://localhost:3000/user/resetpassword', {
+      const response = await axios.post(`${backendUrl}/user/resetpassword`, {
         ...formData,
         email // Include email if available
       });

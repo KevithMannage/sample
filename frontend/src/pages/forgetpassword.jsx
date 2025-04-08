@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const ForgotPassword = () => {
+  const backendUrl="http://localhost:3000"
+
   const [formData, setFormData] = useState({
     email: '',
     username: '',
@@ -29,7 +31,7 @@ const ForgotPassword = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/user/forgetpassword', formData);
+      const response = await axios.post(`${backendUrl}/user/forgetpassword`, formData);
       setStatus({
         success: true,
         message: response.data.message || 'Reset link sent successfully.',

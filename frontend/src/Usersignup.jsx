@@ -128,6 +128,7 @@ const Usersignuppage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const backendUrl="http://localhost:3000"
 
   const handleLogin = () => {
     navigate('/login');
@@ -166,7 +167,7 @@ const Usersignuppage = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:3000/user/registeruser', {
+      const response = await axios.post(`${backendUrl}/user/registeruser`, {
         username,
         password,
         email,

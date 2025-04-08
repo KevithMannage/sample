@@ -129,6 +129,7 @@ const Usersignuppage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [apiError, setApiError] = useState('');
   const navigate = useNavigate();
+  const backendUrl="http://localhost:3000"
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -183,7 +184,7 @@ const Usersignuppage = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post('http://localhost:3000/user/registerprofession', {
+      const response = await axios.post(`${backendUrl}/user/registerprofession`, {
         username: formData.username,
         password: formData.password,
         email: formData.email,

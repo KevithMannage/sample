@@ -4,6 +4,8 @@ import axios from 'axios';
 import ChatBot from "./Chatbot";
 
 export default function CreatePostForm() {
+  const backendUrl="http://localhost:3000"
+
   const username = localStorage.getItem("username");
   const [formData, setFormData] = useState({
     title: "",
@@ -48,7 +50,7 @@ export default function CreatePostForm() {
     };
 
     try {
-      const response = await axios.post("http://localhost:3000/post/createpost", postData);
+      const response = await axios.post(`${backendUrl}/post/createpost`, postData);
       console.log("Post created successfully:", response.data);
 
       if (response.data.status === "ok") {

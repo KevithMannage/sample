@@ -148,11 +148,13 @@ const DiscussionDetail = () => {
   const discussionId = localStorage.getItem("discussionid");
   const username = localStorage.getItem("username");
   const userId = localStorage.getItem("userid");
+  const backendUrl="http://localhost:3000"
+
 
   useEffect(() => {
     // Fetch the specific discussion
     axios
-      .get(`http://localhost:3000/discussion/${discussionId}`)
+      .get(`${backendUrl}/discussion/${discussionId}`)
       .then((response) => {
         setDiscussion(response.data);
       })
@@ -171,7 +173,7 @@ const DiscussionDetail = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/discussion/${discussionId}/reply`,
+        `${backendUrl}/discussion/${discussionId}/reply`,
         {
           message: newMessage,
           user_id: userId,
@@ -188,7 +190,7 @@ const DiscussionDetail = () => {
 
   const handleSubscribe = async () => {
     try {
-      const response = await axios.post(`http://localhost:3000/notifications/subscribe`, {
+      const response = await axios.post(`${backendUrl}/notifications/subscribe`, {
         user_id: userId,
         discussion_id: discussionId,
       });
