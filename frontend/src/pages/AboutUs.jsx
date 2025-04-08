@@ -43,7 +43,7 @@ const AboutUs = () => {
           {[developer1, developer2, developer3, developer4, developer5].map((dev, index) => (
             <div key={index} className="text-center">
               <img src={dev} alt={`Developer ${index + 1}`} className="w-24 h-24 rounded-full object-cover mx-auto mb-4" />
-              <p className="text-lg font-bold text-gray-800">{["Kevith Mannage", "Induwara Withanage", "Malith Sathmina", "Kaveesha indunil", "Umesh Jayacody"][index]}</p>
+              <p className="text-lg font-bold text-gray-800">{["Kevith Mannage", "Induwara Withanage", "Malith Sathmina", "Kaveesha indunil", "Umesh Jayakody"][index]}</p>
               <p className="text-sm text-gray-600"></p>
             </div>
           ))}

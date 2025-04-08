@@ -690,8 +690,9 @@ const ProfessionalProfile = () => {
   if (!profileData) return <div className="no-data">No profile data found</div>;
 
   return (
+    <><Navbar />
     <div className="profile-wrapper">
-      <Navbar />
+      
       {isEditing ? (
         <form onSubmit={handleSubmit} className="profile-edit-form">
           {/* Edit form remains unchanged */}
@@ -906,6 +907,7 @@ const ProfessionalProfile = () => {
         </>
       )}
     </div>
+    </>
   );
 };
 
