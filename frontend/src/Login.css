@@ -309,3 +309,65 @@ form input::placeholder {
 }
 
 
+
+/* Add responsiveness for mobile devices */
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto; 
+    background-color: #1e8fff;
+  }
+
+  .login-container {
+    flex-direction: column; 
+    margin: 0;
+    align-items: center; /* Center the right container horizontally */
+    justify-content: center; /* Center the right container vertically */
+  }
+
+  .left-section {
+    display: none; 
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .right-section {
+    min-width: 200px;
+    padding: 20px; 
+    border-radius: 20px; 
+    margin: 0 auto; /* Center the container */
+  }
+
+  .right-section h4 {
+    font-size: 36px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    flex-direction: column; 
+    margin: 0;
+    align-items: center; /* Center the right container horizontally */
+    justify-content: center; /* Center the right container vertically */
+  }
+
+  .left-section {
+    display: none; 
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .right-section { 
+    padding: 15px;
+    border-radius: 15px;
+    margin: 0 auto; /* Center the container */
+  }
+
+  .right-section h4 {
+    font-size: 28px;
+  }
+}
