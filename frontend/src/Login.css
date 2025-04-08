@@ -315,10 +315,14 @@ form input::placeholder {
 @media (max-width: 768px) {
   body {
     overflow: auto; 
+    background-color:#1c86ee;
   }
 
   .login-container {
     flex-direction: column; 
+    margin: 0;
+    align-items: center; /* Center the right container horizontally */
+    justify-content: center; /* Center the right container vertically */
   }
 
   .left-section {
@@ -326,17 +330,14 @@ form input::placeholder {
   }
 
   .logo {
-    display: flex;
-    justify-content: center; 
-    margin: 20px 0;
+    display: none;
   }
 
   .right-section {
-    margin: 20px auto;
-    width: 90%; 
-    max-width: none;
+    min-width: 300px;
     padding: 20px; 
     border-radius: 20px; 
+    margin: 0 auto; /* Center the container */
   }
 
   .right-section h4 {
@@ -345,22 +346,25 @@ form input::placeholder {
 }
 
 @media (max-width: 480px) {
+  .login-container {
+    flex-direction: column; 
+    margin: 0;
+    align-items: center; /* Center the right container horizontally */
+    justify-content: center; /* Center the right container vertically */
+  }
+
   .left-section {
     display: none; 
   }
 
   .logo {
-    display: flex;
-    justify-content: center; 
-    margin: 10px 0; 
+    display: none;
   }
 
-  .right-section {
-    margin: 10px auto; 
-    width: 95%; 
-    max-width: none;
+  .right-section { 
     padding: 15px;
     border-radius: 15px;
+    margin: 0 auto; /* Center the container */
   }
 
   .right-section h4 {
