@@ -43,7 +43,7 @@ const ContactUs = () => {
 
       {/* Contact Us Section */}
       <div className="flex justify-center items-center flex-grow p-6">
-        <div className="bg-blue-100 p-10 rounded-lg shadow-lg flex flex-col md:flex-row w-full max-w-5xl">
+        <div className="bg-[#ebf8ff] p-10 rounded-lg shadow-lg flex flex-col md:flex-row w-full max-w-5xl">
           
           {/* Left Section - Contact Info & Illustration */}
           <div className="md:w-1/2 flex flex-col items-center text-center p-6">
@@ -75,7 +75,7 @@ const ContactUs = () => {
 
           {/* Right Section - Contact Form */}
           <div className="md:w-1/2 p-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold text-blue-700 mb-2">Get in Touch</h2>
+            <h2 className="text-2xl font-bold text-[#1e90ff] mb-2">Get in Touch</h2>
             <p className="text-gray-600 mb-4">Any question or remarks? Let us know!</p>
             
             <form className="space-y-4" onSubmit={handleSubmit}>
@@ -113,7 +113,7 @@ const ContactUs = () => {
               </div>
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-700 transition"
+                className="bg-[#1e90ff] text-white px-4 py-2 rounded-lg w-full hover:bg-blue-700 transition"
                 disabled={isSubmitting} // Disable button while submitting
               >
                 {isSubmitting ? "Sending..." : "Submit"}

@@ -577,7 +577,7 @@ const ProfessionalProfile = () => {
             </div>
           </div>
 
-          <div className="edit-button-container">
+          <div className="edit-button-container ">
             <button onClick={handleEditClick} className="edit-button">
               Edit Profile
             </button>

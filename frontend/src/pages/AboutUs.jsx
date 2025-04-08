@@ -15,8 +15,8 @@ const AboutUs = () => {
       <Navbar /> {/* Reusing Navbar */}
 
       {/* Main Content */}
-      <div className="mt-20 max-w-6xl mx-auto  p-8 bg-blue-100 rounded-lg shadow-lg " >
-        <h1 className="text-6xl font-bold text-blue-600 text-center mb-8 font-poppins">About Us</h1>
+      <div className="mt-20 max-w-6xl mx-auto  p-8 bg-[#ebf8ff] rounded-lg shadow-lg " >
+        <h1 className="text-6xl font-bold text-[#1e90ff] text-center mb-8 font-poppins">About Us</h1>
         <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Logo Section */}
           <div className="flex-1">
@@ -38,7 +38,7 @@ const AboutUs = () => {
         </div>
 
         {/* Developers Section */}
-        <h2 className="text-4xl font-bold text-blue-600 text-center mt-12 mb-8 font-poppins">Developers</h2>
+        <h2 className="text-4xl font-bold text-[#1e90ff] text-center mt-12 mb-8 font-poppins">Developers</h2>
         <div className="flex flex-wrap justify-between gap-8">
           {[developer1, developer2, developer3, developer4, developer5].map((dev, index) => (
             <div key={index} className="text-center">
