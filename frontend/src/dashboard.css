@@ -63,5 +63,5 @@ html, body {
 }
 
 .trending-scroll::-webkit-scrollbar-thumb:hover {
-  background: #ffffff;
+  background: #ffcdcd; 
 }
