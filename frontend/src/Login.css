@@ -315,7 +315,7 @@ form input::placeholder {
 @media (max-width: 768px) {
   body {
     overflow: auto; 
-    background-color:#1c86ee;
+    background-color: #1e8fff;
   }
 
   .login-container {
@@ -334,7 +334,7 @@ form input::placeholder {
   }
 
   .right-section {
-    min-width: 300px;
+    min-width: 200px;
     padding: 20px; 
     border-radius: 20px; 
     margin: 0 auto; /* Center the container */
