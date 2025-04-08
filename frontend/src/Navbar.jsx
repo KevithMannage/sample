@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   FaHome, FaEnvelope, FaComments, FaPlusCircle, FaInfoCircle,
-  FaPhone, FaSearch, FaBell, FaPen
+  FaPhone, FaSearch, FaBell, FaPen ,FaBriefcase
 } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import checkNotification from './hooks/checkNotification'; // Import the updated checkNotification hook
@@ -58,7 +58,7 @@ const Navbar = ({ isLoggedIn, user }) => {
           <FaEnvelope className="nav-icon" /> Messages
         </a>
         <a href="/discussion" className="nav-link">
-          <FaComments className="nav-icon" /> Job Area
+          <FaBriefcase className="nav-icon" /> Job Area
         </a>
         <a href="/newdiscussion" className="nav-link">
           <FaPlusCircle className="nav-icon" /> New Discussion
