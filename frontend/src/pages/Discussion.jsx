@@ -49,7 +49,7 @@ const HomePage = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 mt-12">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#ebf8ff] p-4 mt-12">
         <ImageSlider />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
           {jobVacancies.map((job, index) => (

@@ -71,8 +71,8 @@ export default function CreatePostForm() {
   return (
     <div className="text-black">
       <Navbar />
-      <div className="mt-20 max-w-6xl mx-auto p-8 bg-gray-100 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-4">Create New Post</h1>
+      <div className="mt-20 max-w-6xl mx-auto p-8 bg-[#ebf8ff] rounded-lg shadow-lg" style={{ borderRadius: "40px" }}>
+        <h1 className="text-2xl font-bold mb-4 text-blue-500">Create New Post</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             name="title"
@@ -112,7 +112,8 @@ export default function CreatePostForm() {
                 <button
                   type="button"
                   onClick={() => removeArrayItem("related_area", index)}
-                  className="bg-gray-300 text-black px-3 py-2 rounded"
+                  className="bg-red-500 text-black px-3 py-2 rounded"
+                  style={{ borderRadius: "40px" }}
                 >
                   Delete
                 </button>
@@ -121,7 +122,8 @@ export default function CreatePostForm() {
             <button
               type="button"
               onClick={() => addArrayItem("related_area")}
-              className="mt-2 bg-sky-500 hover:bg-sky-700 text-white px-5 py-2 rounded"
+              className="mt-2 bg-blue-500 hover:bg-sky-700 text-white px-5 py-2 rounded"
+              style={{ borderRadius: "40px" }}
             >
               Add Area
             </button>
@@ -157,7 +159,8 @@ export default function CreatePostForm() {
                 <button
                   type="button"
                   onClick={() => removeArrayItem("reference_links", index)}
-                  className="bg-gray-300 text-black px-3 py-2 rounded"
+                  className="bg-red-500 text-black px-3 py-2 rounded"
+                  style={{ borderRadius: "40px" }}
                 >
                   Delete
                 </button>
@@ -166,7 +169,8 @@ export default function CreatePostForm() {
             <button
               type="button"
               onClick={() => addArrayItem("reference_links")}
-              className="mt-2 bg-sky-500 hover:bg-sky-700 text-white px-5 py-2 rounded"
+              className="mt-2 bg-blue-500 hover:bg-blue-700 text-white px-5 py-2 rounded"
+              style={{ borderRadius: "40px" }}
             >
               Add Link
             </button>
@@ -174,7 +178,8 @@ export default function CreatePostForm() {
 
           <button
             type="submit"
-            className="w-full bg-sky-600 hover:bg-sky-700 text-white py-2 rounded mt-4"
+            className="w-full bg-blue-500 hover:bg-blue-700 text-white py-2 rounded mt-4"
+            style={{ borderRadius: "40px" }}
           >
             Submit Post
           </button>

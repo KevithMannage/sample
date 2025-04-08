@@ -11,7 +11,7 @@
   .job-vacancy-card h2 {
     font-size: 24px;
     margin: 0 0 10px;
-    color: #333;
+    color: #1e90ff;
   }
   
   .job-vacancy-card h3 {
@@ -29,13 +29,13 @@
   .details-link {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #1e90ff;
     color: white;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 40px;
     font-weight: bold;
   }
   
   .details-link:hover {
-    background-color: #0056b3;
+    background-color: #ffffff;
   }

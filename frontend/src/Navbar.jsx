@@ -75,7 +75,7 @@ const Navbar = ({ isLoggedIn, user }) => {
 
         <div className="navbar-search" onClick={handleSearchClick}>
           <FaSearch className="search-icon" />
-          search
+          <span style={{ color: 'white' }}>search</span>
         </div>
       </div>
 

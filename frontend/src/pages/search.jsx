@@ -424,7 +424,7 @@ const SearchPage = () => {
       <Navbar />
       <div className="flex flex-col items-center p-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+          <h2 className="text-3xl font-bold text-blue-500 mb-2">
             Search Here Anything You Need To Explore
           </h2>
           <p className="text-gray-600 mb-4">Search. Explore. Take Knowledge</p>

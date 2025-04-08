@@ -46,7 +46,7 @@ const ImageSlider = () => {
         {ads.map((ad) => (
           <div
             key={ad.id}
-            className="relative w-full h-48 sm:h-64 lg:h-80 flex items-center justify-center bg-gray-200"
+            className="relative w-full h-48 sm:h-64 lg:h-80 flex items-center justify-center bg-[#ebf8ff]"
           >
             <img
               src={ad.imageUrl}

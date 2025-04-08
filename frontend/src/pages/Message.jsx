@@ -235,15 +235,15 @@ const ChatSelection = () => {
           <div className="search-container" style={{ marginBottom: '25px' }}>
             <input
               type="text"
-              placeholder="Search contacts..."
+              placeholder="  Search contacts..."
               value={searchTerm}
               onChange={handleSearch}
               style={{
                 width: '100%',
                 padding: '8px',
-                borderRadius: '4px',
-                border: '1px solid #ccc',
+                borderRadius: '40px',
                 fontSize: '14px'
+
               }}
             />
           </div>
@@ -280,11 +280,7 @@ const ChatSelection = () => {
 
         {/* Chat Placeholder */}
         <div className="chat-placeholder">
-          <img
-            src="images/messages.png"
-            alt="Chat Illustration"
-            className="chat-illustration"
-          />
+          
           <p className="chat-prompt">Select chat to message</p>
           <ChatBot/>
         </div>

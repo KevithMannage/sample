@@ -417,7 +417,7 @@ const Chat = () => {
       <Navbar />
       <div
         className="messaging-container"
-        style={{ backgroundImage: `url(/images/messages.png)` }}
+        style={{ backgroundColor: '#f0f4ff', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}
       >
         {/* Back Arrow Button */}
         <Link 

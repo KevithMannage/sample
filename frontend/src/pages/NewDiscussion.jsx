@@ -175,7 +175,7 @@ const NewDiscussion = () => {
       <Navbar />
 
       <main className="tp-80 flex flex-1 overflow-hidden p-10">
-        { <div className="w-64 bg-white border-r border-gray-200 bg-blue-50 p-6">
+        {/*{ <div className="w-64 bg-white border-r border-gray-200 bg-blue-50 p-6">
           <div className="bg-white rounded shadow p-6 mb-6">
             <h3 className="text-blue-500 text-lg font-semibold mb-2">Untitled</h3>
             <p className="text-sm text-gray-600 mb-3">Admin: <span className="font-medium">John Walker</span></p>
@@ -195,7 +195,7 @@ const NewDiscussion = () => {
           <button className="w-full bg-green-500 text-white text-md py-3 rounded-full hover:bg-green-600 transition-all">
             Create New Conversation
           </button>
-        </div> }
+        </div> }*/}
 
         <div className="flex-1 p-6">
           <div className="w-5.5/6 mx-auto bg-blue-50 p-12 rounded shadow">

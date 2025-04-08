@@ -9,24 +9,24 @@
     margin-top: 0px;
     width: 350px;
     height: calc(100vh - 35px); /* Adjusted to fit the screen */
-    background-color: #e8ecef;
+    background-color: #90caf92c;
     padding: 40px;
-    border-right: 5px solid #d3d3d3;
+    border-right: 5px solid #ffffff;
   }
   
   .contact {
     display: flex;
     align-items: center;
-    background-color: #0175f1;
-    color: white;
+    background-color: #90CAF9;
+    color: rgb(0, 0, 0);
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 12px;
+    border-radius: 40px;
     cursor: pointer;
   }
   
   .contact:hover {
-    background-color: #0056b3;
+    background-color:  #90caf977;
   }
   
   .contact-avatar {

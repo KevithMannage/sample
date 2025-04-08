@@ -89,12 +89,13 @@
 }
 
 .sender .message-text {
-  background-color: #007bff;
-  color: white;
+  background-color: #90CAF9;
+  color: #333;
+
 }
 
 .receiver .message-text {
-  background-color: #e9ecef;
+  background-color: #81C784;
   color: #333;
 }
 
