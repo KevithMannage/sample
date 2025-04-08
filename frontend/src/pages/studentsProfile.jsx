@@ -517,7 +517,7 @@ const ProfessionalProfile = () => {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const backendUrl = "http://localhost:3000"; // Replace with your actual backend URL
+  const backendUrl = "https://devthonbackend-production.up.railway.app"; // Replace with your actual backend URL
   const [isEditing, setIsEditing] = useState(false);
   const [editFormData, setEditFormData] = useState({
     userName: '',

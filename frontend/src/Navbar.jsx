@@ -25,7 +25,7 @@ const Navbar = ({ isLoggedIn, user }) => {
     avatar: profileImage 
       ? (profileImage.startsWith('http') 
           ? profileImage 
-          : `http://localhost:3000/${profileImage}`)
+          : `https://devthonbackend-production.up.railway.app/${profileImage}`)
       : 'https://randomuser.me/api/portraits/men/32.jpg'
   };
 

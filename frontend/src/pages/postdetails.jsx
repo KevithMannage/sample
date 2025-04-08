@@ -8,7 +8,7 @@ import Navbar from '../Navbar';
 const PostDetails = () => {
   const [post, setPost] = useState(null);
   const postId = localStorage.getItem("postid");
-  const backendUrl="http://localhost:3000"
+  const backendUrl="https://devthonbackend-production.up.railway.app"
 
   useEffect(() => {
     // Fetch post data from the API

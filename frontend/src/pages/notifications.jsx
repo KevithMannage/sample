@@ -118,7 +118,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-const backendUrl="http://localhost:3000"
+const backendUrl="https://devthonbackend-production.up.railway.app"
 
 function NotificationsPage() {
   const [notifications, setNotifications] = useState([]); // State to store fetched notifications

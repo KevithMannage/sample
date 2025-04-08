@@ -128,7 +128,7 @@ const Usersignuppage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const backendUrl="http://localhost:3000"
+  const backendUrl="https://devthonbackend-production.up.railway.app"
 
   const handleLogin = () => {
     navigate('/login');

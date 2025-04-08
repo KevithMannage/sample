@@ -148,7 +148,7 @@ const DiscussionDetail = () => {
   const discussionId = localStorage.getItem("discussionid");
   const username = localStorage.getItem("username");
   const userId = localStorage.getItem("userid");
-  const backendUrl="http://localhost:3000"
+  const backendUrl="https://devthonbackend-production.up.railway.app"
 
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const ForgotPassword = () => {
-  const backendUrl="http://localhost:3000"
+  const backendUrl="https://devthonbackend-production.up.railway.app"
 
   const [formData, setFormData] = useState({
     email: '',

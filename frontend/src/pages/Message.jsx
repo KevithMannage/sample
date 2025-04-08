@@ -150,7 +150,7 @@ const ChatSelection = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const backendUrl = "http://localhost:3000"; // Replace with your actual backend URL
+  const backendUrl = "https://devthonbackend-production.up.railway.app"; // Replace with your actual backend URL
 
   useEffect(() => {
     const fetchContacts = async () => {

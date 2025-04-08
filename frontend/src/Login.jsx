@@ -147,7 +147,7 @@ const LoginPage = () => {
 
     try {
       // Send a POST request to login the user
-      const response = await axios.post('http://localhost:3000/user/loginuser', {
+      const response = await axios.post('https://devthonbackend-production.up.railway.app/user/loginuser', {
         username,
         password,
       });

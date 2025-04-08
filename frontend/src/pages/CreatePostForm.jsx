@@ -4,7 +4,7 @@ import axios from 'axios';
 import ChatBot from "./Chatbot";
 
 export default function CreatePostForm() {
-  const backendUrl="http://localhost:3000"
+  const backendUrl="https://devthonbackend-production.up.railway.app"
 
   const username = localStorage.getItem("username");
   const [formData, setFormData] = useState({
