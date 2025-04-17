@@ -1,4 +1,9 @@
 /* ChatSelection.css */
+/* Ensure the body and html elements allow scrolling */
+html, body {
+  background-color: white;
+}
+
 .chat-selection-container {
     display: flex;
     height: 100%;

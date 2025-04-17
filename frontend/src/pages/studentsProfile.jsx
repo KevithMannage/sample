@@ -1643,8 +1643,9 @@ const ProfessionalProfile = () => {
   );
 
   return (
+    <><Navbar />
     <div className="profile-wrapper">
-      <Navbar />
+      
       {isEditing ? (
         <form onSubmit={handleSubmit} className="profile-edit-form">
           <div className="profile-header">
@@ -1872,6 +1873,7 @@ const ProfessionalProfile = () => {
         </>
       )}
     </div>
+    </>
   );
 };
 
