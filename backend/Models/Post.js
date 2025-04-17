@@ -8,6 +8,7 @@ const postSchema = new mongoose.Schema({
     reference_links: { type: [String], default: [] },
     replies: { type: [String], default: [] },
     username: { type: String, required: true },
+    image: { type: String, default: null }, // Added field for image path
   });
   
 

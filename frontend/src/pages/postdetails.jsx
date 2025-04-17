@@ -1,14 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom"; // Make sure to import this
-import { FaArrowLeft } from "react-icons/fa"; // We'll use react-icons for the arrow icon
+import { Link } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 import Navbar from '../Navbar';
 
 const PostDetails = () => {
   const [post, setPost] = useState(null);
   const postId = localStorage.getItem("postid");
-  const backendUrl="https://devthonbackend-production.up.railway.app"
+  const backendUrl = "http://localhost:3000";
 
   useEffect(() => {
     // Fetch post data from the API
@@ -40,6 +40,17 @@ const PostDetails = () => {
         </Link>
 
         <h1 className="text-3xl font-bold text-blue-700 border-b pb-2">{post.title}</h1>
+
+        {/* Image Display */}
+        {post.image && (
+          <div className="text-center">
+            <img
+              src={`${backendUrl}/${post.image.replace('./', '')}`}
+              alt={post.title}
+              className="max-w-full h-auto rounded-lg shadow-md mx-auto"
+            />
+          </div>
+        )}
 
         <div className="text-gray-700">
           <strong className="block text-gray-900 font-semibold mb-1">Related Area:</strong>
