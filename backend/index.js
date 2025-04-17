@@ -15,9 +15,6 @@ import profile from './Routes/profileRoute.js';
 import notificationRoute from './Routes/notificationRoute.js';
 import Vacancyroute from './Routes/vacancyroute.js';
 import Photoroute from './Routes/photoRoutes.js';
-import { handleChat } from './services/chatService.js'; // Import chat service
-import { connectMongo } from './services/mongoService.js'; // Import MongoDB connection for chatbot
-
 dotenv.config();
 connectDB();
 
@@ -72,23 +69,6 @@ app.use('/notifications', notificationRoute);
 app.use('/job', Vacancyroute);
 app.use('/uploads', express.static('uploads'));
 
-// Chatbot route
-app.post('/chat', async (req, res) => {
-  try {
-    const userMessage = req.body.message;
-    if (!userMessage) return res.status(400).json({ error: 'Message is required' });
-
-    const response = await handleChat(userMessage);
-    res.json({ response });
-  } catch (err) {
-    console.error('Chat error:', err);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-// Connect MongoDB for chatbot
-await connectMongo();
-
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
@@ -97,9 +77,4 @@ const PORT = process.env.PORT || 3000;
 
 mongoose.connection.once('open', () => {
   httpServer.listen(PORT, '0.0.0.0', () => console.log(`🖥️  GuidelineX Backend running at port http://localhost:${PORT} ✅`));
-});
-
-// Chatbot server port
-app.listen(PORT, () => {
-  console.log(`🤖 GuidelineX chatbot Server running at http://localhost:${PORT} ✅`);
 });
