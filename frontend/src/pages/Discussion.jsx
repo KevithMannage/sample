@@ -149,7 +149,7 @@ const HomePage = () => {
         <div className="text-center my-8">
           <button 
             onClick={handleClick}
-            className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-md"
+            className="px-6 py-3 bg-[#1e90ff] text-white font-medium rounded-[40px] hover:bg-blue-700 transition-colors shadow-md"
           >
             Make your CV
           </button>
