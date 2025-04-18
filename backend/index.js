@@ -115,7 +115,7 @@ app.get('/auth/google/callback',
     console.log('Authenticated user:', user); // Debugging: Log the user object
 
     // Redirect to the frontend with user details as query parameters
-    res.redirect(`https://guidelinex1.netlify.app/googlelogin/?userid=${user._id}&role=${user.role}&username=${user.username}&profileimage=${user.profileImage}`);
+    res.redirect(`http://localhost:5173/googlelogin/?userid=${user._id}&role=${user.role}&username=${user.username}&profileimage=${user.profileImage}`);
   }
 );
 
