@@ -102,7 +102,7 @@ const PostDetails = () => {
   const [post, setPost] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const postId = localStorage.getItem("postid");
-  const backendUrl = "http://localhost:3000"; // Use https://devthonbackend-production.up.railway.app for production
+  const backendUrl = "https://devthonbackend-production.up.railway.app"; // Use https://devthonbackend-production.up.railway.app for production
 
   useEffect(() => {
     // Fetch post data

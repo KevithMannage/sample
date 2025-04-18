@@ -597,7 +597,7 @@ const ProfessionalProfile = () => {
   const [posts, setPosts] = useState([]); // New state for posts
   const [discussionLoading, setDiscussionLoading] = useState(false);
   const [postLoading, setPostLoading] = useState(false); // New state for post loading
-  const backendUrl = "http://localhost:3000";
+  const backendUrl = "https://devthonbackend-production.up.railway.app";
   const [isEditing, setIsEditing] = useState(false);
   const [editFormData, setEditFormData] = useState({
     userName: '',
@@ -690,7 +690,7 @@ const ProfessionalProfile = () => {
     try {
       setPostLoading(true);
       const response = await axios.post(
-        'http://localhost:3000/post/getuserpost', // Using localhost as specified
+        'https://devthonbackend-production.up.railway.app/post/getuserpost', // Using localhost as specified
         { username }
       );
       console.log('Posts response:', response.data);

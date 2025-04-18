@@ -319,7 +319,7 @@ import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import Navbar from '../Navbar';
 
-const SOCKET_URL = "http://localhost:3000";
+const SOCKET_URL = "https://devthonbackend-production.up.railway.app";
 
 const Chat = () => {
   const [sender, setSender] = useState('');

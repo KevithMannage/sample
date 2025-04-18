@@ -132,7 +132,7 @@ const ProfessionalLoginPage = () => {
 
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:3000/auth/google'; // Replace with your backend URL
+    window.location.href = 'https://devthonbackend-production.up.railway.app/auth/google'; // Replace with your backend URL
   };
 
   const handleSubmit = async (e) => {
