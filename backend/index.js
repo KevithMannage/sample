@@ -68,7 +68,7 @@ app.use(passport.session());
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID, // Add this to your .env file
   clientSecret: process.env.GOOGLE_CLIENT_SECRET, // Add this to your .env file
-  callbackURL: 'https://guidelinex1.netlify.app/auth/google/callback',
+  callbackURL: '/auth/google/callback',
 }, async (accessToken, refreshToken, profile, done) => {
   try {
     // Check if the user already exists in the database
@@ -104,11 +104,11 @@ passport.deserializeUser((user, done) => {
 });
 
 // Google Auth Routes
-app.get('https://guidelinex1.netlify.app/auth/google',
+app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
-app.get('https://guidelinex1.netlify.app/auth/google/callback',
+app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     const user = req.user;
@@ -120,12 +120,12 @@ app.get('https://guidelinex1.netlify.app/auth/google/callback',
 );
 
 // Logout route
-app.get('https://guidelinex1.netlify.app/logout', (req, res) => {
+app.get('/logout', (req, res) => {
   req.logout((err) => {
     if (err) {
       console.error(err);
     }
-    res.redirect('https://guidelinex1.netlify.app/'); // Redirect to the dashboard or any other page after logout
+    res.redirect('/'); // Redirect to the dashboard or any other page after logout
   });
 });
 
