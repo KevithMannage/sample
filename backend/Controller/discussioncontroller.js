@@ -304,4 +304,33 @@ export const getDiscussion = async (req, res) => {
     }
   };
 
+import User from "../Models/User.js";
 
+export const userrelateddiscussion = async (req, res) => {
+  try {
+    const {username} = req.body;
+
+    // Step 1: Find user and get their interest areas
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const interestAreas = user.interestArea;
+
+    if (!interestAreas || interestAreas.length === 0) {
+      return res.status(400).json({ message: "User has no interest areas defined" });
+    }
+
+    // Step 2: Find discussions related to those interest areas
+    const matchingDiscussions = await Discussions.find({
+      related_areas: { $in: interestAreas }
+    });
+
+    res.status(200).json(matchingDiscussions);
+  } catch (error) {
+    console.error("Error fetching user-related discussions:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
