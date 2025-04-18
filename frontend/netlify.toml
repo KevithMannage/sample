@@ -1,12 +1,4 @@
 [build]
   base = "frontend"
-  publish = "frontend/dist"  # Vite's default output
-  command = "npm run build"  # Runs vite build
-[[headers]]
-  for = "*.jsx"
-  [headers.values]
-    Content-Type = "text/javascript"
-[[headers]]
-  for = "*.js"
-  [headers.values]
-    Content-Type = "text/javascript"
+  command = "npm run build"
+  publish = "dist"
