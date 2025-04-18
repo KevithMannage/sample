@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import GoogleRedirectHandler from './GoogleRedirectHandler';
 // Import your page components
 import LoginPage from './Login';
 import Dashboard from './Dashboard';
@@ -55,7 +56,7 @@ const App = () => {
              <Route path="/forgetpassword" element={<ForgotPassword/>} />
              <Route path="/resetpassword" element={<ResetPassword/>} />
           
-             
+             <Route path="/googlelogin" element={<GoogleRedirectHandler />} />
 
  
           </Routes>

@@ -130,6 +130,11 @@ const ProfessionalLoginPage = () => {
     navigate('/usersignup');
   };
 
+
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://localhost:3000/auth/google'; // Replace with your backend URL
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -190,10 +195,13 @@ const ProfessionalLoginPage = () => {
       <div className="right-section" style={{ minWidth: '400px' }}>
         <h3><span className="welcome-text">Welcome to</span> <span className="guidelinex-text">GuidelineX</span></h3>
         <h4>Sign in</h4>
-        <button className="google-signin">
+        
+        <button className="google-signin" onClick={handleGoogleLogin}>
           <img src={googleIcon} alt="Google Icon" />
           Sign in with Google
-        </button>
+        </button>
+       
+
         <div className="divider">or</div>
         <form onSubmit={handleSubmit}>
           <label>Username or email address</label>

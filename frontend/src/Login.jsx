@@ -246,6 +246,10 @@ const LoginPage = () => {
     navigate('/professionsignup');
   };
 
+
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://localhost:3000/auth/google'; // Replace with your backend URL
+  };
   // Handle click for User signup
   const handleClickUser = () => {
     navigate('/usersignup');
@@ -339,13 +343,12 @@ const LoginPage = () => {
           <span className="guidelinex-text">GuidelineX</span>
         </h3>
         <h4>Sign in</h4>
-        <div
-          id="g_id_onload"
-          data-client_id="857114387987-f79s0ar1ai8qodleetlbiut6s0lc9l90.apps.googleusercontent.com"
-          data-callback="handleGoogleSignIn"
-          data-scope="email profile"
-        ></div>
-        <div className="g_id_signin" data-type="standard"></div>
+
+        <button className="google-signin" onClick={handleGoogleLogin}>
+          <img src={googleIcon} alt="Google Icon" />
+          Sign in with Google
+        </button>
+       
         <div className="divider">or</div>
         <form onSubmit={handleSubmit}>
           <label>Username or email address</label>

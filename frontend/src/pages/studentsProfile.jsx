@@ -265,10 +265,12 @@ const ProfessionalProfile = () => {
   };
 
   const handleExploreClick = (discussionId) => {
+    localStorage.setItem("discussionid",discussionId);
     navigate(`/discussion/${discussionId}`);
   };
 
   const handleExploreClickposts = (postId) => {
+    localStorage.setItem("postid",postId);
     navigate(`/post/${postId}`);
   };
 

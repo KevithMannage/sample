@@ -1,3 +1,8 @@
+import passport from 'passport';
+import session from 'express-session';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import Users from './Models/User.js'; // Import the User model
+
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
@@ -46,6 +51,84 @@ io.on('connection', (socket) => {
     console.log('User disconnected:', socket.id);
   });
 });
+
+
+// Configure session middleware
+app.use(session({
+  secret: 'your-secret-key', // Replace with a secure key
+  resave: false,
+  saveUninitialized: true,
+}));
+
+// Initialize Passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Passport Google OAuth strategy
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID, // Add this to your .env file
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET, // Add this to your .env file
+  callbackURL: '/auth/google/callback',
+}, async (accessToken, refreshToken, profile, done) => {
+  try {
+    // Check if the user already exists in the database
+    let user = await Users.findOne({ email: profile.emails[0].value });
+
+    if (!user) {
+      // If the user doesn't exist, create a new user
+      user = await Users.create({
+        username: profile.displayName,
+        email: profile.emails[0].value, // Use the first email from the profile
+        profileImage: profile.photos[0]?.value || '',
+        role: 'student', // Default role
+        password: 'google-login', // Default password for Google login users
+        mobile: 'N/A', // Default mobile for Google login users
+      });
+    }
+
+    // Pass the user to the done callback
+    return done(null, user);
+  } catch (error) {
+    console.error('Error during Google login:', error);
+    return done(error, null);
+  }
+}));
+
+// Serialize and deserialize user
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
+// Google Auth Routes
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+    const user = req.user;
+    console.log('Authenticated user:', user); // Debugging: Log the user object
+
+    // Redirect to the frontend with user details as query parameters
+    res.redirect(`http://localhost:5173/googlelogin/?userid=${user._id}&role=${user.role}&username=${user.username}&profileimage=${user.profileImage}`);
+  }
+);
+
+// Logout route
+app.get('/logout', (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      console.error(err);
+    }
+    res.redirect('/'); // Redirect to the dashboard or any other page after logout
+  });
+});
+
 
 // Middleware
 app.use(express.json());

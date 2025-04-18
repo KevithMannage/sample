@@ -503,12 +503,10 @@ const SearchPage = () => {
                       </h4>
                       {result.type === 'conversation' && (
                         <>
-                          <p className="text-gray-600 text-sm mt-1">
-                            {result.description.substring(0, 100)}{result.description.length > 100 ? '...' : ''}
-                          </p>
+                          
                           <div className="flex items-center mt-2 text-xs text-gray-500">
-                            <span>By {result.author}</span>
-                            <span className="mx-2">•</span>
+                            
+                           
                             <span>{new Date(result.date).toLocaleDateString()}</span>
                           </div>
                         </>
