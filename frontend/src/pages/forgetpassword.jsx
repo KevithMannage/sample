@@ -52,9 +52,9 @@ const ForgotPassword = () => {
   return (
     <div
       className="min-h-screen bg-cover bg-center flex items-center justify-center px-4"
-      style={{ backgroundImage: "url('/images/forget.png')" }} // 🔁 Use your image path or URL
+      style={{ backgroundImage: "url('/images/fogetpass_back.jpg')" }} // 🔁 Use your image path or URL
     >
-      <div className="bg-white bg-opacity-90 p-8 rounded-2xl shadow-md w-full max-w-md backdrop-blur-md">
+      <div className="bg-white bg-opacity-50 p-8 rounded-2xl shadow-md w-full max-w-md backdrop-blur-md">
         <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Forgot Password</h2>
 
         {status && (
