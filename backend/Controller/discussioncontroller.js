@@ -334,3 +334,78 @@ export const userrelateddiscussion = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
+export const getuserDiscussion = async (req, res) => {
+  try {
+    const { username } = req.body;
+
+    if (!username) {
+      return res.status(400).json({ message: 'User ID is required' });
+    }
+
+    // Fetch only discussions where this user is the creator
+    const discussions = await Discussions.find({ username: username })
+      .select('-__v') // Exclude Mongoose version key
+      .lean();
+
+    if (!discussions || discussions.length === 0) {
+      return res.status(404).json({ message: 'No discussions found for this user' });
+    }
+
+    // Optional: If you want to also remove replies from others
+    const userOnlyDiscussions = discussions.map(discussion => ({
+      ...discussion,
+      replies: discussion.replies?.filter(reply => reply.username === username) || []
+    }));
+
+    res.status(200).json({ discussions: userOnlyDiscussions, status: 'ok' });
+  } catch (error) {
+    console.error('Error fetching user discussions:', error);
+    res.status(500).json({
+      message: 'Error fetching user discussions',
+      error: error.message
+    });
+  }
+};
+
+
+
+export const deleteDiscussion = async (req, res) => {
+  try {
+    const { id } = req.body; // Now getting ID from request body
+
+    if (!id) {
+      return res.status(400).json({ message: 'Discussion ID is required' });
+    }
+
+    // First check if the discussion exists
+    const discussion = await Discussions.findById(id);
+    
+    if (!discussion) {
+      return res.status(404).json({ message: 'Discussion not found' });
+    }
+
+    // Optional: Add authorization check
+    // Example: Only allow creator or admin to delete
+    // const { username, isAdmin } = req.user; // Assuming you have user data
+    // if (discussion.username !== username && !isAdmin) {
+    //   return res.status(403).json({ message: 'Not authorized to delete this discussion' });
+    // }
+
+    // Delete the discussion
+    await Discussions.findByIdAndDelete(id);
+
+    res.status(200).json({ 
+      message: 'Discussion deleted successfully',
+      status: 'ok',
+      deletedId: id // Optionally return the deleted ID
+    });
+  } catch (error) {
+    console.error('Error deleting discussion:', error);
+    res.status(500).json({
+      message: 'Error deleting discussion',
+      error: error.message
+    });
+  }
+};

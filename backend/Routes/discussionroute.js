@@ -1,5 +1,5 @@
 import express from 'express';
-import {getdiscussions,trendingdiscussions,getDiscussion,addReply,createDiscussion,getRelatedDiscussions,userrelateddiscussion} from "../Controller/discussioncontroller.js";
+import {getdiscussions,trendingdiscussions,getDiscussion,addReply,createDiscussion,deleteDiscussion,getRelatedDiscussions,getuserDiscussion,userrelateddiscussion} from "../Controller/discussioncontroller.js";
 const router=express.Router();
 
 router.get("/getdiscussion",getdiscussions);
@@ -11,5 +11,6 @@ router.post("/:id/reply", addReply);
 router.post("/creatediscussion",createDiscussion);
 router.post('/related/', getRelatedDiscussions);
 router.post('/userrelateddiscussion', userrelateddiscussion);
-
+router.post("/getuserdiscussion",getuserDiscussion);
+router.post('/delete', deleteDiscussion); 
 export default router;
