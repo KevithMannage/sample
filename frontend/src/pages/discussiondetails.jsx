@@ -438,6 +438,403 @@
 
 // export default DiscussionDetail;
 
+
+//my previos code run
+// "use client";
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import { FaRegMessage } from "react-icons/fa6";
+// import Navbar from "../Navbar";
+
+// const DiscussionDetail = () => {
+//   const [discussion, setDiscussion] = useState(null);
+//   const [relatedDiscussions, setRelatedDiscussions] = useState([]);
+//   const [newMessage, setNewMessage] = useState("");
+//   const [isSubscribed, setIsSubscribed] = useState(false);
+//   const discussionId = localStorage.getItem("discussionid");
+//   const username = localStorage.getItem("username");
+//   const userId = localStorage.getItem("userid");
+//   const backendUrl = "http://localhost:3000"; // Use https://devthonbackend-production.up.railway.app for production
+
+//   useEffect(() => {
+//     // Fetch the discussion
+//     const fetchDiscussion = async () => {
+//       try {
+//         const response = await axios.get(`${backendUrl}/discussion/${discussionId}`);
+//         setDiscussion(response.data);
+//       } catch (error) {
+//         console.error("Error fetching discussion:", error);
+//       }
+//     };
+
+//     // Fetch related discussions
+//     const fetchRelatedDiscussions = async () => {
+//       try {
+//         if (!discussionId.match(/^[0-9a-fA-F]{24}$/)) {
+//           console.error("Invalid discussion ID");
+//           return;
+//         }
+//         const response = await axios.post(`${backendUrl}/discussion/related`, {
+//           topicId: discussionId,
+//         });
+//         if (response.data.status) {
+//           setRelatedDiscussions(response.data.data);
+//         } else {
+//           console.error("Failed to load related discussions");
+//         }
+//       } catch (error) {
+//         console.error("Error fetching related discussions:", error);
+//       }
+//     };
+
+//     fetchDiscussion();
+//     fetchRelatedDiscussions();
+
+//     // Check subscription
+//     const discussionIds = JSON.parse(sessionStorage.getItem("discussionIds")) || [];
+//     setIsSubscribed(discussionIds.includes(discussionId));
+//   }, [discussionId]);
+
+//   const handleAddMessage = async (e) => {
+//     e.preventDefault();
+//     if (!newMessage.trim()) return;
+
+//     try {
+//       const response = await axios.post(
+//         `${backendUrl}/discussion/${discussionId}/reply`,
+//         {
+//           message: newMessage,
+//           user_id: userId,
+//           username: username,
+//           created_at: Date.now(),
+//         }
+//       );
+//       setDiscussion(response.data);
+//       setNewMessage("");
+//     } catch (error) {
+//       console.error("Error adding reply:", error);
+//     }
+//   };
+
+//   const handleSubscribe = async () => {
+//     try {
+//       const response = await axios.post(`${backendUrl}/notifications/subscribe`, {
+//         user_id: userId,
+//         discussion_id: discussionId,
+//       });
+
+//       if (response.status === 200) {
+//         console.log("Subscribed successfully!");
+//         setIsSubscribed(true);
+//         const discussionIds = JSON.parse(sessionStorage.getItem("discussionIds")) || [];
+//         discussionIds.push(discussionId);
+//         sessionStorage.setItem("discussionIds", JSON.stringify(discussionIds));
+//       }
+//     } catch (error) {
+//       console.error("Error subscribing to discussion:", error);
+//     }
+//   };
+
+//   const handleBack = () => {
+//     window.history.back();
+//   };
+
+//   const handleExploreDiscussion = (relatedId) => {
+//     localStorage.setItem("discussionid", relatedId);
+//     window.location.reload(); // Reload to fetch the new discussion
+//   };
+
+//   if (!discussion) {
+//     return <div>Loading...</div>;
+//   }
+
+//   return (
+//     <div className="flex min-h-screen bg-gray-100">
+//       <Navbar />
+//       {/* Related Discussions (Left Sidebar) */}
+//       <div className="fixed top-28 left-0 w-80 bg-white p-6 shadow-lg border-r border-gray-200 h-[calc(100vh-112px)] overflow-y-auto">
+//         <h3 className="text-xl font-bold text-sky-700 mb-6">Related Discussions</h3>
+//         {relatedDiscussions.length > 0 ? (
+//           <ul className="space-y-4">
+//             {relatedDiscussions.map((related) => (
+//               <li
+//                 key={related._id}
+//                 className="p-4 bg-gray-50 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200"
+//               >
+//                 <h4 className="text-md font-semibold text-gray-800 mb-2">{related.topic}</h4>
+//                 <p className="text-sm text-gray-600 mb-1">By: {related.username}</p>
+//                 <p className="text-sm text-gray-600 mb-1">Participants: {related.participants}</p>
+//                 <p className="text-sm text-gray-600 mb-3">
+//                   Areas: {related.related_areas.join(", ")}
+//                 </p>
+//                 <button
+//                   onClick={() => handleExploreDiscussion(related._id)}
+//                   className="px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-full hover:bg-green-600 transition-colors duration-200"
+//                 >
+//                   Explore
+//                 </button>
+//               </li>
+//             ))}
+//           </ul>
+//         ) : (
+//           <p className="text-sm text-gray-600">No related discussions found.</p>
+//         )}
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="ml-80 w-full">
+//         {/* Back Link - Fixed Position */}
+//         <div className="fixed top-16 left-80 w-full bg-gray-50 z-10">
+//           <button
+//             onClick={handleBack}
+//             className="text-sky-600 hover:text-sky-800 text-sm py-2 px-4 inline-flex items-center cursor-pointer"
+//           >
+//             <span className="mr-1">←</span> Back to Discussions
+//           </button>
+//         </div>
+//         <div className="mt-28 px-4">
+//           <div className="flex flex-col items-center justify-center w-full p-4 box-border min-w-[300px]">
+//             <h1 className="text-xl font-bold text-sky-700 mb-2 text-center bg-gray-100 p-4 rounded-[30px] min-w-[300px]">
+//               {discussion.topic}
+//             </h1>
+//             <div className="w-full max-w-[800px] bg-gray-50 p-6 rounded-lg shadow-md">
+//               <div className="mb-4">
+//                 <p className="text-sm text-gray-600">Started by: {discussion.username}</p>
+//                 <p className="text-sm text-gray-600">
+//                   Created: {new Date(discussion.created_at).toLocaleString()}
+//                 </p>
+//                 <p className="text-lg mt-2 text-gray-800">{discussion.starting_message}</p>
+//               </div>
+//               <h3 className="text-lg font-bold text-sky-700 mb-2">Replies</h3>
+//               <div className="space-y-4 max-h-[400px] overflow-y-auto">
+//                 {discussion.replies.map((reply, index) => (
+//                   <div key={index} className="p-3 bg-white rounded-lg shadow-sm">
+//                     <p className="text-sm text-gray-800">{reply.message}</p>
+//                     <p className="text-xs text-gray-600">
+//                       By: {reply.user_id} | {new Date(reply.created_at).toLocaleString()}
+//                     </p>
+//                   </div>
+//                 ))}
+//               </div>
+//               <form onSubmit={handleAddMessage} className="mt-6 flex gap-2">
+//                 <input
+//                   type="text"
+//                   value={newMessage}
+//                   onChange={(e) => setNewMessage(e.target.value)}
+//                   placeholder="Add your message..."
+//                   className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+//                 />
+//                 <button
+//                   type="submit"
+//                   className="px-4 py-2 text-white bg-sky-600 rounded-full hover:bg-sky-700"
+//                 >
+//                   <FaRegMessage />
+//                 </button>
+//               </form>
+
+//               {/* Subscribe Button */}
+//               <div className="mt-6">
+//                 {isSubscribed ? (
+//                   <button
+//                     className="px-4 py-2 text-white bg-gray-500 rounded-full cursor-not-allowed"
+//                     disabled
+//                   >
+//                     Subscribed
+//                   </button>
+//                 ) : (
+//                   <button
+//                     onClick={handleSubscribe}
+//                     className="px-4 py-2 text-white bg-sky-600 rounded-full hover:bg-sky-700"
+//                   >
+//                     Subscribe to Discussion
+//                   </button>
+//                 )}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default DiscussionDetail;
+
+
+//indunil code
+
+// "use client";
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import { FaRegMessage } from "react-icons/fa6";
+// import Navbar from "../Navbar";
+
+// const DiscussionDetail = () => {
+//   const [discussion, setDiscussion] = useState(null);
+//   const [newMessage, setNewMessage] = useState("");
+//   const [isSubscribed, setIsSubscribed] = useState(false);
+//   const discussionId = localStorage.getItem("discussionid");
+//   const username = localStorage.getItem("username");
+//   const userId = localStorage.getItem("userid");
+//   const backendUrl = "http://localhost:3000";
+
+//   useEffect(() => {
+//     axios
+//       .get(`${backendUrl}/discussion/${discussionId}`)
+//       .then((response) => {
+//         setDiscussion(response.data);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching discussion:", error);
+//       });
+
+//     const discussionIds = JSON.parse(sessionStorage.getItem("discussionIds")) || [];
+//     setIsSubscribed(discussionIds.includes(discussionId));
+//   }, [discussionId]);
+
+//   const handleAddMessage = async (e) => {
+//     e.preventDefault();
+//     if (!newMessage.trim()) return;
+
+//     try {
+//       const response = await axios.post(` ${backendUrl}/discussion/${discussionId}/reply`,
+//         {
+//           message: newMessage,
+//           user_id: userId,
+//           username: username,
+//           created_at: Date.now(),
+//         }
+//       );
+//       setDiscussion(response.data);
+//       setNewMessage("");
+//     } catch (error) {
+//       console.error("Error adding reply:", error);
+//     }
+//   };
+
+//   const handleSubscribe = async () => {
+//     try {
+//       const response = await axios.post(`${backendUrl}/notifications/subscribe`, {
+//         user_id: userId,
+//         discussion_id: discussionId,
+//       });
+
+//       if (response.status === 200) {
+//         console.log("Subscribed successfully!");
+//         setIsSubscribed(true);
+//         const discussionIds = JSON.parse(sessionStorage.getItem("discussionIds")) || [];
+//         discussionIds.push(discussionId);
+//         sessionStorage.setItem("discussionIds", JSON.stringify(discussionIds));
+//       }
+//     } catch (error) {
+//       console.error("Error subscribing to discussion:", error);
+//     }
+//   };
+
+//   const handleUnsubscribe = async () => {
+//     try {
+//       const response = await axios.post(`${backendUrl}/notifications/unsubscribe`, {
+//         user_id: userId,
+//         discussion_id: discussionId,
+//       });
+
+//       if (response.status === 200) {
+//         console.log("Unsubscribed successfully!");
+//         setIsSubscribed(false);
+        
+//         // Remove this discussion from sessionStorage
+//         const discussionIds = JSON.parse(sessionStorage.getItem("discussionIds")) || [];
+//         const updatedIds = discussionIds.filter(id => id !== discussionId);
+//         sessionStorage.setItem("discussionIds", JSON.stringify(updatedIds));
+//       }
+//     } catch (error) {
+//       console.error("Error unsubscribing from discussion:", error);
+//     }
+//   };
+
+//   const handleBack = () => {
+//     window.history.back();
+//   };
+
+//   if (!discussion) {
+//     return <div>Loading...</div>;
+//   }
+
+//   return (
+//     <div>
+//       <Navbar />
+//       {/* Back Link - Fixed Position */}
+//       <div className="fixed top-16 left-0 w-full bg-gray-50 z-10">
+//         <button
+//           onClick={handleBack}
+//           className="text-sky-600 hover:text-sky-800 text-sm py-2 px-4 inline-flex items-center cursor-pointer"
+//         >
+//           <span className="mr-1">←</span> Back to Discussions
+//         </button>
+//       </div>
+//       <div className="mt-28 px-4"> {/* Adjusted margin to account for fixed back link */}
+//         <div className="flex flex-col items-center justify-center w-full p-4 box-border min-w-[300px]">
+//           <h1 className="text-xl font-bold text-sky-700 mb-2 text-center bg-gray-100 p-4 rounded-[30px] min-w-[300px]">
+//             {discussion.topic}
+//           </h1>
+//           <div className="w-full max-w-[800px] bg-gray-50 p-6 rounded-lg shadow-md">
+//             <div className="mb-4">
+//               <p className="text-sm text-gray-600">Started by: {discussion.username}</p>
+//               <p className="text-sm text-gray-600">
+//                 Created: {new Date(discussion.created_at).toLocaleString()}
+//               </p>
+//               <p className="text-lg mt-2 text-gray-800">{discussion.starting_message}</p>
+//             </div>
+//             <h3 className="text-lg font-bold text-sky-700 mb-2">Replies</h3>
+//             <div className="space-y-4 max-h-[400px] overflow-y-auto">
+//               {discussion.replies.map((reply, index) => (
+//                 <div key={index} className="p-3 bg-white rounded-lg shadow-sm">
+//                   <p className="text-sm text-gray-800">{reply.message}</p>
+//                   <p className="text-xs text-gray-600">
+//                     By: {reply.user_id} | {new Date(reply.created_at).toLocaleString()}
+//                   </p>
+//                 </div>
+//               ))}
+//             </div>
+//             <form onSubmit={handleAddMessage} className="mt-6 flex gap-2">
+//               <input
+//                 type="text"
+//                 value={newMessage}
+//                 onChange={(e) => setNewMessage(e.target.value)}
+//                 placeholder="Add your message..."
+//                 className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+//               />
+//               <button
+//                 type="submit"
+//                 className="px-4 py-2 text-white bg-sky-600 rounded-full hover:bg-sky-700"
+//               >
+//                 <FaRegMessage />
+//               </button>
+//             </form>
+
+//             {/* Toggle Subscribe/Unsubscribe Button */}
+//             <div className="mt-6">
+//               <button
+//                 onClick={isSubscribed ? handleUnsubscribe : handleSubscribe}
+//                 className={`px-4 py-2 text-white rounded-full transition-colors ${
+//                   isSubscribed 
+//                     ? "bg-amber-600 hover:bg-amber-700" // Unsubscribe colors
+//                     : "bg-sky-600 hover:bg-sky-700" // Subscribe colors
+//                 }`}
+//               >
+//                 {isSubscribed ? "Unsubscribe" : "Subscribe to Discussion"}
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default DiscussionDetail;
+
+
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -498,15 +895,12 @@ const DiscussionDetail = () => {
     if (!newMessage.trim()) return;
 
     try {
-      const response = await axios.post(
-        `${backendUrl}/discussion/${discussionId}/reply`,
-        {
-          message: newMessage,
-          user_id: userId,
-          username: username,
-          created_at: Date.now(),
-        }
-      );
+      const response = await axios.post(`${backendUrl}/discussion/${discussionId}/reply`, {
+        message: newMessage,
+        user_id: userId,
+        username: username,
+        created_at: Date.now(),
+      });
       setDiscussion(response.data);
       setNewMessage("");
     } catch (error) {
@@ -530,6 +924,25 @@ const DiscussionDetail = () => {
       }
     } catch (error) {
       console.error("Error subscribing to discussion:", error);
+    }
+  };
+
+  const handleUnsubscribe = async () => {
+    try {
+      const response = await axios.post(`${backendUrl}/notifications/unsubscribe`, {
+        user_id: userId,
+        discussion_id: discussionId,
+      });
+
+      if (response.status === 200) {
+        console.log("Unsubscribed successfully!");
+        setIsSubscribed(false);
+        const discussionIds = JSON.parse(sessionStorage.getItem("discussionIds")) || [];
+        const updatedIds = discussionIds.filter((id) => id !== discussionId);
+        sessionStorage.setItem("discussionIds", JSON.stringify(updatedIds));
+      }
+    } catch (error) {
+      console.error("Error unsubscribing from discussion:", error);
     }
   };
 
@@ -563,7 +976,7 @@ const DiscussionDetail = () => {
                 <p className="text-sm text-gray-600 mb-1">By: {related.username}</p>
                 <p className="text-sm text-gray-600 mb-1">Participants: {related.participants}</p>
                 <p className="text-sm text-gray-600 mb-3">
-                  Areas: {related.related_areas.join(", ")}
+                  Areas: {related.related_areas?.join(", ") || "None"}
                 </p>
                 <button
                   onClick={() => handleExploreDiscussion(related._id)}
@@ -630,23 +1043,18 @@ const DiscussionDetail = () => {
                 </button>
               </form>
 
-              {/* Subscribe Button */}
+              {/* Toggle Subscribe/Unsubscribe Button */}
               <div className="mt-6">
-                {isSubscribed ? (
-                  <button
-                    className="px-4 py-2 text-white bg-gray-500 rounded-full cursor-not-allowed"
-                    disabled
-                  >
-                    Subscribed
-                  </button>
-                ) : (
-                  <button
-                    onClick={handleSubscribe}
-                    className="px-4 py-2 text-white bg-sky-600 rounded-full hover:bg-sky-700"
-                  >
-                    Subscribe to Discussion
-                  </button>
-                )}
+                <button
+                  onClick={isSubscribed ? handleUnsubscribe : handleSubscribe}
+                  className={`px-4 py-2 text-white rounded-full transition-colors ${
+                    isSubscribed
+                      ? "bg-amber-600 hover:bg-amber-700"
+                      : "bg-sky-600 hover:bg-sky-700"
+                  }`}
+                >
+                  {isSubscribed ? "Unsubscribe" : "Subscribe to Discussion"}
+                </button>
               </div>
             </div>
           </div>

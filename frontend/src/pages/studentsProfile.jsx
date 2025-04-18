@@ -17,7 +17,7 @@ const ProfessionalProfile = () => {
   const [posts, setPosts] = useState([]); // New state for posts
   const [discussionLoading, setDiscussionLoading] = useState(false);
   const [postLoading, setPostLoading] = useState(false); // New state for post loading
-  const backendUrl = "https://devthonbackend-production.up.railway.app";
+  const backendUrl = "http://localhost:3000";
   const [isEditing, setIsEditing] = useState(false);
   const [editFormData, setEditFormData] = useState({
     userName: '',
