@@ -33,6 +33,48 @@ const tryParseJSON = (data) => {
   }
 };
 
+
+
+
+export const getRelatedposts= async (req, res) => {
+  try {
+    const { topicId } = req.body;
+
+    // Validate topicId as a valid ObjectId
+    if (!topicId.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.status(400).json({ status: false, error: 'Invalid discussion ID' });
+    }
+
+    // Find the discussion by ID
+    const relatedpost = await Post.findById(topicId);
+    console.log(relatedpost);
+    if (!relatedpost) {
+      return res.status(404).json({ status: false, error: 'relatedpost not found' });
+    }
+
+    // Get related_areas
+    const { related_area } = relatedpost;
+    if (!related_area || related_area.length === 0) {
+      return res.status(200).json({ status: true, data: [] });
+    }
+
+    // Find discussions with matching related_areas, excluding the current discussion
+    const relatedPosts = await Post.find({
+      _id: { $ne: topicId },
+      related_area: { $in: related_area },
+    }).select('title related_areas username author_name created_at');
+
+    res.json({
+      status: true,
+      data: relatedPosts,
+    });
+  } catch (error) {
+    console.error('Error fetching related discussions:', error);
+    res.status(500).json({ status: false, error: 'Server error' });
+  }
+};
+
+
 export const deletepost = async (req, res) => {
   try {
     const { id } = req.body;
