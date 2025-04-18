@@ -7,9 +7,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import dbConn from './Config/dbConn.js'
+import connectDB from './Config/connectDB.js'
 import { createServer } from 'http';
-import connectDB from './Config/dbConn.js';
 import UserRoutes from './Routes/userroute.js';
 import Searchroute from './Routes/searchroute.js';
 import Contactroute from './Routes/contactusroute.js';
@@ -116,7 +115,7 @@ app.get('/auth/google/callback',
     console.log('Authenticated user:', user); // Debugging: Log the user object
 
     // Redirect to the frontend with user details as query parameters
-    res.redirect(`http://localhost:5173/googlelogin/?userid=${user._id}&role=${user.role}&username=${user.username}&profileimage=${user.profileImage}`);
+    res.redirect(`https://guidelinex1.netlify.app/googlelogin/?userid=${user._id}&role=${user.role}&username=${user.username}&profileimage=${user.profileImage}`);
   }
 );
 
