@@ -7,6 +7,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dbConn from './Config/dbConn.js'
 import { createServer } from 'http';
 import connectDB from './Config/dbConn.js';
 import UserRoutes from './Routes/userroute.js';

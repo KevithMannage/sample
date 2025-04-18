@@ -10,7 +10,7 @@ const checkNotification = async () => {
 
   try {
     // Call the backend API to get subscribed discussion IDs
-    const response = await axios.get(`http://localhost:3000/notifications/${user_id}`);
+    const response = await axios.get(`https://devthonbackend-production.up.railway.app/notifications/${user_id}`);
 
     if (response.status === 200) {
       const { discussionIds } = response.data;

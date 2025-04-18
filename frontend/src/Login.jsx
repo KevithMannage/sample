@@ -248,7 +248,7 @@ const LoginPage = () => {
 
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:3000/auth/google'; // Replace with your backend URL
+    window.location.href = 'https://devthonbackend-production.up.railway.app/auth/google'; // Replace with your backend URL
   };
   // Handle click for User signup
   const handleClickUser = () => {
