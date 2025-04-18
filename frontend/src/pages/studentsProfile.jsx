@@ -431,54 +431,53 @@ const ProfessionalProfile = () => {
           </div>
 
           {activeTab === 'About me' && (
-            <div className="profile-content">
-              <div className="profile-section">
-                <div className="profile-card">
-                  <h3>Academic Qualification</h3>
-                  <p>{profileData.degree || 'Not specified'}</p>
-                </div>
-                <div className="profile-card">
-                  <h3>About</h3>
-                  <p>{profileData.aboutme || 'No description provided'}</p>
-                </div>
-              </div>
-              <div className="profile-skills">
-                <div className="skills-section">
-                  <h4>Skills</h4>
-                  <div className="tag-group">
-                    {profileData.skills?.length > 0 ? (
-                      profileData.skills.map((skill, index) => (
-                        <span key={index} className="tag">{skill}</span>
-                      ))
-                    ) : (
-                      <p>No skills listed</p>
-                    )}
-                  </div>
-                </div>
-                <div className="skills-section">
-                  <h4>Specialized Area</h4>
-                  <div className="tag-group">
-                    {profileData.interestArea?.length > 0 ? (
-                      profileData.interestArea.map((area, index) => (
-                        <span key={index} className="tag">{area}</span>
-                      ))
-                    ) : (
-                      <p>No specialized areas listed</p>
-                    )}
-                             <div className="button-container-center">
-            <button onClick={handleEditClick} className="edit-button">Edit Profile</button>
-            <button
-              onClick={handleLogout}
-              className="logout-button"
-            >
-              Logout
-            </button>
-          </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div className="profile-content">
+    <div className="profile-section">
+      <div className="profile-card">
+        <h3>Academic Qualification</h3>
+        <p>{profileData.degree || 'Not specified'}</p>
+      </div>
+      <div className="profile-card">
+        <h3>About</h3>
+        <p>{profileData.aboutme || 'No description provided'}</p>
+      </div>
+    </div>
+
+    <div className="profile-skills">
+      <div className="skills-section">
+        <h4>Skills</h4>
+        <div className="tag-group">
+          {profileData.skills?.length > 0 ? (
+            profileData.skills.map((skill, index) => (
+              <span key={index} className="tag">{skill}</span>
+            ))
+          ) : (
+            <p>No skills listed</p>
           )}
+        </div>
+      </div>
+
+      <div className="skills-section">
+        <h4>Specialized Area</h4>
+        <div className="tag-group">
+          {profileData.interestArea?.length > 0 ? (
+            profileData.interestArea.map((area, index) => (
+              <span key={index} className="tag">{area}</span>
+            ))
+          ) : (
+            <p>No specialized areas listed</p>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <div className="button-container-center">
+      <button onClick={handleEditClick} className="edit-button">Edit Profile</button>
+      <button onClick={handleLogout} className="logout-button">Logout</button>
+    </div>
+  </div>
+)}
+
           {activeTab === 'Questions' && (
             <div className="profile-content">
               <h3>My Discussions</h3>

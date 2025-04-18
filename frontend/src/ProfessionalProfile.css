@@ -41,6 +41,13 @@ html, body {
   
   .email {
     color: #555;
+    margin-top: 5px;
+  }
+  .contact {
+    color: #555;
+    width: fit-content;
+    font-weight: 500;
+    margin-top: 5px;
   }
   
   .profile-meta {
@@ -180,6 +187,21 @@ html, body {
   .edit-button {
     background-color: #1e90ff;
     color: #ffffff;
+    margin-top: 22px;
+    margin-right: 5px;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .logout-button {
+    background-color: #e01515;
+    color: #ffffff;
+    margin-top: 22px;
+    margin-right: 5px;
     padding: 6px 14px;
     border: none;
     border-radius: 40px;
@@ -192,6 +214,13 @@ html, body {
     background-color:#1b7fe2;
   }
   
+  .logout-button:hover{
+    background-color: #bd1212;
+    
+    
+  }
+  
+
   /* Button Container */
 .edit-button-container {
   display: flex;
@@ -331,4 +360,9 @@ html, body {
 
 .delete-button:hover {
   background-color: #e53935;
+}
+.button-container-center {
+  display: flex;
+  justify-content: right;
+  margin-top: 20px;
 }
