@@ -104,11 +104,11 @@ passport.deserializeUser((user, done) => {
 });
 
 // Google Auth Routes
-app.get('/auth/google',
+app.get('https://devthonbackend-production.up.railway.app/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
-app.get('/auth/google/callback',
+app.get('https://devthonbackend-production.up.railway.app/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     const user = req.user;
