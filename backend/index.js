@@ -68,7 +68,7 @@ app.use(passport.session());
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID, // Add this to your .env file
   clientSecret: process.env.GOOGLE_CLIENT_SECRET, // Add this to your .env file
-  callbackURL: 'https://devthonbackend-production.up.railway.app/auth/google/callback',
+  callbackURL: '/auth/google/callback',
 }, async (accessToken, refreshToken, profile, done) => {
   try {
     // Check if the user already exists in the database
@@ -104,11 +104,11 @@ passport.deserializeUser((user, done) => {
 });
 
 // Google Auth Routes
-app.get('https://devthonbackend-production.up.railway.app/auth/google',
+app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
-app.get('https://devthonbackend-production.up.railway.app/auth/google/callback',
+app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     const user = req.user;

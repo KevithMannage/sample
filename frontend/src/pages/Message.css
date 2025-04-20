@@ -22,7 +22,7 @@ html, body {
   .contact {
     display: flex;
     align-items: center;
-    background-color: #1e90ff;
+    background-color: #1e8fff00;
     color: rgb(255, 255, 255);
     padding: 10px;
     margin-bottom: 10px;
