@@ -1,5 +1,5 @@
-GuidelineX 
-
+### GuidelineX 
+## installation
 1. Open VS Code.
 2. Open a new terminal.
 3. Run the following command in the terminal to clone the repository
@@ -20,5 +20,5 @@ GuidelineX
     ```bash
     cd backend
     ```
-
+## Demonstration
 ![Demo](./demo.png "Demonstration")
