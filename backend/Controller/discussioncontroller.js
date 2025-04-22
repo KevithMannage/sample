@@ -409,3 +409,61 @@ export const deleteDiscussion = async (req, res) => {
     });
   }
 };
+
+// controllers/discussionController.js
+
+// Controller to get discussions matching user's interest areas
+
+
+
+export const getDiscussionsByInterest = async (req, res) => {
+  try {
+    // Log the entire request body for debugging
+    console.log('Request body:', req.body);
+
+    // Check if req.body exists
+    if (!req.body) {
+      return res.status(400).json({ message: 'Request body is missing or not parsed' });
+    }
+
+    // Get userId from request body
+    const { userId } = req.body;
+    console.log(userId);
+    // Validate userId
+    if (!userId) {
+      return res.status(400).json({ message: 'User ID is required' });
+    }
+
+    // Find user by ID and select interest_area
+    const user = await User.findById(userId).select('interestArea');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    console.log(user);
+
+    // Check if user has interest areas
+    const interestAreas = user.interestArea || [];
+    if (interestAreas.length === 0) {
+      return res.status(200).json({
+        message: 'No interest areas found for this user',
+        discussions: [],
+      });
+    }
+
+    // Find discussions where related_areas include any of the user's interest_area
+    const discussions = await Discussions.find({
+      related_areas: { $in: interestAreas },
+    })
+      .select('topic related_areas starting_message username participants created_at')
+      .sort({ created_at: -1 });
+
+    // Return matching discussions
+    res.status(200).json({
+      message: 'Discussions fetched successfully',
+      discussions,
+    });
+  } catch (error) {
+    console.error('Error fetching discussions by interest:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
