@@ -1301,7 +1301,7 @@ const ProfessionalProfile = () => {
     try {
       setRelatedDiscussionLoading(true);
       const response = await axios.post(
-        'http://localhost:3000/discussion/by-interest',
+        'https://devthonbackend-production.up.railway.app/discussion/by-interest',
         { userId },
         {
           headers: {
