@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import GoogleRedirectHandler from './GoogleRedirectHandler';
+
 // Import your page components
 import LoginPage from './Login';
 import Dashboard from './Dashboard';
@@ -25,6 +25,7 @@ import ForgotPassword from './pages/forgetpassword';
 import ResetPassword from './pages/resetpassword';
 import { FaRegFileCode } from 'react-icons/fa';
 import Search from './pages/search';
+import GoogleRedirectHandler from './GoogleRedirectHandler';
 const App = () => {
   return (
     <Router>

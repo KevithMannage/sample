@@ -68,7 +68,7 @@ app.use(passport.session());
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID, // Add this to your .env file
   clientSecret: process.env.GOOGLE_CLIENT_SECRET, // Add this to your .env file
-  callbackURL: '/auth/google/callback',
+  callbackURL: 'https://devthonbackend-production.up.railway.app/auth/google/callback',
 }, async (accessToken, refreshToken, profile, done) => {
   try {
     // Check if the user already exists in the database
@@ -115,7 +115,7 @@ app.get('/auth/google/callback',
     console.log('Authenticated user:', user); // Debugging: Log the user object
 
     // Redirect to the frontend with user details as query parameters
-    res.redirect(`http://localhost:5173/googlelogin/?userid=${user._id}&role=${user.role}&username=${user.username}&profileimage=${user.profileImage}`);
+    res.redirect(`https://devthonbackend-production.up.railway.app/googlelogin/?userid=${user._id}&role=${user.role}&username=${user.username}&profileimage=${user.profileImage}`);
   }
 );
 
